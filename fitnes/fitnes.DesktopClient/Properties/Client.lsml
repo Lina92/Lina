@@ -4,8 +4,8 @@
   TargetPlatform="RichClient"
   Version="1.0.0.0"
   DefaultNavigationItem="!module/NavigationItems[Tasks]"
-  Shell="Microsoft.LightSwitch.Cosmopolitan:CosmopolitanShell"
-  Theme="Microsoft.LightSwitch.Cosmopolitan:CosmopolitanTheme" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  Shell="Microsoft.LightSwitch.RichClient:Standard"
+  Theme="Microsoft.LightSwitch.RichClient:Blue" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
   <Application.Attributes>
     <ModuleNamespace
       Namespace="LightSwitchApplication" />
@@ -37,44 +37,41 @@
   </GlobalAttributeGroup>
   <Application.Commands>
     <ApplicationCommand
-      Name="ScreenCommandShowEditablePriceGrid"
-      Target="!module/Methods[ShowEditablePriceGrid]" />
+      Name="ScreenCommandShowCreateNewClientItem"
+      Target="!module/Methods[ShowCreateNewClientItem]" />
     <ApplicationCommand
-      Name="ScreenCommandShowCreateNewView_visitsItem"
-      Target="!module/Methods[ShowCreateNewView_visitsItem]" />
+      Name="ScreenCommandShowSearchPrice"
+      Target="!module/Methods[ShowSearchPrice]" />
     <ApplicationCommand
-      Name="ScreenCommandShowEditablePeriodGrid"
-      Target="!module/Methods[ShowEditablePeriodGrid]" />
+      Name="ScreenCommandShowSearchLine"
+      Target="!module/Methods[ShowSearchLine]" />
     <ApplicationCommand
-      Name="ScreenCommandShowEditableCourseGrid"
-      Target="!module/Methods[ShowEditableCourseGrid]" />
-    <ApplicationCommand
-      Name="ScreenCommandShowEditableTrainerGrid"
-      Target="!module/Methods[ShowEditableTrainerGrid]" />
+      Name="ScreenCommandShowSearchView_visits"
+      Target="!module/Methods[ShowSearchView_visits]" />
   </Application.Commands>
   <Application.NavigationItems>
     <ApplicationNavigationGroup
       Name="Tasks"
-      DefaultItem="!module/NavigationItems[Tasks]/Children[EditablePriceGrid]">
+      DefaultItem="!module/NavigationItems[Tasks]/Children[SearchPrice]">
       <ApplicationNavigationGroup.Attributes>
         <DisplayName
           Value="Tasks" />
       </ApplicationNavigationGroup.Attributes>
       <ApplicationNavigationLink
-        Name="EditablePriceGrid"
-        Command="!module/Commands[ScreenCommandShowEditablePriceGrid]" />
+        Name="CreateNewClientItem"
+        Command="!module/Commands[ScreenCommandShowCreateNewClientItem]" />
       <ApplicationNavigationLink
-        Name="CreateNewView_visitsItem"
-        Command="!module/Commands[ScreenCommandShowCreateNewView_visitsItem]" />
+        Name="link"
+        Command="Microsoft.LightSwitch.Security:!module/Commands[ScreenCommandShowRolesScreen]" />
       <ApplicationNavigationLink
-        Name="EditablePeriodGrid"
-        Command="!module/Commands[ScreenCommandShowEditablePeriodGrid]" />
+        Name="SearchPrice"
+        Command="!module/Commands[ScreenCommandShowSearchPrice]" />
       <ApplicationNavigationLink
-        Name="EditableCourseGrid"
-        Command="!module/Commands[ScreenCommandShowEditableCourseGrid]" />
+        Name="SearchLine"
+        Command="!module/Commands[ScreenCommandShowSearchLine]" />
       <ApplicationNavigationLink
-        Name="EditableTrainerGrid"
-        Command="!module/Commands[ScreenCommandShowEditableTrainerGrid]" />
+        Name="SearchView_visits"
+        Command="!module/Commands[ScreenCommandShowSearchView_visits]" />
     </ApplicationNavigationGroup>
     <ApplicationNavigationGroup
       Name="Administration">

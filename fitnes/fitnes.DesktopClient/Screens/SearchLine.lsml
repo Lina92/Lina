@@ -5,7 +5,7 @@
     <Partial />
   </Application.Attributes>
   <Screen
-    Name="ClientItemDetail">
+    Name="SearchLine">
     <Screen.Attributes>
       <SaveChangesTo
         EntityContainer="FitnesData" />
@@ -19,107 +19,98 @@
           Name="ScreenLayout"
           Kind="Group">
           <ContentItem
-            Name="details"
-            Kind="Details"
-            DataType="ClientItem">
+            Name="grid"
+            Kind="Collection"
+            DataType="CollectionView$LineItem">
             <ContentItem.DataSource>
               <ScreenExpressionTree>
                 <ChainExpression>
                   <MemberExpression
-                    Member="ClientItemDetail/Properties[ClientItem]" />
+                    Member="SearchLine/Properties[Line]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
             <ContentItem
-              Name="FName"
-              Kind="Value"
-              DataType=":String">
+              Name="RowTemplate"
+              Kind="Details"
+              DataType="LineItem">
               <ContentItem.DataSource>
                 <ScreenExpressionTree>
-                  <ChainExpression>
-                    <MemberExpression
-                      Member="ClientItem/Properties[FName]" />
-                  </ChainExpression>
+                  <ChainExpression />
                 </ScreenExpressionTree>
               </ContentItem.DataSource>
-            </ContentItem>
-            <ContentItem
-              Name="LName"
-              Kind="Value"
-              DataType=":String">
-              <ContentItem.DataSource>
-                <ScreenExpressionTree>
-                  <ChainExpression>
-                    <MemberExpression
-                      Member="ClientItem/Properties[LName]" />
-                  </ChainExpression>
-                </ScreenExpressionTree>
-              </ContentItem.DataSource>
-            </ContentItem>
-            <ContentItem
-              Name="BirthDate"
-              Kind="Value"
-              DataType=":Date">
-              <ContentItem.DataSource>
-                <ScreenExpressionTree>
-                  <ChainExpression>
-                    <MemberExpression
-                      Member="ClientItem/Properties[BirthDate]" />
-                  </ChainExpression>
-                </ScreenExpressionTree>
-              </ContentItem.DataSource>
-            </ContentItem>
-            <ContentItem
-              Name="PasportNumber"
-              Kind="Value"
-              DataType=":String">
-              <ContentItem.DataSource>
-                <ScreenExpressionTree>
-                  <ChainExpression>
-                    <MemberExpression
-                      Member="ClientItem/Properties[PasportNumber]" />
-                  </ChainExpression>
-                </ScreenExpressionTree>
-              </ContentItem.DataSource>
-            </ContentItem>
-            <ContentItem
-              Name="city"
-              Kind="Value"
-              DataType=":String">
-              <ContentItem.DataSource>
-                <ScreenExpressionTree>
-                  <ChainExpression>
-                    <MemberExpression
-                      Member="ClientItem/Properties[city]" />
-                  </ChainExpression>
-                </ScreenExpressionTree>
-              </ContentItem.DataSource>
+              <ContentItem
+                Name="Data_Time"
+                Kind="Value"
+                DataType=":DateTime">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="LineItem/Properties[Data_Time]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem
+                Name="MaxMass"
+                Kind="Value"
+                DataType=":Int32">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="LineItem/Properties[MaxMass]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem.PropertySources>
+                <ControlPropertySource
+                  Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[BrowseOnly]">
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <ConstantExpression
+                        Value="True"
+                        ResultType=":Boolean" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ControlPropertySource>
+              </ContentItem.PropertySources>
             </ContentItem>
             <ContentItem.PropertySources>
+              <ControlPropertySource
+                Property="Microsoft.LightSwitch.RichClient:DataGrid/Properties[ShowVirtualRow]">
+                <ScreenExpressionTree>
+                  <ChainExpression>
+                    <ConstantExpression
+                      Value="False"
+                      ResultType=":Boolean" />
+                  </ChainExpression>
+                </ScreenExpressionTree>
+              </ControlPropertySource>
+              <ControlPropertySource
+                Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[AttachedLabelPosition]">
+                <ScreenExpressionTree>
+                  <ChainExpression>
+                    <ConstantExpression
+                      Value="Collapsed"
+                      ResultType=":String" />
+                  </ChainExpression>
+                </ScreenExpressionTree>
+              </ControlPropertySource>
               <ControlPropertySource
                 Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[VerticalAlignment]">
                 <ScreenExpressionTree>
                   <ChainExpression>
                     <ConstantExpression
-                      Value="Top"
+                      Value="Stretch"
                       ResultType=":String" />
                   </ChainExpression>
                 </ScreenExpressionTree>
               </ControlPropertySource>
             </ContentItem.PropertySources>
           </ContentItem>
-          <ContentItem.PropertySources>
-            <ControlPropertySource
-              Property="Microsoft.LightSwitch.RichClient:ScrollableControl/Properties[IsVerticalScrollBarEnabled]">
-              <ScreenExpressionTree>
-                <ChainExpression>
-                  <ConstantExpression
-                    Value="True"
-                    ResultType=":Boolean" />
-                </ChainExpression>
-              </ScreenExpressionTree>
-            </ControlPropertySource>
-          </ContentItem.PropertySources>
         </ContentItem>
         <ContentItem.CommandItems>
           <ContentItem
@@ -129,7 +120,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="ClientItemDetail/Methods[Save]" />
+                    Target="SearchLine/Methods[Save]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -141,7 +132,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="ClientItemDetail/Methods[Refresh]" />
+                    Target="SearchLine/Methods[Refresh]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -180,43 +171,41 @@
       </ScreenMethod>
     </Screen.Methods>
     <Screen.Properties>
-      <ScreenProperty
-        Name="ClientItem"
-        PropertyType="ClientItem">
+      <ScreenCollectionProperty
+        Name="Line"
+        PageSize="45"
+        PropertyType="CollectionView$LineItem">
+        <ScreenCollectionProperty.Query>
+          <ScreenQueryDefinition
+            Name="LineQuery"
+            ReturnType="LineItem*">
+            <ScreenQueryDefinition.FilterExpression>
+              <QueryFilterExpressionTree />
+            </ScreenQueryDefinition.FilterExpression>
+            <ScreenQueryDefinition.Source>
+              <QuerySourceExpressionTree>
+                <MemberExpression
+                  Member="FitnesData/Members[Line]" />
+              </QuerySourceExpressionTree>
+            </ScreenQueryDefinition.Source>
+          </ScreenQueryDefinition>
+        </ScreenCollectionProperty.Query>
         <ScreenExpressionTree>
           <ChainExpression>
             <CallExpression
-              Target="LightSwitchApplication.fitnes.DesktopClient:FitnesData/Members[Client_SingleOrDefault]">
-              <ArgumentExpression
-                Parameter="IDClient">
-                <ChainExpression>
-                  <MemberExpression
-                    Member="ClientItemDetail/Properties[ClientItemIDClient]" />
-                </ChainExpression>
-              </ArgumentExpression>
-            </CallExpression>
+              Target="SearchLine/Properties[Line]/Query" />
           </ChainExpression>
         </ScreenExpressionTree>
-      </ScreenProperty>
-      <ScreenProperty
-        Name="ClientItemIDClient"
-        PropertyType=":Int32">
-        <ScreenProperty.Attributes>
-          <IsParameter />
-        </ScreenProperty.Attributes>
-      </ScreenProperty>
+      </ScreenCollectionProperty>
     </Screen.Properties>
   </Screen>
   <Application.Methods>
     <ApplicationMethod
-      Name="ShowClientItemDetail">
+      Name="ShowSearchLine">
       <ApplicationMethod.Attributes>
         <ShowScreenMethod
-          TargetScreen="ClientItemDetail" />
+          TargetScreen="SearchLine" />
       </ApplicationMethod.Attributes>
-      <ApplicationMethodParameter
-        Name="ClientItemIDClient"
-        ParameterType=":Int32" />
     </ApplicationMethod>
   </Application.Methods>
 </Application>

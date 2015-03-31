@@ -5,7 +5,7 @@
     <Partial />
   </Application.Attributes>
   <Screen
-    Name="EditableTrainerGrid">
+    Name="SearchView_visits">
     <Screen.Attributes>
       <SaveChangesTo
         EntityContainer="FitnesData" />
@@ -21,103 +21,70 @@
           <ContentItem
             Name="grid"
             Kind="Collection"
-            DataType="CollectionView$TrainerItem">
+            DataType="CollectionView$View_visitsItem">
             <ContentItem.DataSource>
               <ScreenExpressionTree>
                 <ChainExpression>
                   <MemberExpression
-                    Member="EditableTrainerGrid/Properties[Trainer]" />
+                    Member="SearchView_visits/Properties[View_visits]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
             <ContentItem
               Name="RowTemplate"
               Kind="Details"
-              DataType="TrainerItem">
+              DataType="View_visitsItem">
               <ContentItem.DataSource>
                 <ScreenExpressionTree>
                   <ChainExpression />
                 </ScreenExpressionTree>
               </ContentItem.DataSource>
               <ContentItem
-                Name="LName"
+                Name="Name"
                 Kind="Value"
                 DataType=":String">
                 <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="TrainerItem/Properties[LName]" />
+                        Member="View_visitsItem/Properties[Name]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
+                <ContentItem.PropertySources>
+                  <ControlPropertySource
+                    Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[ShowAsLink]">
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <ConstantExpression
+                          Value="True"
+                          ResultType=":Boolean" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ControlPropertySource>
+                </ContentItem.PropertySources>
               </ContentItem>
-              <ContentItem
-                Name="FName"
-                Kind="Value"
-                DataType=":String">
-                <ContentItem.DataSource>
+              <ContentItem.PropertySources>
+                <ControlPropertySource
+                  Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[BrowseOnly]">
                   <ScreenExpressionTree>
                     <ChainExpression>
-                      <MemberExpression
-                        Member="TrainerItem/Properties[FName]" />
+                      <ConstantExpression
+                        Value="True"
+                        ResultType=":Boolean" />
                     </ChainExpression>
                   </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
+                </ControlPropertySource>
+              </ContentItem.PropertySources>
             </ContentItem>
-            <ContentItem.CommandItems>
-              <ContentItem
-                Name="Trainer_AddAndEditNew"
-                Kind="Command">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="EditableTrainerGrid/Properties[Trainer]" />
-                      <CallExpression
-                        Target="AddAndEditNew" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="Trainer_EditSelected"
-                Kind="Command">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="EditableTrainerGrid/Properties[Trainer]" />
-                      <CallExpression
-                        Target="EditSelected" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="Trainer_DeleteSelected"
-                Kind="Command">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="EditableTrainerGrid/Properties[Trainer]" />
-                      <CallExpression
-                        Target="DeleteSelected" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-            </ContentItem.CommandItems>
             <ContentItem.PropertySources>
               <ControlPropertySource
-                Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[VerticalAlignment]">
+                Property="Microsoft.LightSwitch.RichClient:DataGrid/Properties[ShowVirtualRow]">
                 <ScreenExpressionTree>
                   <ChainExpression>
                     <ConstantExpression
-                      Value="Stretch"
-                      ResultType=":String" />
+                      Value="False"
+                      ResultType=":Boolean" />
                   </ChainExpression>
                 </ScreenExpressionTree>
               </ControlPropertySource>
@@ -127,6 +94,16 @@
                   <ChainExpression>
                     <ConstantExpression
                       Value="Collapsed"
+                      ResultType=":String" />
+                  </ChainExpression>
+                </ScreenExpressionTree>
+              </ControlPropertySource>
+              <ControlPropertySource
+                Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[VerticalAlignment]">
+                <ScreenExpressionTree>
+                  <ChainExpression>
+                    <ConstantExpression
+                      Value="Stretch"
                       ResultType=":String" />
                   </ChainExpression>
                 </ScreenExpressionTree>
@@ -142,7 +119,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="EditableTrainerGrid/Methods[Save]" />
+                    Target="SearchView_visits/Methods[Save]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -154,7 +131,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="EditableTrainerGrid/Methods[Refresh]" />
+                    Target="SearchView_visits/Methods[Refresh]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -194,20 +171,20 @@
     </Screen.Methods>
     <Screen.Properties>
       <ScreenCollectionProperty
-        Name="Trainer"
+        Name="View_visits"
         PageSize="45"
-        PropertyType="CollectionView$TrainerItem">
+        PropertyType="CollectionView$View_visitsItem">
         <ScreenCollectionProperty.Query>
           <ScreenQueryDefinition
-            Name="TrainerQuery"
-            ReturnType="TrainerItem*">
+            Name="View_visitsQuery"
+            ReturnType="View_visitsItem*">
             <ScreenQueryDefinition.FilterExpression>
               <QueryFilterExpressionTree />
             </ScreenQueryDefinition.FilterExpression>
             <ScreenQueryDefinition.Source>
               <QuerySourceExpressionTree>
                 <MemberExpression
-                  Member="FitnesData/Members[Trainer]" />
+                  Member="FitnesData/Members[View_visits]" />
               </QuerySourceExpressionTree>
             </ScreenQueryDefinition.Source>
           </ScreenQueryDefinition>
@@ -215,7 +192,7 @@
         <ScreenExpressionTree>
           <ChainExpression>
             <CallExpression
-              Target="EditableTrainerGrid/Properties[Trainer]/Query" />
+              Target="SearchView_visits/Properties[View_visits]/Query" />
           </ChainExpression>
         </ScreenExpressionTree>
       </ScreenCollectionProperty>
@@ -223,10 +200,10 @@
   </Screen>
   <Application.Methods>
     <ApplicationMethod
-      Name="ShowEditableTrainerGrid">
+      Name="ShowSearchView_visits">
       <ApplicationMethod.Attributes>
         <ShowScreenMethod
-          TargetScreen="EditableTrainerGrid" />
+          TargetScreen="SearchView_visits" />
       </ApplicationMethod.Attributes>
     </ApplicationMethod>
   </Application.Methods>

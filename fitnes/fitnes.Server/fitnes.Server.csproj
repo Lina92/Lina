@@ -30,9 +30,10 @@
     <WCFRIASERVICESSDKPath Condition=" '$(WCFRIASERVICESSDKPath)' == '' ">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WCFRIAServices\v1.0@InstallPath)</WCFRIASERVICESSDKPath>
     <WCFRIASERVICESSDKPath Condition=" '$(WCFRIASERVICESSDKPath)' == '' ">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\WCFRIAServices\v1.0@InstallPath)</WCFRIASERVICESSDKPath>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>disabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -247,7 +248,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49588/</IISUrl>
+          <IISUrl>http://localhost:52486/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

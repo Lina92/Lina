@@ -8,14 +8,15 @@
     <EntityType.Attributes>
       <Proxy
         Target="ServiceInterface:ClientItem" />
-      <DefaultScreen
-        Value="ClientItemDetail">
-        <DefaultScreen.Attributes>
-          <ScreenParameterMapping
-            KeyProperty="ClientItem/Properties[IDClient]"
-            ScreenParameter="ClientItemDetail/Properties[ClientItemIDClient]" />
-        </DefaultScreen.Attributes>
-      </DefaultScreen>
     </EntityType.Attributes>
+    <EntityType.Properties>
+      <EntityProperty>
+        <EntityProperty.Attributes>
+          <Computed />
+          <Proxy
+            Target="LightSwitchServiceApplication:ClientItem/Properties[Foto]" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+    </EntityType.Properties>
   </EntityType>
 </Application>

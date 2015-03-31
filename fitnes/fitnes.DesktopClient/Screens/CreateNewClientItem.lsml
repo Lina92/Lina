@@ -1,0 +1,780 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application
+  Name="LightSwitchApplication.fitnes.DesktopClient" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <Application.Attributes>
+    <Partial />
+  </Application.Attributes>
+  <Screen
+    Name="CreateNewClientItem"
+    LaunchMode="Multiple">
+    <Screen.Attributes>
+      <SaveChangesTo
+        EntityContainer="FitnesData" />
+    </Screen.Attributes>
+    <Screen.RootContentItem>
+      <ContentItem
+        Name="RootContentItem"
+        Kind="Screen"
+        View="Microsoft.LightSwitch.RichClient:Screen">
+        <ContentItem
+          Name="ScreenLayout"
+          Kind="Group">
+          <ContentItem
+            Name="details"
+            Kind="Details"
+            DataType="ClientItem"
+            View="Microsoft.LightSwitch.RichClient:ColumnsLayout">
+            <ContentItem.DataSource>
+              <ScreenExpressionTree>
+                <ChainExpression>
+                  <MemberExpression
+                    Member="CreateNewClientItem/Properties[ClientItemProperty]" />
+                </ChainExpression>
+              </ScreenExpressionTree>
+            </ContentItem.DataSource>
+            <ContentItem
+              Name="left"
+              Kind="Group">
+              <ContentItem
+                Name="Foto"
+                Kind="Value"
+                DataType="Microsoft.LightSwitch.Extensions:Image">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="ClientItem/Properties[Foto]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem
+                Name="FName"
+                Kind="Value"
+                DataType=":String">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="ClientItem/Properties[FName]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem
+                Name="LName"
+                Kind="Value"
+                DataType=":String">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="ClientItem/Properties[LName]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem
+                Name="BirthDate"
+                Kind="Value"
+                DataType=":Date">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="ClientItem/Properties[BirthDate]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+            </ContentItem>
+            <ContentItem
+              Name="right"
+              Kind="Group">
+              <ContentItem
+                Name="PasportNumber"
+                Kind="Value"
+                DataType=":String">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="ClientItem/Properties[PasportNumber]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem
+                Name="city"
+                Kind="Value"
+                DataType=":String">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="ClientItem/Properties[city]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+            </ContentItem>
+            <ContentItem.CommandItems>
+              <ContentItem
+                Name="EditClubCardItem"
+                Kind="Command">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="CreateNewClientItem/Properties[ClubCard]" />
+                      <CallExpression
+                        Target="EditSelected">
+                        <CallExpression.Attributes>
+                          <AssociatedCollection
+                            Collection="CreateNewClientItem/Properties[ClubCard]" />
+                        </CallExpression.Attributes>
+                      </CallExpression>
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem
+                Name="Save1"
+                Kind="Command">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <CallExpression
+                        Target="CreateNewClientItem/Methods[Save]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem
+                Name="DeleteClubCardItem"
+                Kind="Command">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="CreateNewClientItem/Properties[ClubCard]" />
+                      <CallExpression
+                        Target="DeleteSelected" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+            </ContentItem.CommandItems>
+            <ContentItem.PropertySources>
+              <ControlPropertySource
+                Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[VerticalAlignment]">
+                <ScreenExpressionTree>
+                  <ChainExpression>
+                    <ConstantExpression
+                      Value="Top"
+                      ResultType=":String" />
+                  </ChainExpression>
+                </ScreenExpressionTree>
+              </ControlPropertySource>
+            </ContentItem.PropertySources>
+          </ContentItem>
+          <ContentItem
+            Name="children"
+            Kind="Group"
+            View="Microsoft.LightSwitch.RichClient:TabsLayout">
+            <ContentItem
+              Name="Client__Schedule_trainer"
+              Kind="Collection"
+              DataType="CollectionView$Client__Schedule_trainerItem">
+              <ContentItem.DataSource>
+                <ScreenExpressionTree>
+                  <ChainExpression>
+                    <MemberExpression
+                      Member="CreateNewClientItem/Properties[Client__Schedule_trainer]" />
+                  </ChainExpression>
+                </ScreenExpressionTree>
+              </ContentItem.DataSource>
+              <ContentItem
+                Name="RowTemplate"
+                Kind="Details"
+                DataType="Client__Schedule_trainerItem">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression />
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+                <ContentItem
+                  Name="IDClient"
+                  Kind="Value"
+                  DataType=":Int32">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="Client__Schedule_trainerItem/Properties[IDClient]" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="IDSched"
+                  Kind="Value"
+                  DataType=":Int32">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="Client__Schedule_trainerItem/Properties[IDSched]" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="Schedule_trainerItem"
+                  Kind="Details"
+                  DataType="Schedule_trainerItem">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="Client__Schedule_trainerItem/Properties[Schedule_trainerItem]" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                  <ContentItem
+                    Name="RowTemplate1"
+                    Kind="Details"
+                    DataType="Schedule_trainerItem">
+                    <ContentItem.DataSource>
+                      <ScreenExpressionTree>
+                        <ChainExpression />
+                      </ScreenExpressionTree>
+                    </ContentItem.DataSource>
+                  </ContentItem>
+                </ContentItem>
+              </ContentItem>
+              <ContentItem.CommandItems>
+                <ContentItem
+                  Name="Client__Schedule_trainer_AddAndEditNew"
+                  Kind="Command">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="CreateNewClientItem/Properties[Client__Schedule_trainer]" />
+                        <CallExpression
+                          Target="AddAndEditNew" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="Client__Schedule_trainer_EditSelected"
+                  Kind="Command">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="CreateNewClientItem/Properties[Client__Schedule_trainer]" />
+                        <CallExpression
+                          Target="EditSelected" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="Client__Schedule_trainer_DeleteSelected"
+                  Kind="Command">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="CreateNewClientItem/Properties[Client__Schedule_trainer]" />
+                        <CallExpression
+                          Target="DeleteSelected" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+              </ContentItem.CommandItems>
+            </ContentItem>
+            <ContentItem
+              Name="Client_Line"
+              Kind="Collection"
+              DataType="CollectionView$Client_LineItem">
+              <ContentItem.DataSource>
+                <ScreenExpressionTree>
+                  <ChainExpression>
+                    <MemberExpression
+                      Member="CreateNewClientItem/Properties[Client_Line]" />
+                  </ChainExpression>
+                </ScreenExpressionTree>
+              </ContentItem.DataSource>
+              <ContentItem
+                Name="RowTemplate2"
+                Kind="Details"
+                DataType="Client_LineItem">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression />
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+                <ContentItem
+                  Name="IDClient1"
+                  Kind="Value"
+                  DataType=":Int32">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="Client_LineItem/Properties[IDClient]" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="IDLine"
+                  Kind="Value"
+                  DataType=":Int32">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="Client_LineItem/Properties[IDLine]" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="LineItem"
+                  Kind="Details"
+                  DataType="LineItem">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="Client_LineItem/Properties[LineItem]" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                  <ContentItem
+                    Name="RowTemplate3"
+                    Kind="Details"
+                    DataType="LineItem">
+                    <ContentItem.DataSource>
+                      <ScreenExpressionTree>
+                        <ChainExpression />
+                      </ScreenExpressionTree>
+                    </ContentItem.DataSource>
+                  </ContentItem>
+                </ContentItem>
+              </ContentItem>
+              <ContentItem.CommandItems>
+                <ContentItem
+                  Name="Client_Line_AddAndEditNew"
+                  Kind="Command">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="CreateNewClientItem/Properties[Client_Line]" />
+                        <CallExpression
+                          Target="AddAndEditNew" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="Client_Line_EditSelected"
+                  Kind="Command">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="CreateNewClientItem/Properties[Client_Line]" />
+                        <CallExpression
+                          Target="EditSelected" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="Client_Line_DeleteSelected"
+                  Kind="Command">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="CreateNewClientItem/Properties[Client_Line]" />
+                        <CallExpression
+                          Target="DeleteSelected" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+              </ContentItem.CommandItems>
+            </ContentItem>
+            <ContentItem
+              Name="ClubCard"
+              Kind="Collection"
+              DataType="CollectionView$ClubCardItem">
+              <ContentItem.DataSource>
+                <ScreenExpressionTree>
+                  <ChainExpression>
+                    <MemberExpression
+                      Member="CreateNewClientItem/Properties[ClubCard]" />
+                  </ChainExpression>
+                </ScreenExpressionTree>
+              </ContentItem.DataSource>
+              <ContentItem
+                Name="RowTemplate4"
+                Kind="Details"
+                DataType="ClubCardItem">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression />
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+                <ContentItem
+                  Name="numberCard"
+                  Kind="Value"
+                  DataType=":Int32">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="ClubCardItem/Properties[numberCard]" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="Data"
+                  Kind="Value"
+                  DataType=":Date">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="ClubCardItem/Properties[Data]" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="CData_End"
+                  Kind="Value"
+                  DataType=":Date">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="ClubCardItem/Properties[CData_End]" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="Price"
+                  Kind="Value"
+                  DataType=":Decimal">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="ClubCardItem/Properties[Price]" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="PeriodItem"
+                  Kind="Details"
+                  DataType="PeriodItem">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="ClubCardItem/Properties[PeriodItem]" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                  <ContentItem
+                    Name="RowTemplate5"
+                    Kind="Details"
+                    DataType="PeriodItem">
+                    <ContentItem.DataSource>
+                      <ScreenExpressionTree>
+                        <ChainExpression />
+                      </ScreenExpressionTree>
+                    </ContentItem.DataSource>
+                  </ContentItem>
+                </ContentItem>
+                <ContentItem
+                  Name="View_visitsItem"
+                  Kind="Details"
+                  DataType="View_visitsItem">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="ClubCardItem/Properties[View_visitsItem]" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                  <ContentItem
+                    Name="RowTemplate6"
+                    Kind="Details"
+                    DataType="View_visitsItem">
+                    <ContentItem.DataSource>
+                      <ScreenExpressionTree>
+                        <ChainExpression />
+                      </ScreenExpressionTree>
+                    </ContentItem.DataSource>
+                  </ContentItem>
+                </ContentItem>
+              </ContentItem>
+              <ContentItem.CommandItems>
+                <ContentItem
+                  Name="ClubCard_AddAndEditNew"
+                  Kind="Command">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="CreateNewClientItem/Properties[ClubCard]" />
+                        <CallExpression
+                          Target="AddAndEditNew" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="ClubCard_EditSelected"
+                  Kind="Command">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="CreateNewClientItem/Properties[ClubCard]" />
+                        <CallExpression
+                          Target="EditSelected" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="ClubCard_DeleteSelected"
+                  Kind="Command">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="CreateNewClientItem/Properties[ClubCard]" />
+                        <CallExpression
+                          Target="DeleteSelected" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+              </ContentItem.CommandItems>
+            </ContentItem>
+            <ContentItem.PropertySources>
+              <ControlPropertySource
+                Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[VerticalAlignment]">
+                <ScreenExpressionTree>
+                  <ChainExpression>
+                    <ConstantExpression
+                      Value="Stretch"
+                      ResultType=":String" />
+                  </ChainExpression>
+                </ScreenExpressionTree>
+              </ControlPropertySource>
+            </ContentItem.PropertySources>
+          </ContentItem>
+          <ContentItem.PropertySources>
+            <ControlPropertySource
+              Property="Microsoft.LightSwitch.RichClient:ScrollableControl/Properties[IsVerticalScrollBarEnabled]">
+              <ScreenExpressionTree>
+                <ChainExpression>
+                  <ConstantExpression
+                    Value="True"
+                    ResultType=":Boolean" />
+                </ChainExpression>
+              </ScreenExpressionTree>
+            </ControlPropertySource>
+          </ContentItem.PropertySources>
+        </ContentItem>
+        <ContentItem.CommandItems>
+          <ContentItem
+            Name="Save"
+            Kind="Command">
+            <ContentItem.DataSource>
+              <ScreenExpressionTree>
+                <ChainExpression>
+                  <CallExpression
+                    Target="CreateNewClientItem/Methods[Save]" />
+                </ChainExpression>
+              </ScreenExpressionTree>
+            </ContentItem.DataSource>
+          </ContentItem>
+          <ContentItem
+            Name="Refresh"
+            Kind="Command">
+            <ContentItem.DataSource>
+              <ScreenExpressionTree>
+                <ChainExpression>
+                  <CallExpression
+                    Target="CreateNewClientItem/Methods[Refresh]" />
+                </ChainExpression>
+              </ScreenExpressionTree>
+            </ContentItem.DataSource>
+          </ContentItem>
+        </ContentItem.CommandItems>
+      </ContentItem>
+    </Screen.RootContentItem>
+    <Screen.Methods>
+      <ScreenMethod
+        Name="Save">
+        <ScreenMethod.Attributes>
+          <DisplayMethodByDefault
+            Display="True" />
+          <Generated />
+          <ImageResource
+            ResourceId="Microsoft.LightSwitch.BuiltInImageResources::BuiltInResources/Save.png" />
+        </ScreenMethod.Attributes>
+      </ScreenMethod>
+      <ScreenMethod
+        Name="Refresh">
+        <ScreenMethod.Attributes>
+          <DisplayMethodByDefault
+            Display="True" />
+          <Generated />
+          <ImageResource
+            ResourceId="Microsoft.LightSwitch.BuiltInImageResources::BuiltInResources/Refresh.png" />
+        </ScreenMethod.Attributes>
+      </ScreenMethod>
+      <ScreenMethod
+        Name="Close">
+        <ScreenMethod.Attributes>
+          <DisplayMethodByDefault
+            Display="True" />
+          <Generated />
+        </ScreenMethod.Attributes>
+      </ScreenMethod>
+    </Screen.Methods>
+    <Screen.Properties>
+      <ScreenProperty
+        Name="ClientItemProperty"
+        PropertyType="ClientItem" />
+      <ScreenCollectionProperty
+        Name="Client__Schedule_trainer"
+        DisablePaging="True"
+        DisableSearch="True"
+        DisableSorting="True"
+        PageSize="15"
+        PropertyType="CollectionView$Client__Schedule_trainerItem">
+        <ScreenCollectionProperty.Query>
+          <ScreenQueryDefinition
+            Name="Client__Schedule_trainerQuery"
+            ReturnType="Client__Schedule_trainerItem*">
+            <ScreenQueryDefinition.FilterExpression>
+              <QueryFilterExpressionTree />
+            </ScreenQueryDefinition.FilterExpression>
+            <ScreenQueryDefinition.Source>
+              <QuerySourceExpressionTree>
+                <ChainExpression>
+                  <MemberExpression
+                    Member="CreateNewClientItem/Properties[ClientItemProperty]" />
+                  <MemberExpression
+                    Member="Client__Schedule_trainer" />
+                </ChainExpression>
+              </QuerySourceExpressionTree>
+            </ScreenQueryDefinition.Source>
+          </ScreenQueryDefinition>
+        </ScreenCollectionProperty.Query>
+        <ScreenExpressionTree>
+          <ChainExpression>
+            <CallExpression
+              Target="CreateNewClientItem/Properties[Client__Schedule_trainer]/Query" />
+          </ChainExpression>
+        </ScreenExpressionTree>
+      </ScreenCollectionProperty>
+      <ScreenCollectionProperty
+        Name="Client_Line"
+        DisablePaging="True"
+        DisableSearch="True"
+        DisableSorting="True"
+        PageSize="15"
+        PropertyType="CollectionView$Client_LineItem">
+        <ScreenCollectionProperty.Query>
+          <ScreenQueryDefinition
+            Name="Client_LineQuery"
+            ReturnType="Client_LineItem*">
+            <ScreenQueryDefinition.FilterExpression>
+              <QueryFilterExpressionTree />
+            </ScreenQueryDefinition.FilterExpression>
+            <ScreenQueryDefinition.Source>
+              <QuerySourceExpressionTree>
+                <ChainExpression>
+                  <MemberExpression
+                    Member="CreateNewClientItem/Properties[ClientItemProperty]" />
+                  <MemberExpression
+                    Member="Client_Line" />
+                </ChainExpression>
+              </QuerySourceExpressionTree>
+            </ScreenQueryDefinition.Source>
+          </ScreenQueryDefinition>
+        </ScreenCollectionProperty.Query>
+        <ScreenExpressionTree>
+          <ChainExpression>
+            <CallExpression
+              Target="CreateNewClientItem/Properties[Client_Line]/Query" />
+          </ChainExpression>
+        </ScreenExpressionTree>
+      </ScreenCollectionProperty>
+      <ScreenCollectionProperty
+        Name="ClubCard"
+        DisablePaging="True"
+        DisableSearch="True"
+        DisableSorting="True"
+        PageSize="15"
+        PropertyType="CollectionView$ClubCardItem">
+        <ScreenCollectionProperty.Query>
+          <ScreenQueryDefinition
+            Name="ClubCardQuery"
+            ReturnType="ClubCardItem*">
+            <ScreenQueryDefinition.FilterExpression>
+              <QueryFilterExpressionTree />
+            </ScreenQueryDefinition.FilterExpression>
+            <ScreenQueryDefinition.Source>
+              <QuerySourceExpressionTree>
+                <ChainExpression>
+                  <MemberExpression
+                    Member="CreateNewClientItem/Properties[ClientItemProperty]" />
+                  <MemberExpression
+                    Member="ClubCard" />
+                </ChainExpression>
+              </QuerySourceExpressionTree>
+            </ScreenQueryDefinition.Source>
+          </ScreenQueryDefinition>
+        </ScreenCollectionProperty.Query>
+        <ScreenExpressionTree>
+          <ChainExpression>
+            <CallExpression
+              Target="CreateNewClientItem/Properties[ClubCard]/Query" />
+          </ChainExpression>
+        </ScreenExpressionTree>
+      </ScreenCollectionProperty>
+    </Screen.Properties>
+  </Screen>
+  <Application.Methods>
+    <ApplicationMethod
+      Name="ShowCreateNewClientItem">
+      <ApplicationMethod.Attributes>
+        <ShowScreenMethod
+          TargetScreen="CreateNewClientItem" />
+      </ApplicationMethod.Attributes>
+    </ApplicationMethod>
+  </Application.Methods>
+</Application>

@@ -10,19 +10,19 @@ using Microsoft.LightSwitch.Presentation.Extensions;
 
 namespace LightSwitchApplication
 {
-    public partial class CreateNewView_visitsItem
+    public partial class CreateNewClientItem
     {
-        partial void CreateNewView_visitsItem_InitializeDataWorkspace(global::System.Collections.Generic.List<global::Microsoft.LightSwitch.IDataService> saveChangesTo)
+        partial void CreateNewClientItem_InitializeDataWorkspace(global::System.Collections.Generic.List<global::Microsoft.LightSwitch.IDataService> saveChangesTo)
         {
             // Добавьте сюда свой код.
-            this.View_visitsItemProperty = new View_visitsItem();
+            this.ClientItemProperty = new ClientItem();
         }
 
-        partial void CreateNewView_visitsItem_Saved()
+        partial void CreateNewClientItem_Saved()
         {
             // Добавьте сюда свой код.
             this.Close(false);
-            Application.Current.ShowDefaultScreen(this.View_visitsItemProperty);
+            Application.Current.ShowDefaultScreen(this.ClientItemProperty);
         }
     }
 }

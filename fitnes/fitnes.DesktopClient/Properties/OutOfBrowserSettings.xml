@@ -1,8 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<OutOfBrowserSettings ShortName="fitnes.DesktopClient" EnableGPUAcceleration="False" ShowInstallMenuItem="False">
-  <OutOfBrowserSettings.Blurb>fitnes.DesktopClient</OutOfBrowserSettings.Blurb>
+﻿<OutOfBrowserSettings ShortName="fitnes" EnableGPUAcceleration="False" ShowInstallMenuItem="False">
+  <OutOfBrowserSettings.Blurb>fitnes</OutOfBrowserSettings.Blurb>
   <OutOfBrowserSettings.WindowSettings>
-    <WindowSettings Title="fitnes.DesktopClient" WindowStartupLocation="Manual" Top="0" Left="0"/>
+    <WindowSettings Title="fitnes" Top="0" Left="0" WindowStartupLocation="Manual" />
   </OutOfBrowserSettings.WindowSettings>
   <OutOfBrowserSettings.SecuritySettings>
     <SecuritySettings ElevatedPermissions="Required" />

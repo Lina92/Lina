@@ -5,7 +5,7 @@
     <Partial />
   </Application.Attributes>
   <Screen
-    Name="EditablePriceGrid">
+    Name="SearchPrice">
     <Screen.Attributes>
       <SaveChangesTo
         EntityContainer="FitnesData" />
@@ -26,7 +26,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <MemberExpression
-                    Member="EditablePriceGrid/Properties[Price]" />
+                    Member="SearchPrice/Properties[Price]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -51,6 +51,18 @@
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
+                <ContentItem.PropertySources>
+                  <ControlPropertySource
+                    Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[ShowAsLink]">
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <ConstantExpression
+                          Value="True"
+                          ResultType=":Boolean" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ControlPropertySource>
+                </ContentItem.PropertySources>
               </ContentItem>
               <ContentItem
                 Name="Value"
@@ -137,59 +149,27 @@
                   </ContentItem.DataSource>
                 </ContentItem>
               </ContentItem>
+              <ContentItem.PropertySources>
+                <ControlPropertySource
+                  Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[BrowseOnly]">
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <ConstantExpression
+                        Value="True"
+                        ResultType=":Boolean" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ControlPropertySource>
+              </ContentItem.PropertySources>
             </ContentItem>
-            <ContentItem.CommandItems>
-              <ContentItem
-                Name="Price_AddAndEditNew"
-                Kind="Command">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="EditablePriceGrid/Properties[Price]" />
-                      <CallExpression
-                        Target="AddAndEditNew" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="Price_EditSelected"
-                Kind="Command">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="EditablePriceGrid/Properties[Price]" />
-                      <CallExpression
-                        Target="EditSelected" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="Price_DeleteSelected"
-                Kind="Command">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="EditablePriceGrid/Properties[Price]" />
-                      <CallExpression
-                        Target="DeleteSelected" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-            </ContentItem.CommandItems>
             <ContentItem.PropertySources>
               <ControlPropertySource
-                Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[VerticalAlignment]">
+                Property="Microsoft.LightSwitch.RichClient:DataGrid/Properties[ShowVirtualRow]">
                 <ScreenExpressionTree>
                   <ChainExpression>
                     <ConstantExpression
-                      Value="Stretch"
-                      ResultType=":String" />
+                      Value="False"
+                      ResultType=":Boolean" />
                   </ChainExpression>
                 </ScreenExpressionTree>
               </ControlPropertySource>
@@ -203,19 +183,12 @@
                   </ChainExpression>
                 </ScreenExpressionTree>
               </ControlPropertySource>
-            </ContentItem.PropertySources>
-          </ContentItem>
-          <ContentItem
-            Name="Text"
-            Kind="ScreenContent"
-            View="Microsoft.LightSwitch.RichClient:StaticLabel">
-            <ContentItem.PropertySources>
               <ControlPropertySource
-                Property="Microsoft.LightSwitch.RichClient:StaticLabel/Properties[Text]">
+                Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[VerticalAlignment]">
                 <ScreenExpressionTree>
                   <ChainExpression>
                     <ConstantExpression
-                      Value="удалить"
+                      Value="Stretch"
                       ResultType=":String" />
                   </ChainExpression>
                 </ScreenExpressionTree>
@@ -231,7 +204,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="EditablePriceGrid/Methods[Save]" />
+                    Target="SearchPrice/Methods[Save]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -243,7 +216,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="EditablePriceGrid/Methods[Refresh]" />
+                    Target="SearchPrice/Methods[Refresh]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -304,7 +277,7 @@
         <ScreenExpressionTree>
           <ChainExpression>
             <CallExpression
-              Target="EditablePriceGrid/Properties[Price]/Query" />
+              Target="SearchPrice/Properties[Price]/Query" />
           </ChainExpression>
         </ScreenExpressionTree>
       </ScreenCollectionProperty>
@@ -312,10 +285,10 @@
   </Screen>
   <Application.Methods>
     <ApplicationMethod
-      Name="ShowEditablePriceGrid">
+      Name="ShowSearchPrice">
       <ApplicationMethod.Attributes>
         <ShowScreenMethod
-          TargetScreen="EditablePriceGrid" />
+          TargetScreen="SearchPrice" />
       </ApplicationMethod.Attributes>
     </ApplicationMethod>
   </Application.Methods>

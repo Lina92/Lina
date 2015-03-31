@@ -227,11 +227,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Screens\ClientItemDetail.lsml.cs">
-      <DependentUpon>ClientItemDetail.lsml</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\CreateNewView_visitsItem.lsml.cs">
-      <DependentUpon>CreateNewView_visitsItem.lsml</DependentUpon>
+    <Compile Include="Screens\CreateNewClientItem.lsml.cs">
+      <DependentUpon>CreateNewClientItem.lsml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -243,12 +240,10 @@
     <None Include="Properties\OutOfBrowserSettings.xml" />
     <ClientResource Include="Properties\Config.xml" />
     <LightSwitchModel Include="Properties\Proxies.lsml" />
-    <LightSwitchModel Include="Screens\EditablePriceGrid.lsml" />
-    <LightSwitchModel Include="Screens\ClientItemDetail.lsml" />
-    <LightSwitchModel Include="Screens\CreateNewView_visitsItem.lsml" />
-    <LightSwitchModel Include="Screens\EditablePeriodGrid.lsml" />
-    <LightSwitchModel Include="Screens\EditableCourseGrid.lsml" />
-    <LightSwitchModel Include="Screens\EditableTrainerGrid.lsml" />
+    <LightSwitchModel Include="Screens\CreateNewClientItem.lsml" />
+    <LightSwitchModel Include="Screens\SearchPrice.lsml" />
+    <LightSwitchModel Include="Screens\SearchLine.lsml" />
+    <LightSwitchModel Include="Screens\SearchView_visits.lsml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

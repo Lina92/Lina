@@ -91,6 +91,16 @@
         Association="FK_ClubCard_Client"
         FromEnd="Client"
         ToEnd="ClubCard" />
+      <EntityProperty
+        Name="Foto"
+        IsReadOnly="True"
+        PropertyType="Microsoft.LightSwitch.Extensions:Image">
+        <EntityProperty.Attributes>
+          <Computed />
+          <NotSearchable />
+          <NotSortable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
     </EntityType.Properties>
   </EntityType>
   <Association
