@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="View_visitsItem">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="IDVisits"
+        IsReadOnly="True"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Hidden />
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="Name"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            IsFixedLength="True"
+            Value="10" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="ClubCard"
+        Association="FK_ClubCard_View_visits"
+        FromEnd="View_visits"
+        ToEnd="ClubCard" />
+      <NavigationProperty
+        Name="Price"
+        Association="FK_Price_View_visits"
+        FromEnd="View_visits"
+        ToEnd="Price" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_ClubCard_View_visits">
+    <AssociationEnd
+      Name="View_visits"
+      Multiplicity="One"
+      EntityType="View_visitsItem">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="ClubCard"
+      Multiplicity="Many"
+      EntityType="ClubCardItem" />
+  </Association>
+  <Association
+    Name="FK_Price_View_visits">
+    <AssociationEnd
+      Name="View_visits"
+      Multiplicity="One"
+      EntityType="View_visitsItem">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Price"
+      Multiplicity="Many"
+      EntityType="PriceItem" />
+  </Association>
+  <EntityContainer
+    Name="FitnesData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="View_visits"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="View_visitsItem" />
+    <AssociationSet
+      Name="FK_ClubCard_View_visits"
+      Association="FK_ClubCard_View_visits">
+      <AssociationSetEnd
+        Name="View_visits"
+        EntitySet="View_visits" />
+      <AssociationSetEnd
+        Name="ClubCard"
+        EntitySet="ClubCard" />
+    </AssociationSet>
+    <AssociationSet
+      Name="FK_Price_View_visits"
+      Association="FK_Price_View_visits">
+      <AssociationSetEnd
+        Name="View_visits"
+        EntitySet="View_visits" />
+      <AssociationSetEnd
+        Name="Price"
+        EntitySet="Price" />
+    </AssociationSet>
+    <QueryOperation
+      Name="View_visits_Single"
+      ReturnType="View_visitsItem">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Возвращает сущность, идентификатор которой задан параметрами." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="IDVisits" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="IDVisits" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="View_visits" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="IDVisits"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="Значение свойства ключа &quot;IDVisits&quot; сущности, которое требуется получить." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="View_visits_SingleOrDefault"
+      ReturnType="View_visitsItem">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Возвращает сущность, идентификатор которой задан параметрами, или null, если такая сущность не существует." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="IDVisits" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="IDVisits" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="View_visits" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="IDVisits"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="Значение свойства ключа &quot;IDVisits&quot; сущности, которое требуется получить." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="FitnesDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="View_visits">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="View_visits" />
+        <SsdlProperty
+          Name="IDVisits"
+          Nullable="False"
+          StoreGeneratedPattern="Identity"
+          Type="int"
+          Property="View_visitsItem/Properties[IDVisits]" />
+        <SsdlProperty
+          MaxLength="10"
+          Name="Name"
+          Nullable="False"
+          Type="nchar"
+          Property="View_visitsItem/Properties[Name]" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_ClubCard_View_visits">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_ClubCard_View_visits" />
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_ClubCard_View_visits]/Members[View_visits]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDVisits" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_ClubCard_View_visits]/Members[ClubCard]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDVisits" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Price_View_visits">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Price_View_visits" />
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_Price_View_visits]/Members[View_visits]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDVisits" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_Price_View_visits]/Members[Price]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDVisits" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>

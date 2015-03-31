@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="Schedule_trainerItem">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="IDSched"
+        IsReadOnly="True"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Hidden />
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="numberSession"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Data_Time"
+        PropertyType=":DateTime">
+        <EntityProperty.Attributes>
+          <Required />
+          <DateTimeConstraint
+            Precision="3"
+            PreserveSeconds="True" />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="Client__Schedule_trainer"
+        Association="FK_Client__Schedule_trainer_Schedule_trainer"
+        FromEnd="Schedule_trainer"
+        ToEnd="Client__Schedule_trainer" />
+      <NavigationProperty
+        Name="GymItem"
+        Association="FK_Schedule_trainer_Gym"
+        FromEnd="Schedule_trainer"
+        ToEnd="Gym" />
+      <NavigationProperty
+        Name="LineItem"
+        Association="FK_Schedule_trainer_Line"
+        FromEnd="Schedule_trainer"
+        ToEnd="Line" />
+      <NavigationProperty
+        Name="TrainerItem"
+        Association="FK_Schedule_trainer_Trainer"
+        FromEnd="Schedule_trainer"
+        ToEnd="Trainer" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_Client__Schedule_trainer_Schedule_trainer">
+    <AssociationEnd
+      Name="Schedule_trainer"
+      Multiplicity="One"
+      EntityType="Schedule_trainerItem">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Client__Schedule_trainer"
+      Multiplicity="Many"
+      EntityType="Client__Schedule_trainerItem" />
+  </Association>
+  <EntityContainer
+    Name="FitnesData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Schedule_trainer"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Schedule_trainerItem" />
+    <AssociationSet
+      Name="FK_Client__Schedule_trainer_Schedule_trainer"
+      Association="FK_Client__Schedule_trainer_Schedule_trainer">
+      <AssociationSetEnd
+        Name="Schedule_trainer"
+        EntitySet="Schedule_trainer" />
+      <AssociationSetEnd
+        Name="Client__Schedule_trainer"
+        EntitySet="Client__Schedule_trainer" />
+    </AssociationSet>
+    <QueryOperation
+      Name="Schedule_trainer_Single"
+      ReturnType="Schedule_trainerItem">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Возвращает сущность, идентификатор которой задан параметрами." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="IDSched" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="IDSched" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Schedule_trainer" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="IDSched"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="Значение свойства ключа &quot;IDSched&quot; сущности, которое требуется получить." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Schedule_trainer_SingleOrDefault"
+      ReturnType="Schedule_trainerItem">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Возвращает сущность, идентификатор которой задан параметрами, или null, если такая сущность не существует." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="IDSched" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="IDSched" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Schedule_trainer" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="IDSched"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="Значение свойства ключа &quot;IDSched&quot; сущности, которое требуется получить." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="FitnesDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="Schedule_trainer">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Schedule_trainer" />
+        <SsdlProperty
+          Name="IDSched"
+          Nullable="False"
+          StoreGeneratedPattern="Identity"
+          Type="int"
+          Property="Schedule_trainerItem/Properties[IDSched]" />
+        <SsdlProperty
+          Name="numberSession"
+          Nullable="False"
+          Type="int"
+          Property="Schedule_trainerItem/Properties[numberSession]" />
+        <SsdlProperty
+          Name="Data\Time"
+          Nullable="False"
+          Type="datetime"
+          Property="Schedule_trainerItem/Properties[Data_Time]" />
+        <SsdlForeignKeyProperty
+          Name="IDGym"
+          Nullable="False"
+          Type="int"
+          PropertyName="IDGym" />
+        <SsdlForeignKeyProperty
+          Name="IDLine"
+          Nullable="False"
+          Type="int"
+          PropertyName="IDLine" />
+        <SsdlForeignKeyProperty
+          Name="IDTrainer"
+          Nullable="False"
+          Type="int"
+          PropertyName="IDTrainer" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Client__Schedule_trainer_Schedule_trainer">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Client- Schedule_trainer_Schedule_trainer" />
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_Client__Schedule_trainer_Schedule_trainer]/Members[Schedule_trainer]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDSched" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_Client__Schedule_trainer_Schedule_trainer]/Members[Client__Schedule_trainer]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDSched" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>

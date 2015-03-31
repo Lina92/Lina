@@ -1,0 +1,375 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="ClientItem">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="IDClient"
+        IsReadOnly="True"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Hidden />
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="FName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            IsFixedLength="True"
+            Value="10" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="LName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            IsFixedLength="True"
+            Value="10" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="BirthDate"
+        PropertyType=":Date">
+        <EntityProperty.Attributes>
+          <Required />
+          <DateTimeConstraint
+            Precision="0"
+            PreserveSeconds="True" />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="PasportNumber"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            IsFixedLength="True"
+            Value="10" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="city"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            IsFixedLength="True"
+            Value="10" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="Client__Schedule_trainer"
+        Association="FK_Client__Schedule_trainer_Client"
+        FromEnd="Client"
+        ToEnd="Client__Schedule_trainer" />
+      <NavigationProperty
+        Name="Client_Line"
+        Association="FK_Client_Line_Client"
+        FromEnd="Client"
+        ToEnd="Client_Line" />
+      <NavigationProperty
+        Name="ClubCard"
+        Association="FK_ClubCard_Client"
+        FromEnd="Client"
+        ToEnd="ClubCard" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_Client__Schedule_trainer_Client">
+    <AssociationEnd
+      Name="Client"
+      Multiplicity="One"
+      EntityType="ClientItem">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Client__Schedule_trainer"
+      Multiplicity="Many"
+      EntityType="Client__Schedule_trainerItem" />
+  </Association>
+  <Association
+    Name="FK_Client_Line_Client">
+    <AssociationEnd
+      Name="Client"
+      Multiplicity="One"
+      EntityType="ClientItem">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Client_Line"
+      Multiplicity="Many"
+      EntityType="Client_LineItem" />
+  </Association>
+  <Association
+    Name="FK_ClubCard_Client">
+    <AssociationEnd
+      Name="Client"
+      Multiplicity="One"
+      EntityType="ClientItem">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="ClubCard"
+      Multiplicity="Many"
+      EntityType="ClubCardItem" />
+  </Association>
+  <EntityContainer
+    Name="FitnesData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Client"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="ClientItem" />
+    <AssociationSet
+      Name="FK_Client__Schedule_trainer_Client"
+      Association="FK_Client__Schedule_trainer_Client">
+      <AssociationSetEnd
+        Name="Client"
+        EntitySet="Client" />
+      <AssociationSetEnd
+        Name="Client__Schedule_trainer"
+        EntitySet="Client__Schedule_trainer" />
+    </AssociationSet>
+    <AssociationSet
+      Name="FK_Client_Line_Client"
+      Association="FK_Client_Line_Client">
+      <AssociationSetEnd
+        Name="Client"
+        EntitySet="Client" />
+      <AssociationSetEnd
+        Name="Client_Line"
+        EntitySet="Client_Line" />
+    </AssociationSet>
+    <AssociationSet
+      Name="FK_ClubCard_Client"
+      Association="FK_ClubCard_Client">
+      <AssociationSetEnd
+        Name="Client"
+        EntitySet="Client" />
+      <AssociationSetEnd
+        Name="ClubCard"
+        EntitySet="ClubCard" />
+    </AssociationSet>
+    <QueryOperation
+      Name="Client_Single"
+      ReturnType="ClientItem">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Возвращает сущность, идентификатор которой задан параметрами." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="IDClient" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="IDClient" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Client" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="IDClient"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="Значение свойства ключа &quot;IDClient&quot; сущности, которое требуется получить." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Client_SingleOrDefault"
+      ReturnType="ClientItem">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Возвращает сущность, идентификатор которой задан параметрами, или null, если такая сущность не существует." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="IDClient" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="IDClient" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Client" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="IDClient"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="Значение свойства ключа &quot;IDClient&quot; сущности, которое требуется получить." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="FitnesDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="Client">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Client" />
+        <SsdlProperty
+          Name="IDClient"
+          Nullable="False"
+          StoreGeneratedPattern="Identity"
+          Type="int"
+          Property="ClientItem/Properties[IDClient]" />
+        <SsdlProperty
+          MaxLength="10"
+          Name="FName"
+          Nullable="False"
+          Type="nchar"
+          Property="ClientItem/Properties[FName]" />
+        <SsdlProperty
+          MaxLength="10"
+          Name="LName"
+          Nullable="False"
+          Type="nchar"
+          Property="ClientItem/Properties[LName]" />
+        <SsdlProperty
+          Name="BirthDate"
+          Nullable="False"
+          Type="date"
+          Property="ClientItem/Properties[BirthDate]" />
+        <SsdlProperty
+          MaxLength="10"
+          Name="PasportNumber"
+          Nullable="False"
+          Type="nchar"
+          Property="ClientItem/Properties[PasportNumber]" />
+        <SsdlProperty
+          MaxLength="10"
+          Name="city"
+          Nullable="False"
+          Type="nchar"
+          Property="ClientItem/Properties[city]" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Client__Schedule_trainer_Client">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Client- Schedule_trainer_Client" />
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_Client__Schedule_trainer_Client]/Members[Client]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDClient" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_Client__Schedule_trainer_Client]/Members[Client__Schedule_trainer]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDClient" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Client_Line_Client">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Client-Line_Client" />
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_Client_Line_Client]/Members[Client]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDClient" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_Client_Line_Client]/Members[Client_Line]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDClient" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_ClubCard_Client">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_ClubCard_Client" />
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_ClubCard_Client]/Members[Client]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDClient" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_ClubCard_Client]/Members[ClubCard]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDClient" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>

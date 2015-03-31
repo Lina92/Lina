@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="GymItem">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="IDGym"
+        IsReadOnly="True"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Hidden />
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="NamberGym"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="NameGym"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            IsFixedLength="True"
+            Value="10" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="Gym__Course"
+        Association="FK_Gym__Course_Gym"
+        FromEnd="Gym"
+        ToEnd="Gym__Course" />
+      <NavigationProperty
+        Name="Schedule_trainer"
+        Association="FK_Schedule_trainer_Gym"
+        FromEnd="Gym"
+        ToEnd="Schedule_trainer" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_Gym__Course_Gym">
+    <AssociationEnd
+      Name="Gym"
+      Multiplicity="One"
+      EntityType="GymItem">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Gym__Course"
+      Multiplicity="Many"
+      EntityType="Gym__CourseItem" />
+  </Association>
+  <Association
+    Name="FK_Schedule_trainer_Gym">
+    <AssociationEnd
+      Name="Gym"
+      Multiplicity="One"
+      EntityType="GymItem">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Schedule_trainer"
+      Multiplicity="Many"
+      EntityType="Schedule_trainerItem" />
+  </Association>
+  <EntityContainer
+    Name="FitnesData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Gym"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="GymItem" />
+    <AssociationSet
+      Name="FK_Gym__Course_Gym"
+      Association="FK_Gym__Course_Gym">
+      <AssociationSetEnd
+        Name="Gym"
+        EntitySet="Gym" />
+      <AssociationSetEnd
+        Name="Gym__Course"
+        EntitySet="Gym__Course" />
+    </AssociationSet>
+    <AssociationSet
+      Name="FK_Schedule_trainer_Gym"
+      Association="FK_Schedule_trainer_Gym">
+      <AssociationSetEnd
+        Name="Gym"
+        EntitySet="Gym" />
+      <AssociationSetEnd
+        Name="Schedule_trainer"
+        EntitySet="Schedule_trainer" />
+    </AssociationSet>
+    <QueryOperation
+      Name="Gym_Single"
+      ReturnType="GymItem">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Возвращает сущность, идентификатор которой задан параметрами." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="IDGym" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="IDGym" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Gym" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="IDGym"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="Значение свойства ключа &quot;IDGym&quot; сущности, которое требуется получить." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Gym_SingleOrDefault"
+      ReturnType="GymItem">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Возвращает сущность, идентификатор которой задан параметрами, или null, если такая сущность не существует." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="IDGym" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="IDGym" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Gym" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="IDGym"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="Значение свойства ключа &quot;IDGym&quot; сущности, которое требуется получить." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="FitnesDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="Gym">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Gym" />
+        <SsdlProperty
+          Name="IDGym"
+          Nullable="False"
+          StoreGeneratedPattern="Identity"
+          Type="int"
+          Property="GymItem/Properties[IDGym]" />
+        <SsdlProperty
+          Name="NamberGym"
+          Nullable="False"
+          Type="int"
+          Property="GymItem/Properties[NamberGym]" />
+        <SsdlProperty
+          MaxLength="10"
+          Name="NameGym"
+          Nullable="False"
+          Type="nchar"
+          Property="GymItem/Properties[NameGym]" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Gym__Course_Gym">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Gym- Course_Gym" />
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_Gym__Course_Gym]/Members[Gym]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDGym" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_Gym__Course_Gym]/Members[Gym__Course]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDGym" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Schedule_trainer_Gym">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Schedule_trainer_Gym" />
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_Schedule_trainer_Gym]/Members[Gym]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDGym" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_Schedule_trainer_Gym]/Members[Schedule_trainer]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDGym" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>

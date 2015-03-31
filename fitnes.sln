@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{581633EB-B896-402F-8E60-36F3DA191C85}") = "fitnes", "fitnes\fitnes.lsxtproj", "{211D8F3E-442D-4213-8598-0C84F32A9617}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fitnes.Server", "fitnes\fitnes.Server\fitnes.Server.csproj", "{62CA7E0F-3864-4C50-8A35-880163A6A640}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fitnes.DesktopClient", "fitnes\fitnes.DesktopClient\fitnes.DesktopClient.csproj", "{327C1BB3-DF88-47A5-9B24-93017C960382}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{211D8F3E-442D-4213-8598-0C84F32A9617}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{211D8F3E-442D-4213-8598-0C84F32A9617}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{211D8F3E-442D-4213-8598-0C84F32A9617}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{211D8F3E-442D-4213-8598-0C84F32A9617}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62CA7E0F-3864-4C50-8A35-880163A6A640}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62CA7E0F-3864-4C50-8A35-880163A6A640}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62CA7E0F-3864-4C50-8A35-880163A6A640}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62CA7E0F-3864-4C50-8A35-880163A6A640}.Release|Any CPU.Build.0 = Release|Any CPU
+		{327C1BB3-DF88-47A5-9B24-93017C960382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{327C1BB3-DF88-47A5-9B24-93017C960382}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{327C1BB3-DF88-47A5-9B24-93017C960382}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{327C1BB3-DF88-47A5-9B24-93017C960382}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

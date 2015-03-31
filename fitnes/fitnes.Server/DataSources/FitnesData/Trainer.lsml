@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="TrainerItem">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="IDTrainer"
+        IsReadOnly="True"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Hidden />
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="LName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            IsFixedLength="True"
+            Value="10" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="FName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            IsFixedLength="True"
+            Value="10" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="Schedule_trainer"
+        Association="FK_Schedule_trainer_Trainer"
+        FromEnd="Trainer"
+        ToEnd="Schedule_trainer" />
+      <NavigationProperty
+        Name="Trainer__Course"
+        Association="FK_Trainer__Course_Trainer1"
+        FromEnd="Trainer"
+        ToEnd="Trainer__Course" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_Schedule_trainer_Trainer">
+    <AssociationEnd
+      Name="Trainer"
+      Multiplicity="One"
+      EntityType="TrainerItem">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Schedule_trainer"
+      Multiplicity="Many"
+      EntityType="Schedule_trainerItem" />
+  </Association>
+  <Association
+    Name="FK_Trainer__Course_Trainer1">
+    <AssociationEnd
+      Name="Trainer"
+      Multiplicity="One"
+      EntityType="TrainerItem">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Trainer__Course"
+      Multiplicity="Many"
+      EntityType="Trainer__CourseItem" />
+  </Association>
+  <EntityContainer
+    Name="FitnesData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Trainer"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="TrainerItem" />
+    <AssociationSet
+      Name="FK_Schedule_trainer_Trainer"
+      Association="FK_Schedule_trainer_Trainer">
+      <AssociationSetEnd
+        Name="Trainer"
+        EntitySet="Trainer" />
+      <AssociationSetEnd
+        Name="Schedule_trainer"
+        EntitySet="Schedule_trainer" />
+    </AssociationSet>
+    <AssociationSet
+      Name="FK_Trainer__Course_Trainer1"
+      Association="FK_Trainer__Course_Trainer1">
+      <AssociationSetEnd
+        Name="Trainer"
+        EntitySet="Trainer" />
+      <AssociationSetEnd
+        Name="Trainer__Course"
+        EntitySet="Trainer__Course" />
+    </AssociationSet>
+    <QueryOperation
+      Name="Trainer_Single"
+      ReturnType="TrainerItem">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Возвращает сущность, идентификатор которой задан параметрами." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="IDTrainer" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="IDTrainer" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Trainer" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="IDTrainer"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="Значение свойства ключа &quot;IDTrainer&quot; сущности, которое требуется получить." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Trainer_SingleOrDefault"
+      ReturnType="TrainerItem">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Возвращает сущность, идентификатор которой задан параметрами, или null, если такая сущность не существует." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="IDTrainer" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="IDTrainer" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Trainer" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="IDTrainer"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="Значение свойства ключа &quot;IDTrainer&quot; сущности, которое требуется получить." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="FitnesDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="Trainer">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Trainer" />
+        <SsdlProperty
+          Name="IDTrainer"
+          Nullable="False"
+          StoreGeneratedPattern="Identity"
+          Type="int"
+          Property="TrainerItem/Properties[IDTrainer]" />
+        <SsdlProperty
+          MaxLength="10"
+          Name="LName"
+          Nullable="False"
+          Type="nchar"
+          Property="TrainerItem/Properties[LName]" />
+        <SsdlProperty
+          MaxLength="10"
+          Name="FName"
+          Nullable="False"
+          Type="nchar"
+          Property="TrainerItem/Properties[FName]" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Schedule_trainer_Trainer">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Schedule_trainer_Trainer" />
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_Schedule_trainer_Trainer]/Members[Trainer]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDTrainer" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_Schedule_trainer_Trainer]/Members[Schedule_trainer]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDTrainer" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Trainer__Course_Trainer1">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Trainer- Course_Trainer1" />
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_Trainer__Course_Trainer1]/Members[Trainer]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDTrainer" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_Trainer__Course_Trainer1]/Members[Trainer__Course]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDTrainer" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>

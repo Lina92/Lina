@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="LineItem">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="IDLine"
+        IsReadOnly="True"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Hidden />
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="Data_Time"
+        PropertyType=":DateTime">
+        <EntityProperty.Attributes>
+          <Required />
+          <DateTimeConstraint
+            Precision="3"
+            PreserveSeconds="True" />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="MaxMass"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="Client_Line"
+        Association="FK_Client_Line_Line"
+        FromEnd="Line"
+        ToEnd="Client_Line" />
+      <NavigationProperty
+        Name="Schedule_trainer"
+        Association="FK_Schedule_trainer_Line"
+        FromEnd="Line"
+        ToEnd="Schedule_trainer" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_Client_Line_Line">
+    <AssociationEnd
+      Name="Line"
+      Multiplicity="One"
+      EntityType="LineItem">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Client_Line"
+      Multiplicity="Many"
+      EntityType="Client_LineItem" />
+  </Association>
+  <Association
+    Name="FK_Schedule_trainer_Line">
+    <AssociationEnd
+      Name="Line"
+      Multiplicity="One"
+      EntityType="LineItem">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Schedule_trainer"
+      Multiplicity="Many"
+      EntityType="Schedule_trainerItem" />
+  </Association>
+  <EntityContainer
+    Name="FitnesData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Line"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="LineItem" />
+    <AssociationSet
+      Name="FK_Client_Line_Line"
+      Association="FK_Client_Line_Line">
+      <AssociationSetEnd
+        Name="Line"
+        EntitySet="Line" />
+      <AssociationSetEnd
+        Name="Client_Line"
+        EntitySet="Client_Line" />
+    </AssociationSet>
+    <AssociationSet
+      Name="FK_Schedule_trainer_Line"
+      Association="FK_Schedule_trainer_Line">
+      <AssociationSetEnd
+        Name="Line"
+        EntitySet="Line" />
+      <AssociationSetEnd
+        Name="Schedule_trainer"
+        EntitySet="Schedule_trainer" />
+    </AssociationSet>
+    <QueryOperation
+      Name="Line_Single"
+      ReturnType="LineItem">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Возвращает сущность, идентификатор которой задан параметрами." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="IDLine" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="IDLine" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Line" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="IDLine"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="Значение свойства ключа &quot;IDLine&quot; сущности, которое требуется получить." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Line_SingleOrDefault"
+      ReturnType="LineItem">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Возвращает сущность, идентификатор которой задан параметрами, или null, если такая сущность не существует." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="IDLine" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="IDLine" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Line" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="IDLine"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="Значение свойства ключа &quot;IDLine&quot; сущности, которое требуется получить." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="FitnesDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="Line">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Line" />
+        <SsdlProperty
+          Name="IDLine"
+          Nullable="False"
+          StoreGeneratedPattern="Identity"
+          Type="int"
+          Property="LineItem/Properties[IDLine]" />
+        <SsdlProperty
+          Name="Data\Time"
+          Nullable="False"
+          Type="datetime"
+          Property="LineItem/Properties[Data_Time]" />
+        <SsdlProperty
+          Name="MaxMass"
+          Nullable="False"
+          Type="int"
+          Property="LineItem/Properties[MaxMass]" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Client_Line_Line">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Client-Line_Line" />
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_Client_Line_Line]/Members[Line]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDLine" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_Client_Line_Line]/Members[Client_Line]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDLine" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Schedule_trainer_Line">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Schedule_trainer_Line" />
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_Schedule_trainer_Line]/Members[Line]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDLine" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_Schedule_trainer_Line]/Members[Schedule_trainer]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDLine" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>

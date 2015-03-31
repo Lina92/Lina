@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="PeriodItem">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="IDPeriod"
+        IsReadOnly="True"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Hidden />
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="NamePeriod"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            IsFixedLength="True"
+            Value="10" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="ClubCard"
+        Association="FK_ClubCard_Period"
+        FromEnd="Period"
+        ToEnd="ClubCard" />
+      <NavigationProperty
+        Name="Price"
+        Association="FK_Price_Period"
+        FromEnd="Period"
+        ToEnd="Price" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_ClubCard_Period">
+    <AssociationEnd
+      Name="Period"
+      Multiplicity="One"
+      EntityType="PeriodItem">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="ClubCard"
+      Multiplicity="Many"
+      EntityType="ClubCardItem" />
+  </Association>
+  <Association
+    Name="FK_Price_Period">
+    <AssociationEnd
+      Name="Period"
+      Multiplicity="One"
+      EntityType="PeriodItem">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Price"
+      Multiplicity="Many"
+      EntityType="PriceItem" />
+  </Association>
+  <EntityContainer
+    Name="FitnesData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Period"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="PeriodItem" />
+    <AssociationSet
+      Name="FK_ClubCard_Period"
+      Association="FK_ClubCard_Period">
+      <AssociationSetEnd
+        Name="Period"
+        EntitySet="Period" />
+      <AssociationSetEnd
+        Name="ClubCard"
+        EntitySet="ClubCard" />
+    </AssociationSet>
+    <AssociationSet
+      Name="FK_Price_Period"
+      Association="FK_Price_Period">
+      <AssociationSetEnd
+        Name="Period"
+        EntitySet="Period" />
+      <AssociationSetEnd
+        Name="Price"
+        EntitySet="Price" />
+    </AssociationSet>
+    <QueryOperation
+      Name="Period_Single"
+      ReturnType="PeriodItem">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Возвращает сущность, идентификатор которой задан параметрами." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="IDPeriod" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="IDPeriod" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Period" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="IDPeriod"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="Значение свойства ключа &quot;IDPeriod&quot; сущности, которое требуется получить." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Period_SingleOrDefault"
+      ReturnType="PeriodItem">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Возвращает сущность, идентификатор которой задан параметрами, или null, если такая сущность не существует." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="IDPeriod" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="IDPeriod" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Period" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="IDPeriod"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="Значение свойства ключа &quot;IDPeriod&quot; сущности, которое требуется получить." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="FitnesDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="Period">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Period" />
+        <SsdlProperty
+          Name="IDPeriod"
+          Nullable="False"
+          StoreGeneratedPattern="Identity"
+          Type="int"
+          Property="PeriodItem/Properties[IDPeriod]" />
+        <SsdlProperty
+          MaxLength="10"
+          Name="NamePeriod"
+          Nullable="False"
+          Type="nchar"
+          Property="PeriodItem/Properties[NamePeriod]" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_ClubCard_Period">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_ClubCard_Period" />
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_ClubCard_Period]/Members[Period]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDPeriod" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_ClubCard_Period]/Members[ClubCard]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDPeroid" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Price_Period">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Price_Period" />
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_Price_Period]/Members[Period]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDPeriod" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="FitnesData/Members[FK_Price_Period]/Members[Price]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="IDPeriod" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>
