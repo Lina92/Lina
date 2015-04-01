@@ -48,6 +48,9 @@
     <ApplicationCommand
       Name="ScreenCommandShowSearchView_visits"
       Target="!module/Methods[ShowSearchView_visits]" />
+    <ApplicationCommand
+      Name="ScreenCommandShowCreateNewGymItem"
+      Target="!module/Methods[ShowCreateNewGymItem]" />
   </Application.Commands>
   <Application.NavigationItems>
     <ApplicationNavigationGroup
@@ -72,6 +75,9 @@
       <ApplicationNavigationLink
         Name="SearchView_visits"
         Command="!module/Commands[ScreenCommandShowSearchView_visits]" />
+      <ApplicationNavigationLink
+        Name="CreateNewGymItem"
+        Command="!module/Commands[ScreenCommandShowCreateNewGymItem]" />
     </ApplicationNavigationGroup>
     <ApplicationNavigationGroup
       Name="Administration">
