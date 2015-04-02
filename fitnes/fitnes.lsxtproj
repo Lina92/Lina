@@ -20,7 +20,7 @@
     <BaseIntermediateOutputPath>bin</BaseIntermediateOutputPath>
     <ApplicationClientType>Desktop</ApplicationClientType>
     <ApplicationServerType>LocalHost</ApplicationServerType>
-    <AuthenticationType>Windows</AuthenticationType>
+    <AuthenticationType>None</AuthenticationType>
     <ApplicationName>fitnes</ApplicationName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <ServiceDefinitionFile>ServiceDefinition.csdef</ServiceDefinitionFile>
