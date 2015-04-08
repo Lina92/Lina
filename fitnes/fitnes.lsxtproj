@@ -106,6 +106,12 @@
       <Private>True</Private>
       <Type>Client</Type>
     </ProjectReference>
+    <ProjectReference Include="fitnes.HTMLClient1\fitnes.HTMLClient1.jsproj">
+      <Name>fitnes.HTMLClient1</Name>
+      <Project>{3976ba44-a781-4fb8-8424-4e998df67539}</Project>
+      <Private>True</Private>
+      <Type>Client</Type>
+    </ProjectReference>
     <ProjectReference Include="fitnes.Server\fitnes.Server.csproj">
       <Name>fitnes.Server</Name>
       <Project>{62ca7e0f-3864-4c50-8a35-880163a6a640}</Project>

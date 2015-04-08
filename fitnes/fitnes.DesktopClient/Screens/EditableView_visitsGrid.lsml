@@ -5,7 +5,7 @@
     <Partial />
   </Application.Attributes>
   <Screen
-    Name="SearchView_visits">
+    Name="EditableView_visitsGrid">
     <Screen.Attributes>
       <SaveChangesTo
         EntityContainer="FitnesData" />
@@ -17,7 +17,8 @@
         View="Microsoft.LightSwitch.RichClient:Screen">
         <ContentItem
           Name="ScreenLayout"
-          Kind="Group">
+          Kind="Group"
+          View="Microsoft.LightSwitch.RichClient:RowsLayout">
           <ContentItem
             Name="grid"
             Kind="Collection"
@@ -26,7 +27,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <MemberExpression
-                    Member="SearchView_visits/Properties[View_visits]" />
+                    Member="EditableView_visitsGrid/Properties[View_visits]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -51,40 +52,60 @@
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
-                <ContentItem.PropertySources>
-                  <ControlPropertySource
-                    Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[ShowAsLink]">
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <ConstantExpression
-                          Value="True"
-                          ResultType=":Boolean" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ControlPropertySource>
-                </ContentItem.PropertySources>
               </ContentItem>
-              <ContentItem.PropertySources>
-                <ControlPropertySource
-                  Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[BrowseOnly]">
+            </ContentItem>
+            <ContentItem.CommandItems>
+              <ContentItem
+                Name="View_visits_AddAndEditNew"
+                Kind="Command">
+                <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
-                      <ConstantExpression
-                        Value="True"
-                        ResultType=":Boolean" />
+                      <MemberExpression
+                        Member="EditableView_visitsGrid/Properties[View_visits]" />
+                      <CallExpression
+                        Target="AddAndEditNew" />
                     </ChainExpression>
                   </ScreenExpressionTree>
-                </ControlPropertySource>
-              </ContentItem.PropertySources>
-            </ContentItem>
+                </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem
+                Name="View_visits_EditSelected"
+                Kind="Command">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="EditableView_visitsGrid/Properties[View_visits]" />
+                      <CallExpression
+                        Target="EditSelected" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem
+                Name="View_visits_DeleteSelected"
+                Kind="Command">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="EditableView_visitsGrid/Properties[View_visits]" />
+                      <CallExpression
+                        Target="DeleteSelected" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+            </ContentItem.CommandItems>
             <ContentItem.PropertySources>
               <ControlPropertySource
-                Property="Microsoft.LightSwitch.RichClient:DataGrid/Properties[ShowVirtualRow]">
+                Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[VerticalAlignment]">
                 <ScreenExpressionTree>
                   <ChainExpression>
                     <ConstantExpression
-                      Value="False"
-                      ResultType=":Boolean" />
+                      Value="Stretch"
+                      ResultType=":String" />
                   </ChainExpression>
                 </ScreenExpressionTree>
               </ControlPropertySource>
@@ -94,16 +115,6 @@
                   <ChainExpression>
                     <ConstantExpression
                       Value="Collapsed"
-                      ResultType=":String" />
-                  </ChainExpression>
-                </ScreenExpressionTree>
-              </ControlPropertySource>
-              <ControlPropertySource
-                Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[VerticalAlignment]">
-                <ScreenExpressionTree>
-                  <ChainExpression>
-                    <ConstantExpression
-                      Value="Stretch"
                       ResultType=":String" />
                   </ChainExpression>
                 </ScreenExpressionTree>
@@ -119,7 +130,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="SearchView_visits/Methods[Save]" />
+                    Target="EditableView_visitsGrid/Methods[Save]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -131,7 +142,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="SearchView_visits/Methods[Refresh]" />
+                    Target="EditableView_visitsGrid/Methods[Refresh]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -192,7 +203,7 @@
         <ScreenExpressionTree>
           <ChainExpression>
             <CallExpression
-              Target="SearchView_visits/Properties[View_visits]/Query" />
+              Target="EditableView_visitsGrid/Properties[View_visits]/Query" />
           </ChainExpression>
         </ScreenExpressionTree>
       </ScreenCollectionProperty>
@@ -200,10 +211,10 @@
   </Screen>
   <Application.Methods>
     <ApplicationMethod
-      Name="ShowSearchView_visits">
+      Name="ShowEditableView_visitsGrid">
       <ApplicationMethod.Attributes>
         <ShowScreenMethod
-          TargetScreen="SearchView_visits" />
+          TargetScreen="EditableView_visitsGrid" />
       </ApplicationMethod.Attributes>
     </ApplicationMethod>
   </Application.Methods>

@@ -17,7 +17,8 @@
         View="Microsoft.LightSwitch.RichClient:Screen">
         <ContentItem
           Name="ScreenLayout"
-          Kind="Group">
+          Kind="Group"
+          View="Microsoft.LightSwitch.RichClient:RowsLayout">
           <ContentItem
             Name="grid"
             Kind="Collection"
@@ -278,6 +279,32 @@
           <ChainExpression>
             <CallExpression
               Target="SearchPrice/Properties[Price]/Query" />
+          </ChainExpression>
+        </ScreenExpressionTree>
+      </ScreenCollectionProperty>
+      <ScreenCollectionProperty
+        Name="Client"
+        PageSize="45"
+        PropertyType="CollectionView$ClientItem">
+        <ScreenCollectionProperty.Query>
+          <ScreenQueryDefinition
+            Name="ClientQuery"
+            ReturnType="ClientItem*">
+            <ScreenQueryDefinition.FilterExpression>
+              <QueryFilterExpressionTree />
+            </ScreenQueryDefinition.FilterExpression>
+            <ScreenQueryDefinition.Source>
+              <QuerySourceExpressionTree>
+                <MemberExpression
+                  Member="FitnesData/Members[Client]" />
+              </QuerySourceExpressionTree>
+            </ScreenQueryDefinition.Source>
+          </ScreenQueryDefinition>
+        </ScreenCollectionProperty.Query>
+        <ScreenExpressionTree>
+          <ChainExpression>
+            <CallExpression
+              Target="SearchPrice/Properties[Client]/Query" />
           </ChainExpression>
         </ScreenExpressionTree>
       </ScreenCollectionProperty>

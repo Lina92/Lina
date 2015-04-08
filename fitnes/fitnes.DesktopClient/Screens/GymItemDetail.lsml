@@ -5,7 +5,7 @@
     <Partial />
   </Application.Attributes>
   <Screen
-    Name="SearchLine">
+    Name="GymItemDetail">
     <Screen.Attributes>
       <SaveChangesTo
         EntityContainer="FitnesData" />
@@ -17,100 +17,71 @@
         View="Microsoft.LightSwitch.RichClient:Screen">
         <ContentItem
           Name="ScreenLayout"
-          Kind="Group">
+          Kind="Group"
+          View="Microsoft.LightSwitch.RichClient:RowsLayout">
           <ContentItem
-            Name="grid"
-            Kind="Collection"
-            DataType="CollectionView$LineItem">
+            Name="details"
+            Kind="Details"
+            DataType="GymItem">
             <ContentItem.DataSource>
               <ScreenExpressionTree>
                 <ChainExpression>
                   <MemberExpression
-                    Member="SearchLine/Properties[Line]" />
+                    Member="GymItemDetail/Properties[GymItem]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
             <ContentItem
-              Name="RowTemplate"
-              Kind="Details"
-              DataType="LineItem">
+              Name="NamberGym"
+              Kind="Value"
+              DataType=":Int32">
               <ContentItem.DataSource>
                 <ScreenExpressionTree>
-                  <ChainExpression />
+                  <ChainExpression>
+                    <MemberExpression
+                      Member="GymItem/Properties[NamberGym]" />
+                  </ChainExpression>
                 </ScreenExpressionTree>
               </ContentItem.DataSource>
-              <ContentItem
-                Name="Data_Time"
-                Kind="Value"
-                DataType=":DateTime">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="LineItem/Properties[Data_Time]" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="MaxMass"
-                Kind="Value"
-                DataType=":Int32">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="LineItem/Properties[MaxMass]" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem.PropertySources>
-                <ControlPropertySource
-                  Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[BrowseOnly]">
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <ConstantExpression
-                        Value="True"
-                        ResultType=":Boolean" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ControlPropertySource>
-              </ContentItem.PropertySources>
+            </ContentItem>
+            <ContentItem
+              Name="NameGym"
+              Kind="Value"
+              DataType=":String">
+              <ContentItem.DataSource>
+                <ScreenExpressionTree>
+                  <ChainExpression>
+                    <MemberExpression
+                      Member="GymItem/Properties[NameGym]" />
+                  </ChainExpression>
+                </ScreenExpressionTree>
+              </ContentItem.DataSource>
             </ContentItem>
             <ContentItem.PropertySources>
-              <ControlPropertySource
-                Property="Microsoft.LightSwitch.RichClient:DataGrid/Properties[ShowVirtualRow]">
-                <ScreenExpressionTree>
-                  <ChainExpression>
-                    <ConstantExpression
-                      Value="False"
-                      ResultType=":Boolean" />
-                  </ChainExpression>
-                </ScreenExpressionTree>
-              </ControlPropertySource>
-              <ControlPropertySource
-                Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[AttachedLabelPosition]">
-                <ScreenExpressionTree>
-                  <ChainExpression>
-                    <ConstantExpression
-                      Value="Collapsed"
-                      ResultType=":String" />
-                  </ChainExpression>
-                </ScreenExpressionTree>
-              </ControlPropertySource>
               <ControlPropertySource
                 Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[VerticalAlignment]">
                 <ScreenExpressionTree>
                   <ChainExpression>
                     <ConstantExpression
-                      Value="Stretch"
+                      Value="Top"
                       ResultType=":String" />
                   </ChainExpression>
                 </ScreenExpressionTree>
               </ControlPropertySource>
             </ContentItem.PropertySources>
           </ContentItem>
+          <ContentItem.PropertySources>
+            <ControlPropertySource
+              Property="Microsoft.LightSwitch.RichClient:ScrollableControl/Properties[IsVerticalScrollBarEnabled]">
+              <ScreenExpressionTree>
+                <ChainExpression>
+                  <ConstantExpression
+                    Value="True"
+                    ResultType=":Boolean" />
+                </ChainExpression>
+              </ScreenExpressionTree>
+            </ControlPropertySource>
+          </ContentItem.PropertySources>
         </ContentItem>
         <ContentItem.CommandItems>
           <ContentItem
@@ -120,7 +91,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="SearchLine/Methods[Save]" />
+                    Target="GymItemDetail/Methods[Save]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -132,7 +103,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="SearchLine/Methods[Refresh]" />
+                    Target="GymItemDetail/Methods[Refresh]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -171,6 +142,31 @@
       </ScreenMethod>
     </Screen.Methods>
     <Screen.Properties>
+      <ScreenProperty
+        Name="GymItem"
+        PropertyType="GymItem">
+        <ScreenExpressionTree>
+          <ChainExpression>
+            <CallExpression
+              Target="LightSwitchApplication.fitnes.DesktopClient:FitnesData/Members[Gym_SingleOrDefault]">
+              <ArgumentExpression
+                Parameter="IDGym">
+                <ChainExpression>
+                  <MemberExpression
+                    Member="GymItemDetail/Properties[GymItemIDGym]" />
+                </ChainExpression>
+              </ArgumentExpression>
+            </CallExpression>
+          </ChainExpression>
+        </ScreenExpressionTree>
+      </ScreenProperty>
+      <ScreenProperty
+        Name="GymItemIDGym"
+        PropertyType=":Int32">
+        <ScreenProperty.Attributes>
+          <IsParameter />
+        </ScreenProperty.Attributes>
+      </ScreenProperty>
       <ScreenCollectionProperty
         Name="Line"
         PageSize="45"
@@ -193,7 +189,7 @@
         <ScreenExpressionTree>
           <ChainExpression>
             <CallExpression
-              Target="SearchLine/Properties[Line]/Query" />
+              Target="GymItemDetail/Properties[Line]/Query" />
           </ChainExpression>
         </ScreenExpressionTree>
       </ScreenCollectionProperty>
@@ -201,11 +197,14 @@
   </Screen>
   <Application.Methods>
     <ApplicationMethod
-      Name="ShowSearchLine">
+      Name="ShowGymItemDetail">
       <ApplicationMethod.Attributes>
         <ShowScreenMethod
-          TargetScreen="SearchLine" />
+          TargetScreen="GymItemDetail" />
       </ApplicationMethod.Attributes>
+      <ApplicationMethodParameter
+        Name="GymItemIDGym"
+        ParameterType=":Int32" />
     </ApplicationMethod>
   </Application.Methods>
 </Application>

@@ -43,14 +43,14 @@
       Name="ScreenCommandShowSearchPrice"
       Target="!module/Methods[ShowSearchPrice]" />
     <ApplicationCommand
-      Name="ScreenCommandShowSearchLine"
-      Target="!module/Methods[ShowSearchLine]" />
+      Name="ScreenCommandShowEditableTrainerGrid"
+      Target="!module/Methods[ShowEditableTrainerGrid]" />
     <ApplicationCommand
-      Name="ScreenCommandShowSearchView_visits"
-      Target="!module/Methods[ShowSearchView_visits]" />
+      Name="ScreenCommandShowEditableView_visitsGrid"
+      Target="!module/Methods[ShowEditableView_visitsGrid]" />
     <ApplicationCommand
-      Name="ScreenCommandShowCreateNewGymItem"
-      Target="!module/Methods[ShowCreateNewGymItem]" />
+      Name="ScreenCommandShowCreateNewLineItem"
+      Target="!module/Methods[ShowCreateNewLineItem]" />
   </Application.Commands>
   <Application.NavigationItems>
     <ApplicationNavigationGroup
@@ -70,14 +70,14 @@
         Name="SearchPrice"
         Command="!module/Commands[ScreenCommandShowSearchPrice]" />
       <ApplicationNavigationLink
-        Name="SearchLine"
-        Command="!module/Commands[ScreenCommandShowSearchLine]" />
+        Name="EditableTrainerGrid"
+        Command="!module/Commands[ScreenCommandShowEditableTrainerGrid]" />
       <ApplicationNavigationLink
-        Name="SearchView_visits"
-        Command="!module/Commands[ScreenCommandShowSearchView_visits]" />
+        Name="EditableView_visitsGrid"
+        Command="!module/Commands[ScreenCommandShowEditableView_visitsGrid]" />
       <ApplicationNavigationLink
-        Name="CreateNewGymItem"
-        Command="!module/Commands[ScreenCommandShowCreateNewGymItem]" />
+        Name="CreateNewLineItem"
+        Command="!module/Commands[ScreenCommandShowCreateNewLineItem]" />
     </ApplicationNavigationGroup>
     <ApplicationNavigationGroup
       Name="Administration">

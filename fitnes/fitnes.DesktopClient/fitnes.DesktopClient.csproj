@@ -230,8 +230,11 @@
     <Compile Include="Screens\CreateNewClientItem.lsml.cs">
       <DependentUpon>CreateNewClientItem.lsml</DependentUpon>
     </Compile>
-    <Compile Include="Screens\CreateNewGymItem.lsml.cs">
-      <DependentUpon>CreateNewGymItem.lsml</DependentUpon>
+    <Compile Include="Screens\CreateNewLineItem.lsml.cs">
+      <DependentUpon>CreateNewLineItem.lsml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\GymItemDetail.lsml.cs">
+      <DependentUpon>GymItemDetail.lsml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -240,14 +243,16 @@
     </LightSwitchModel>
     <None Include="Properties\AppManifest.xml" />
     <LightSwitchModel Include="Properties\FitnesData\Client.lsml" />
+    <LightSwitchModel Include="Properties\FitnesData\Gym.lsml" />
     <None Include="Properties\OutOfBrowserSettings.xml" />
     <ClientResource Include="Properties\Config.xml" />
     <LightSwitchModel Include="Properties\Proxies.lsml" />
     <LightSwitchModel Include="Screens\CreateNewClientItem.lsml" />
     <LightSwitchModel Include="Screens\SearchPrice.lsml" />
-    <LightSwitchModel Include="Screens\SearchLine.lsml" />
-    <LightSwitchModel Include="Screens\SearchView_visits.lsml" />
-    <LightSwitchModel Include="Screens\CreateNewGymItem.lsml" />
+    <LightSwitchModel Include="Screens\EditableTrainerGrid.lsml" />
+    <LightSwitchModel Include="Screens\GymItemDetail.lsml" />
+    <LightSwitchModel Include="Screens\EditableView_visitsGrid.lsml" />
+    <LightSwitchModel Include="Screens\CreateNewLineItem.lsml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
