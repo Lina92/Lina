@@ -5,8 +5,7 @@
     <Partial />
   </Application.Attributes>
   <Screen
-    Name="CreateNewClientItem"
-    LaunchMode="Multiple">
+    Name="SearchTrainer">
     <Screen.Attributes>
       <SaveChangesTo
         EntityContainer="FitnesData" />
@@ -20,77 +19,26 @@
           Name="ScreenLayout"
           Kind="Group">
           <ContentItem
-            Name="Group"
-            Kind="Group"
-            View="Microsoft.LightSwitch.RichClient:RowsLayout">
+            Name="Trainer"
+            Kind="Collection"
+            DataType="CollectionView$TrainerItem">
+            <ContentItem.DataSource>
+              <ScreenExpressionTree>
+                <ChainExpression>
+                  <MemberExpression
+                    Member="SearchTrainer/Properties[Trainer]" />
+                </ChainExpression>
+              </ScreenExpressionTree>
+            </ContentItem.DataSource>
             <ContentItem
-              Name="Foto"
-              Kind="Value"
-              DataType="Microsoft.LightSwitch.Extensions:Image"
-              View="Microsoft.LightSwitch.Extensions:ImageEditorControl">
-              <ContentItem.DataSource>
-                <ScreenExpressionTree>
-                  <ChainExpression>
-                    <MemberExpression
-                      Member="CreateNewClientItem/Properties[ClientItemProperty]" />
-                    <MemberExpression
-                      Member="Foto" />
-                  </ChainExpression>
-                </ScreenExpressionTree>
-              </ContentItem.DataSource>
-              <ContentItem.CommandItems>
-                <ContentItem
-                  Name="Refresh2"
-                  Kind="Command">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <CallExpression
-                          Target="CreateNewClientItem/Methods[Refresh]" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                </ContentItem>
-                <ContentItem
-                  Name="Save2"
-                  Kind="Command">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <CallExpression
-                          Target="CreateNewClientItem/Methods[Save]" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                </ContentItem>
-              </ContentItem.CommandItems>
-            </ContentItem>
-            <ContentItem
-              Name="ClientItemProperty"
+              Name="TrainerTemplate"
               Kind="Details"
-              DataType="ClientItem"
-              View="Microsoft.LightSwitch.RichClient:RowsLayout">
+              DataType="TrainerItem">
               <ContentItem.DataSource>
                 <ScreenExpressionTree>
-                  <ChainExpression>
-                    <MemberExpression
-                      Member="CreateNewClientItem/Properties[ClientItemProperty]" />
-                  </ChainExpression>
+                  <ChainExpression />
                 </ScreenExpressionTree>
               </ContentItem.DataSource>
-              <ContentItem
-                Name="FName"
-                Kind="Value"
-                DataType=":String">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="ClientItem/Properties[FName]" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
               <ContentItem
                 Name="LName"
                 Kind="Value"
@@ -99,61 +47,89 @@
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="ClientItem/Properties[LName]" />
+                        Member="TrainerItem/Properties[LName]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
               </ContentItem>
               <ContentItem
-                Name="BirthDate"
-                Kind="Value"
-                DataType=":Date">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="ClientItem/Properties[BirthDate]" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="PasportNumber"
+                Name="FName"
                 Kind="Value"
                 DataType=":String">
                 <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="ClientItem/Properties[PasportNumber]" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="city"
-                Kind="Value"
-                DataType=":String">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="ClientItem/Properties[city]" />
+                        Member="TrainerItem/Properties[FName]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
               </ContentItem>
             </ContentItem>
+            <ContentItem.CommandItems>
+              <ContentItem
+                Name="Trainer_AddAndEditNew"
+                Kind="Command">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="SearchTrainer/Properties[Trainer]" />
+                      <CallExpression
+                        Target="AddAndEditNew" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem
+                Name="Trainer_EditSelected"
+                Kind="Command">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="SearchTrainer/Properties[Trainer]" />
+                      <CallExpression
+                        Target="EditSelected" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem
+                Name="Trainer_DeleteSelected"
+                Kind="Command">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="SearchTrainer/Properties[Trainer]" />
+                      <CallExpression
+                        Target="DeleteSelected" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem
+                Name="Save1"
+                Kind="Command">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <CallExpression
+                        Target="SearchTrainer/Methods[Save]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+            </ContentItem.CommandItems>
           </ContentItem>
           <ContentItem.PropertySources>
             <ControlPropertySource
-              Property="Microsoft.LightSwitch.RichClient:ScrollableControl/Properties[IsVerticalScrollBarEnabled]">
+              Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[HorizontalAlignment]">
               <ScreenExpressionTree>
-                <ChainExpression>
-                  <ConstantExpression
-                    Value="True"
-                    ResultType=":Boolean" />
-                </ChainExpression>
+                <ConstantExpression
+                  Value="Left"
+                  ResultType=":String" />
               </ScreenExpressionTree>
             </ControlPropertySource>
           </ContentItem.PropertySources>
@@ -166,7 +142,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="CreateNewClientItem/Methods[Save]" />
+                    Target="SearchTrainer/Methods[Save]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -178,7 +154,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="CreateNewClientItem/Methods[Refresh]" />
+                    Target="SearchTrainer/Methods[Refresh]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -217,24 +193,21 @@
       </ScreenMethod>
     </Screen.Methods>
     <Screen.Properties>
-      <ScreenProperty
-        Name="ClientItemProperty"
-        PropertyType="ClientItem" />
       <ScreenCollectionProperty
-        Name="Client"
+        Name="Trainer"
         PageSize="45"
-        PropertyType="CollectionView$ClientItem">
+        PropertyType="CollectionView$TrainerItem">
         <ScreenCollectionProperty.Query>
           <ScreenQueryDefinition
-            Name="ClientQuery"
-            ReturnType="ClientItem*">
+            Name="TrainerQuery"
+            ReturnType="TrainerItem*">
             <ScreenQueryDefinition.FilterExpression>
               <QueryFilterExpressionTree />
             </ScreenQueryDefinition.FilterExpression>
             <ScreenQueryDefinition.Source>
               <QuerySourceExpressionTree>
                 <MemberExpression
-                  Member="FitnesData/Members[Client]" />
+                  Member="FitnesData/Members[Trainer]" />
               </QuerySourceExpressionTree>
             </ScreenQueryDefinition.Source>
           </ScreenQueryDefinition>
@@ -242,7 +215,7 @@
         <ScreenExpressionTree>
           <ChainExpression>
             <CallExpression
-              Target="CreateNewClientItem/Properties[Client]/Query" />
+              Target="SearchTrainer/Properties[Trainer]/Query" />
           </ChainExpression>
         </ScreenExpressionTree>
       </ScreenCollectionProperty>
@@ -250,10 +223,10 @@
   </Screen>
   <Application.Methods>
     <ApplicationMethod
-      Name="ShowCreateNewClientItem">
+      Name="ShowSearchTrainer">
       <ApplicationMethod.Attributes>
         <ShowScreenMethod
-          TargetScreen="CreateNewClientItem" />
+          TargetScreen="SearchTrainer" />
       </ApplicationMethod.Attributes>
     </ApplicationMethod>
   </Application.Methods>

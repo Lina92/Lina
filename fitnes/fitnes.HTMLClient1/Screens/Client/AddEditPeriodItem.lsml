@@ -5,10 +5,12 @@
     <Partial />
   </Application.Attributes>
   <Screen
-    Name="ViewLineItem">
+    Name="AddEditPeriodItem">
     <Screen.Attributes>
       <SaveChangesTo
         EntityContainer="FitnesData" />
+      <DisplayName
+        Value="PeriodItem" />
     </Screen.Attributes>
     <Screen.RootContentItem>
       <ContentItem
@@ -30,7 +32,7 @@
             <ContentItem
               Name="columns"
               Kind="Details"
-              DataType="LineItem"
+              DataType="PeriodItem"
               View="Microsoft.LightSwitch.MobileWeb:ColumnsLayout">
               <ContentItem.Attributes>
                 <DisplayName
@@ -40,7 +42,7 @@
                 <ScreenExpressionTree>
                   <ChainExpression>
                     <MemberExpression
-                      Member="ViewLineItem/Properties[LineItem]" />
+                      Member="AddEditPeriodItem/Properties[PeriodItem]" />
                   </ChainExpression>
                 </ScreenExpressionTree>
               </ContentItem.DataSource>
@@ -48,14 +50,14 @@
                 Name="left"
                 Kind="Group">
                 <ContentItem
-                  Name="Data_Time"
+                  Name="NamePeriod"
                   Kind="Value"
-                  DataType=":DateTime">
+                  DataType=":String">
                   <ContentItem.DataSource>
                     <ScreenExpressionTree>
                       <ChainExpression>
                         <MemberExpression
-                          Member="LineItem/Properties[Data_Time]" />
+                          Member="PeriodItem/Properties[NamePeriod]" />
                       </ChainExpression>
                     </ScreenExpressionTree>
                   </ContentItem.DataSource>
@@ -86,19 +88,6 @@
               <ContentItem
                 Name="right"
                 Kind="Group">
-                <ContentItem
-                  Name="MaxMass"
-                  Kind="Value"
-                  DataType=":Int32">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <MemberExpression
-                          Member="LineItem/Properties[MaxMass]" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                </ContentItem>
                 <ContentItem.PropertySources>
                   <ControlPropertySource
                     Property="Microsoft.LightSwitch.MobileWeb:RootControl/Properties[MinWidth]">
@@ -124,23 +113,33 @@
               </ContentItem>
             </ContentItem>
           </ContentItem>
-          <ContentItem.PropertySources>
-            <ControlPropertySource
-              Property="Microsoft.LightSwitch.MobileWeb:RootControl/Properties[BrowseOnly]">
-              <ScreenExpressionTree>
-                <ChainExpression>
-                  <ConstantExpression
-                    Value="True"
-                    ResultType=":Boolean" />
-                </ChainExpression>
-              </ScreenExpressionTree>
-            </ControlPropertySource>
-          </ContentItem.PropertySources>
         </ContentItem>
         <ContentItem
           Name="Popups"
           Kind="Group"
           View="Microsoft.LightSwitch.MobileWeb:DialogPages" />
+        <ContentItem.PropertySources>
+          <ControlPropertySource
+            Property="Microsoft.LightSwitch.MobileWeb:Screen/Properties[ScreenType]">
+            <ScreenExpressionTree>
+              <ChainExpression>
+                <ConstantExpression
+                  Value="Edit"
+                  ResultType=":String" />
+              </ChainExpression>
+            </ScreenExpressionTree>
+          </ControlPropertySource>
+          <ControlPropertySource
+            Property="Microsoft.LightSwitch.MobileWeb:Screen/Properties[ShowAsDialog]">
+            <ScreenExpressionTree>
+              <ChainExpression>
+                <ConstantExpression
+                  Value="True"
+                  ResultType=":Boolean" />
+              </ChainExpression>
+            </ScreenExpressionTree>
+          </ControlPropertySource>
+        </ContentItem.PropertySources>
       </ContentItem>
     </Screen.RootContentItem>
     <Screen.Methods>
@@ -169,8 +168,8 @@
     </Screen.Methods>
     <Screen.Properties>
       <ScreenProperty
-        Name="LineItem"
-        PropertyType="LineItem">
+        Name="PeriodItem"
+        PropertyType="PeriodItem">
         <ScreenProperty.Attributes>
           <IsParameter />
         </ScreenProperty.Attributes>
@@ -179,14 +178,14 @@
   </Screen>
   <Application.Methods>
     <ApplicationMethod
-      Name="showViewLineItem">
+      Name="showAddEditPeriodItem">
       <ApplicationMethod.Attributes>
         <ShowScreenMethod
-          TargetScreen="ViewLineItem" />
+          TargetScreen="AddEditPeriodItem" />
       </ApplicationMethod.Attributes>
       <ApplicationMethodParameter
-        Name="LineItem"
-        ParameterType="LineItem" />
+        Name="PeriodItem"
+        ParameterType="PeriodItem" />
     </ApplicationMethod>
   </Application.Methods>
 </Application>

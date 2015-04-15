@@ -26,7 +26,7 @@
               Name="Trainer"
               Kind="Collection"
               DataType="CollectionView$TrainerItem"
-              View="Microsoft.LightSwitch.MobileWeb:TileList">
+              View="Microsoft.LightSwitch.MobileWeb:Table">
               <ContentItem.Attributes>
                 <DisplayName
                   Value="Trainer" />

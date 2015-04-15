@@ -5,10 +5,12 @@
     <Partial />
   </Application.Attributes>
   <Screen
-    Name="BrowseClient">
+    Name="BrowsePeriod">
     <Screen.Attributes>
       <SaveChangesTo
         EntityContainer="FitnesData" />
+      <DisplayName
+        Value="Period" />
     </Screen.Attributes>
     <Screen.RootContentItem>
       <ContentItem
@@ -20,30 +22,29 @@
           Kind="Group"
           View="Microsoft.LightSwitch.MobileWeb:TabPages">
           <ContentItem
-            Name="ClientItemList"
-            Kind="Group"
-            View="Microsoft.LightSwitch.MobileWeb:RowsLayout">
+            Name="PeriodItemList"
+            Kind="Group">
             <ContentItem
-              Name="Client"
+              Name="Period"
               Kind="Collection"
-              DataType="CollectionView$ClientItem"
-              View="Microsoft.LightSwitch.MobileWeb:Table">
+              DataType="CollectionView$PeriodItem"
+              View="Microsoft.LightSwitch.MobileWeb:TileList">
               <ContentItem.Attributes>
                 <DisplayName
-                  Value="Client" />
+                  Value="Period" />
               </ContentItem.Attributes>
               <ContentItem.DataSource>
                 <ScreenExpressionTree>
                   <ChainExpression>
                     <MemberExpression
-                      Member="BrowseClient/Properties[Client]" />
+                      Member="BrowsePeriod/Properties[Period]" />
                   </ChainExpression>
                 </ScreenExpressionTree>
               </ContentItem.DataSource>
               <ContentItem
                 Name="rows"
                 Kind="Details"
-                DataType="ClientItem"
+                DataType="PeriodItem"
                 View="Microsoft.LightSwitch.MobileWeb:RowsLayout">
                 <ContentItem.Attributes>
                   <DisplayName
@@ -55,14 +56,14 @@
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
                 <ContentItem
-                  Name="FName"
+                  Name="NamePeriod"
                   Kind="Value"
                   DataType=":String">
                   <ContentItem.DataSource>
                     <ScreenExpressionTree>
                       <ChainExpression>
                         <MemberExpression
-                          Member="ClientItem/Properties[FName]" />
+                          Member="PeriodItem/Properties[NamePeriod]" />
                       </ChainExpression>
                     </ScreenExpressionTree>
                   </ContentItem.DataSource>
@@ -78,82 +79,6 @@
                       </ScreenExpressionTree>
                     </ControlPropertySource>
                   </ContentItem.PropertySources>
-                </ContentItem>
-                <ContentItem
-                  Name="LName"
-                  Kind="Value"
-                  DataType=":String">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <MemberExpression
-                          Member="ClientItem/Properties[LName]" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                  <ContentItem.PropertySources>
-                    <ControlPropertySource
-                      Property="Microsoft.LightSwitch.MobileWeb:RootControl/Properties[FontStyle]">
-                      <ScreenExpressionTree>
-                        <ChainExpression>
-                          <ConstantExpression
-                            Value="Small"
-                            ResultType=":String" />
-                        </ChainExpression>
-                      </ScreenExpressionTree>
-                    </ControlPropertySource>
-                  </ContentItem.PropertySources>
-                </ContentItem>
-                <ContentItem
-                  Name="BirthDate"
-                  Kind="Value"
-                  DataType=":Date">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <MemberExpression
-                          Member="ClientItem/Properties[BirthDate]" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                  <ContentItem.PropertySources>
-                    <ControlPropertySource
-                      Property="Microsoft.LightSwitch.MobileWeb:RootControl/Properties[FontStyle]">
-                      <ScreenExpressionTree>
-                        <ChainExpression>
-                          <ConstantExpression
-                            Value="Small"
-                            ResultType=":String" />
-                        </ChainExpression>
-                      </ScreenExpressionTree>
-                    </ControlPropertySource>
-                  </ContentItem.PropertySources>
-                </ContentItem>
-                <ContentItem
-                  Name="PasportNumber1"
-                  Kind="Value"
-                  DataType=":String">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <MemberExpression
-                          Member="ClientItem/Properties[PasportNumber]" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                </ContentItem>
-                <ContentItem
-                  Name="city1"
-                  Kind="Value"
-                  DataType=":String">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <MemberExpression
-                          Member="ClientItem/Properties[city]" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
                 </ContentItem>
                 <ContentItem.PropertySources>
                   <ControlPropertySource
@@ -173,10 +98,22 @@
                   Property="Microsoft.LightSwitch.MobileWeb:RootCollectionControl/Properties[ItemTap]">
                   <ScreenExpressionTree>
                     <ChainExpression>
-                      <MemberExpression
-                        Member="BrowseClient/Properties[Client]" />
                       <CallExpression
-                        Target="viewSelected" />
+                        Target="!module/Methods[showViewPeriodItem]">
+                        <CallExpression.Attributes>
+                          <AssociatedCollection
+                            Collection="BrowsePeriod/Properties[Period]" />
+                        </CallExpression.Attributes>
+                        <ArgumentExpression
+                          Parameter="PeriodItem">
+                          <ChainExpression>
+                            <MemberExpression
+                              Member="BrowsePeriod/Properties[Period]" />
+                            <MemberExpression
+                              Member="selectedItem" />
+                          </ChainExpression>
+                        </ArgumentExpression>
+                      </CallExpression>
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ControlPropertySource>
@@ -184,7 +121,43 @@
             </ContentItem>
             <ContentItem.CommandItems>
               <ContentItem
-                Name="SearchClient"
+                Name="AddPeriodItem"
+                Kind="Command">
+                <ContentItem.Attributes>
+                  <DisplayName
+                    Value="Add" />
+                </ContentItem.Attributes>
+                <ContentItem.PropertySources>
+                  <ControlPropertySource
+                    Property="Microsoft.LightSwitch.MobileWeb:RootControl/Properties[Tap]">
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <CallExpression
+                          Target="!module/Methods[showAddEditPeriodItem]">
+                          <CallExpression.Attributes>
+                            <AssociatedCollection
+                              Collection="BrowsePeriod/Properties[Period]" />
+                            <CreateNewEntity
+                              TargetParameter="!module/Methods[showAddEditPeriodItem]/Parameters[PeriodItem]" />
+                          </CallExpression.Attributes>
+                        </CallExpression>
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ControlPropertySource>
+                  <ControlPropertySource
+                    Property="Microsoft.LightSwitch.MobileWeb:RootCommand/Properties[Icon]">
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <ConstantExpression
+                          Value="msls-add"
+                          ResultType="Microsoft.LightSwitch:String" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ControlPropertySource>
+                </ContentItem.PropertySources>
+              </ContentItem>
+              <ContentItem
+                Name="SearchPeriod"
                 Kind="Command">
                 <ContentItem.Attributes>
                   <DisplayName
@@ -196,7 +169,7 @@
                     <ScreenExpressionTree>
                       <ChainExpression>
                         <MemberExpression
-                          Member="BrowseClient/Properties[Client]" />
+                          Member="BrowsePeriod/Properties[Period]" />
                         <CallExpression
                           Target="showSearch" />
                       </ChainExpression>
@@ -258,25 +231,23 @@
           Name="dialogName"
           ParameterType=":String" />
       </ScreenMethod>
-      <ScreenMethod
-        Name="Foto" />
     </Screen.Methods>
     <Screen.Properties>
       <ScreenCollectionProperty
-        Name="Client"
+        Name="Period"
         PageSize="45"
-        PropertyType="CollectionView$ClientItem">
+        PropertyType="CollectionView$PeriodItem">
         <ScreenCollectionProperty.Query>
           <ScreenQueryDefinition
-            Name="ClientQuery"
-            ReturnType="ClientItem*">
+            Name="PeriodQuery"
+            ReturnType="PeriodItem*">
             <ScreenQueryDefinition.FilterExpression>
               <QueryFilterExpressionTree />
             </ScreenQueryDefinition.FilterExpression>
             <ScreenQueryDefinition.Source>
               <QuerySourceExpressionTree>
                 <MemberExpression
-                  Member="FitnesData/Members[Client]" />
+                  Member="FitnesData/Members[Period]" />
               </QuerySourceExpressionTree>
             </ScreenQueryDefinition.Source>
           </ScreenQueryDefinition>
@@ -284,33 +255,7 @@
         <ScreenExpressionTree>
           <ChainExpression>
             <CallExpression
-              Target="BrowseClient/Properties[Client]/Query" />
-          </ChainExpression>
-        </ScreenExpressionTree>
-      </ScreenCollectionProperty>
-      <ScreenCollectionProperty
-        Name="Client1"
-        PageSize="45"
-        PropertyType="CollectionView$ClientItem">
-        <ScreenCollectionProperty.Query>
-          <ScreenQueryDefinition
-            Name="Client1Query"
-            ReturnType="ClientItem*">
-            <ScreenQueryDefinition.FilterExpression>
-              <QueryFilterExpressionTree />
-            </ScreenQueryDefinition.FilterExpression>
-            <ScreenQueryDefinition.Source>
-              <QuerySourceExpressionTree>
-                <MemberExpression
-                  Member="FitnesData/Members[Client]" />
-              </QuerySourceExpressionTree>
-            </ScreenQueryDefinition.Source>
-          </ScreenQueryDefinition>
-        </ScreenCollectionProperty.Query>
-        <ScreenExpressionTree>
-          <ChainExpression>
-            <CallExpression
-              Target="BrowseClient/Properties[Client1]/Query" />
+              Target="BrowsePeriod/Properties[Period]/Query" />
           </ChainExpression>
         </ScreenExpressionTree>
       </ScreenCollectionProperty>
@@ -318,10 +263,10 @@
   </Screen>
   <Application.Methods>
     <ApplicationMethod
-      Name="showBrowseClient">
+      Name="showBrowsePeriod">
       <ApplicationMethod.Attributes>
         <ShowScreenMethod
-          TargetScreen="BrowseClient" />
+          TargetScreen="BrowsePeriod" />
       </ApplicationMethod.Attributes>
     </ApplicationMethod>
   </Application.Methods>

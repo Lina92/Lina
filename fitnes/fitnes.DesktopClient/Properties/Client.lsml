@@ -2,6 +2,7 @@
 <Application
   Name="LightSwitchApplication.fitnes.DesktopClient"
   TargetPlatform="RichClient"
+  Logo="Microsoft.LightSwitch.UserImageResources::Resources\gc.jpg"
   Version="1.0.0.0"
   DefaultNavigationItem="!module/NavigationItems[Tasks]"
   Shell="Microsoft.LightSwitch.RichClient:Standard"
@@ -37,47 +38,71 @@
   </GlobalAttributeGroup>
   <Application.Commands>
     <ApplicationCommand
-      Name="ScreenCommandShowCreateNewClientItem"
-      Target="!module/Methods[ShowCreateNewClientItem]" />
-    <ApplicationCommand
       Name="ScreenCommandShowSearchPrice"
       Target="!module/Methods[ShowSearchPrice]" />
-    <ApplicationCommand
-      Name="ScreenCommandShowEditableTrainerGrid"
-      Target="!module/Methods[ShowEditableTrainerGrid]" />
     <ApplicationCommand
       Name="ScreenCommandShowEditableView_visitsGrid"
       Target="!module/Methods[ShowEditableView_visitsGrid]" />
     <ApplicationCommand
-      Name="ScreenCommandShowCreateNewLineItem"
-      Target="!module/Methods[ShowCreateNewLineItem]" />
+      Name="ScreenCommandShowSearchTrainer"
+      Target="!module/Methods[ShowSearchTrainer]" />
+    <ApplicationCommand
+      Name="ScreenCommandShowSearchClient"
+      Target="!module/Methods[ShowSearchClient]" />
+    <ApplicationCommand
+      Name="ScreenCommandShowCreateNewClientItem"
+      Target="!module/Methods[ShowCreateNewClientItem]" />
+    <ApplicationCommand
+      Name="ScreenCommandShowEditableClubCardGrid"
+      Target="!module/Methods[ShowEditableClubCardGrid]" />
+    <ApplicationCommand
+      Name="ScreenCommandShowCreateNewClubCardItem"
+      Target="!module/Methods[ShowCreateNewClubCardItem]" />
+    <ApplicationCommand
+      Name="ScreenCommandShowEditablePeriodGrid"
+      Target="!module/Methods[ShowEditablePeriodGrid]" />
+    <ApplicationCommand
+      Name="ScreenCommandShowCreateNewPeriodItem"
+      Target="!module/Methods[ShowCreateNewPeriodItem]" />
   </Application.Commands>
   <Application.NavigationItems>
     <ApplicationNavigationGroup
       Name="Tasks"
-      DefaultItem="!module/NavigationItems[Tasks]/Children[SearchPrice]">
+      DefaultItem="!module/NavigationItems[Tasks]/Children[link]">
       <ApplicationNavigationGroup.Attributes>
         <DisplayName
           Value="Tasks" />
       </ApplicationNavigationGroup.Attributes>
       <ApplicationNavigationLink
-        Name="CreateNewClientItem"
-        Command="!module/Commands[ScreenCommandShowCreateNewClientItem]" />
-      <ApplicationNavigationLink
-        Name="link"
-        Command="Microsoft.LightSwitch.Security:!module/Commands[ScreenCommandShowRolesScreen]" />
-      <ApplicationNavigationLink
         Name="SearchPrice"
         Command="!module/Commands[ScreenCommandShowSearchPrice]" />
-      <ApplicationNavigationLink
-        Name="EditableTrainerGrid"
-        Command="!module/Commands[ScreenCommandShowEditableTrainerGrid]" />
       <ApplicationNavigationLink
         Name="EditableView_visitsGrid"
         Command="!module/Commands[ScreenCommandShowEditableView_visitsGrid]" />
       <ApplicationNavigationLink
-        Name="CreateNewLineItem"
-        Command="!module/Commands[ScreenCommandShowCreateNewLineItem]" />
+        Name="SearchTrainer"
+        Command="!module/Commands[ScreenCommandShowSearchTrainer]" />
+      <ApplicationNavigationLink
+        Name="link"
+        Command="Microsoft.LightSwitch.Security:!module/Commands[ScreenCommandShowRolesScreen]" />
+      <ApplicationNavigationLink
+        Name="SearchClient"
+        Command="!module/Commands[ScreenCommandShowSearchClient]" />
+      <ApplicationNavigationLink
+        Name="CreateNewClientItem"
+        Command="!module/Commands[ScreenCommandShowCreateNewClientItem]" />
+      <ApplicationNavigationLink
+        Name="EditableClubCardGrid"
+        Command="!module/Commands[ScreenCommandShowEditableClubCardGrid]" />
+      <ApplicationNavigationLink
+        Name="CreateNewClubCardItem"
+        Command="!module/Commands[ScreenCommandShowCreateNewClubCardItem]" />
+      <ApplicationNavigationLink
+        Name="EditablePeriodGrid"
+        Command="!module/Commands[ScreenCommandShowEditablePeriodGrid]" />
+      <ApplicationNavigationLink
+        Name="CreateNewPeriodItem"
+        Command="!module/Commands[ScreenCommandShowCreateNewPeriodItem]" />
     </ApplicationNavigationGroup>
     <ApplicationNavigationGroup
       Name="Administration">

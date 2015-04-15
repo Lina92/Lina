@@ -10,19 +10,19 @@ using Microsoft.LightSwitch.Presentation.Extensions;
 
 namespace LightSwitchApplication
 {
-    public partial class CreateNewLineItem
+    public partial class CreateNewClubCardItem
     {
-        partial void CreateNewLineItem_InitializeDataWorkspace(global::System.Collections.Generic.List<global::Microsoft.LightSwitch.IDataService> saveChangesTo)
+        partial void CreateNewClubCardItem_InitializeDataWorkspace(global::System.Collections.Generic.List<global::Microsoft.LightSwitch.IDataService> saveChangesTo)
         {
             // Добавьте сюда свой код.
-            this.LineItemProperty = new LineItem();
+            this.ClubCardItemProperty = new ClubCardItem();
         }
 
-        partial void CreateNewLineItem_Saved()
+        partial void CreateNewClubCardItem_Saved()
         {
             // Добавьте сюда свой код.
             this.Close(false);
-            Application.Current.ShowDefaultScreen(this.LineItemProperty);
+            Application.Current.ShowDefaultScreen(this.ClubCardItemProperty);
         }
     }
 }

@@ -43,12 +43,6 @@
   <EntityType>
     <EntityType.Attributes>
       <Proxy
-        Target="ServiceInterface:PeriodItem" />
-    </EntityType.Attributes>
-  </EntityType>
-  <EntityType>
-    <EntityType.Attributes>
-      <Proxy
         Target="ServiceInterface:PriceItem" />
     </EntityType.Attributes>
   </EntityType>
@@ -172,4 +166,16 @@
         Target="ServiceInterface:FitnesData" />
     </EntityContainer.Attributes>
   </EntityContainer>
+  <EntityType>
+    <EntityType.Attributes>
+      <Proxy
+        Target="ServiceInterface:GymItem" />
+    </EntityType.Attributes>
+  </EntityType>
+  <EntityType>
+    <EntityType.Attributes>
+      <Proxy
+        Target="ServiceInterface:PeriodItem" />
+    </EntityType.Attributes>
+  </EntityType>
 </Application>

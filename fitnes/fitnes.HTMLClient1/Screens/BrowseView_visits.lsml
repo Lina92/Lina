@@ -26,7 +26,7 @@
               Name="View_visits"
               Kind="Collection"
               DataType="CollectionView$View_visitsItem"
-              View="Microsoft.LightSwitch.MobileWeb:Table">
+              View="Microsoft.LightSwitch.MobileWeb:List">
               <ContentItem.Attributes>
                 <DisplayName
                   Value="View_visits" />
@@ -104,6 +104,154 @@
                   </ScreenExpressionTree>
                 </ControlPropertySource>
               </ContentItem.PropertySources>
+            </ContentItem>
+            <ContentItem
+              Name="Group"
+              Kind="Group">
+              <ContentItem
+                Name="ClubCard"
+                Kind="Collection"
+                DataType="CollectionView$ClubCardItem">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="BrowseView_visits/Properties[ClubCard]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+                <ContentItem
+                  Name="ClubCardTemplate"
+                  Kind="Details"
+                  DataType="ClubCardItem">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression />
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                  <ContentItem
+                    Name="numberCard"
+                    Kind="Value"
+                    DataType=":Int32">
+                    <ContentItem.DataSource>
+                      <ScreenExpressionTree>
+                        <ChainExpression>
+                          <MemberExpression
+                            Member="ClubCardItem/Properties[numberCard]" />
+                        </ChainExpression>
+                      </ScreenExpressionTree>
+                    </ContentItem.DataSource>
+                  </ContentItem>
+                  <ContentItem
+                    Name="Data"
+                    Kind="Value"
+                    DataType=":Date">
+                    <ContentItem.DataSource>
+                      <ScreenExpressionTree>
+                        <ChainExpression>
+                          <MemberExpression
+                            Member="ClubCardItem/Properties[Data]" />
+                        </ChainExpression>
+                      </ScreenExpressionTree>
+                    </ContentItem.DataSource>
+                  </ContentItem>
+                  <ContentItem
+                    Name="CData_End"
+                    Kind="Value"
+                    DataType=":Date">
+                    <ContentItem.DataSource>
+                      <ScreenExpressionTree>
+                        <ChainExpression>
+                          <MemberExpression
+                            Member="ClubCardItem/Properties[CData_End]" />
+                        </ChainExpression>
+                      </ScreenExpressionTree>
+                    </ContentItem.DataSource>
+                  </ContentItem>
+                  <ContentItem
+                    Name="Price"
+                    Kind="Value"
+                    DataType=":Decimal">
+                    <ContentItem.DataSource>
+                      <ScreenExpressionTree>
+                        <ChainExpression>
+                          <MemberExpression
+                            Member="ClubCardItem/Properties[Price]" />
+                        </ChainExpression>
+                      </ScreenExpressionTree>
+                    </ContentItem.DataSource>
+                  </ContentItem>
+                  <ContentItem
+                    Name="ClientItem"
+                    Kind="Details"
+                    DataType="ClientItem">
+                    <ContentItem.DataSource>
+                      <ScreenExpressionTree>
+                        <ChainExpression>
+                          <MemberExpression
+                            Member="ClubCardItem/Properties[ClientItem]" />
+                        </ChainExpression>
+                      </ScreenExpressionTree>
+                    </ContentItem.DataSource>
+                    <ContentItem
+                      Name="ClientItem1"
+                      Kind="Details"
+                      DataType="ClientItem">
+                      <ContentItem.DataSource>
+                        <ScreenExpressionTree>
+                          <ChainExpression />
+                        </ScreenExpressionTree>
+                      </ContentItem.DataSource>
+                    </ContentItem>
+                  </ContentItem>
+                  <ContentItem
+                    Name="PeriodItem"
+                    Kind="Details"
+                    DataType="PeriodItem">
+                    <ContentItem.DataSource>
+                      <ScreenExpressionTree>
+                        <ChainExpression>
+                          <MemberExpression
+                            Member="ClubCardItem/Properties[PeriodItem]" />
+                        </ChainExpression>
+                      </ScreenExpressionTree>
+                    </ContentItem.DataSource>
+                    <ContentItem
+                      Name="PeriodItem1"
+                      Kind="Details"
+                      DataType="PeriodItem">
+                      <ContentItem.DataSource>
+                        <ScreenExpressionTree>
+                          <ChainExpression />
+                        </ScreenExpressionTree>
+                      </ContentItem.DataSource>
+                    </ContentItem>
+                  </ContentItem>
+                  <ContentItem
+                    Name="View_visitsItem"
+                    Kind="Details"
+                    DataType="View_visitsItem">
+                    <ContentItem.DataSource>
+                      <ScreenExpressionTree>
+                        <ChainExpression>
+                          <MemberExpression
+                            Member="ClubCardItem/Properties[View_visitsItem]" />
+                        </ChainExpression>
+                      </ScreenExpressionTree>
+                    </ContentItem.DataSource>
+                    <ContentItem
+                      Name="View_visitsItem1"
+                      Kind="Details"
+                      DataType="View_visitsItem">
+                      <ContentItem.DataSource>
+                        <ScreenExpressionTree>
+                          <ChainExpression />
+                        </ScreenExpressionTree>
+                      </ContentItem.DataSource>
+                    </ContentItem>
+                  </ContentItem>
+                </ContentItem>
+              </ContentItem>
             </ContentItem>
             <ContentItem.CommandItems>
               <ContentItem
@@ -194,156 +342,7 @@
         <ContentItem
           Name="Popups"
           Kind="Group"
-          View="Microsoft.LightSwitch.MobileWeb:DialogPages">
-          <ContentItem
-            Name="Group"
-            Kind="Group">
-            <ContentItem
-              Name="ClubCard"
-              Kind="Collection"
-              DataType="CollectionView$ClubCardItem">
-              <ContentItem.DataSource>
-                <ScreenExpressionTree>
-                  <ChainExpression>
-                    <MemberExpression
-                      Member="BrowseView_visits/Properties[ClubCard]" />
-                  </ChainExpression>
-                </ScreenExpressionTree>
-              </ContentItem.DataSource>
-              <ContentItem
-                Name="ClubCardTemplate"
-                Kind="Details"
-                DataType="ClubCardItem">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression />
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-                <ContentItem
-                  Name="numberCard"
-                  Kind="Value"
-                  DataType=":Int32">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <MemberExpression
-                          Member="ClubCardItem/Properties[numberCard]" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                </ContentItem>
-                <ContentItem
-                  Name="Data"
-                  Kind="Value"
-                  DataType=":Date">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <MemberExpression
-                          Member="ClubCardItem/Properties[Data]" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                </ContentItem>
-                <ContentItem
-                  Name="CData_End"
-                  Kind="Value"
-                  DataType=":Date">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <MemberExpression
-                          Member="ClubCardItem/Properties[CData_End]" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                </ContentItem>
-                <ContentItem
-                  Name="Price"
-                  Kind="Value"
-                  DataType=":Decimal">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <MemberExpression
-                          Member="ClubCardItem/Properties[Price]" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                </ContentItem>
-                <ContentItem
-                  Name="ClientItem"
-                  Kind="Details"
-                  DataType="ClientItem">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <MemberExpression
-                          Member="ClubCardItem/Properties[ClientItem]" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                  <ContentItem
-                    Name="ClientItem1"
-                    Kind="Details"
-                    DataType="ClientItem">
-                    <ContentItem.DataSource>
-                      <ScreenExpressionTree>
-                        <ChainExpression />
-                      </ScreenExpressionTree>
-                    </ContentItem.DataSource>
-                  </ContentItem>
-                </ContentItem>
-                <ContentItem
-                  Name="PeriodItem"
-                  Kind="Details"
-                  DataType="PeriodItem">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <MemberExpression
-                          Member="ClubCardItem/Properties[PeriodItem]" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                  <ContentItem
-                    Name="PeriodItem1"
-                    Kind="Details"
-                    DataType="PeriodItem">
-                    <ContentItem.DataSource>
-                      <ScreenExpressionTree>
-                        <ChainExpression />
-                      </ScreenExpressionTree>
-                    </ContentItem.DataSource>
-                  </ContentItem>
-                </ContentItem>
-                <ContentItem
-                  Name="View_visitsItem"
-                  Kind="Details"
-                  DataType="View_visitsItem">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <MemberExpression
-                          Member="ClubCardItem/Properties[View_visitsItem]" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                  <ContentItem
-                    Name="View_visitsItem1"
-                    Kind="Details"
-                    DataType="View_visitsItem">
-                    <ContentItem.DataSource>
-                      <ScreenExpressionTree>
-                        <ChainExpression />
-                      </ScreenExpressionTree>
-                    </ContentItem.DataSource>
-                  </ContentItem>
-                </ContentItem>
-              </ContentItem>
-            </ContentItem>
-          </ContentItem>
-        </ContentItem>
+          View="Microsoft.LightSwitch.MobileWeb:DialogPages" />
       </ContentItem>
     </Screen.RootContentItem>
     <Screen.Methods>

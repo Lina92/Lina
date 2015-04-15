@@ -10,24 +10,19 @@ using Microsoft.LightSwitch.Presentation.Extensions;
 
 namespace LightSwitchApplication
 {
-    public partial class GymItemDetail
+    public partial class CreateNewPeriodItem
     {
-        partial void GymItem_Loaded(bool succeeded)
+        partial void CreateNewPeriodItem_InitializeDataWorkspace(global::System.Collections.Generic.List<global::Microsoft.LightSwitch.IDataService> saveChangesTo)
         {
             // Добавьте сюда свой код.
-            this.SetDisplayNameFromEntity(this.GymItem);
+            this.PeriodItemProperty = new PeriodItem();
         }
 
-        partial void GymItem_Changed()
+        partial void CreateNewPeriodItem_Saved()
         {
             // Добавьте сюда свой код.
-            this.SetDisplayNameFromEntity(this.GymItem);
-        }
-
-        partial void GymItemDetail_Saved()
-        {
-            // Добавьте сюда свой код.
-            this.SetDisplayNameFromEntity(this.GymItem);
+            this.Close(false);
+            Application.Current.ShowDefaultScreen(this.PeriodItemProperty);
         }
     }
 }

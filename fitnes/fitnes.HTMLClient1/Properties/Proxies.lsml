@@ -7,12 +7,6 @@
   <EntityType>
     <EntityType.Attributes>
       <Proxy
-        Target="ServiceInterface:ClientItem" />
-    </EntityType.Attributes>
-  </EntityType>
-  <EntityType>
-    <EntityType.Attributes>
-      <Proxy
         Target="ServiceInterface:Client__Schedule_trainerItem" />
     </EntityType.Attributes>
   </EntityType>
@@ -49,18 +43,6 @@
   <EntityType>
     <EntityType.Attributes>
       <Proxy
-        Target="ServiceInterface:PeriodItem" />
-    </EntityType.Attributes>
-  </EntityType>
-  <EntityType>
-    <EntityType.Attributes>
-      <Proxy
-        Target="ServiceInterface:Schedule_trainerItem" />
-    </EntityType.Attributes>
-  </EntityType>
-  <EntityType>
-    <EntityType.Attributes>
-      <Proxy
         Target="ServiceInterface:TrainerItem" />
     </EntityType.Attributes>
   </EntityType>
@@ -68,12 +50,6 @@
     <EntityType.Attributes>
       <Proxy
         Target="ServiceInterface:Trainer__CourseItem" />
-    </EntityType.Attributes>
-  </EntityType>
-  <EntityType>
-    <EntityType.Attributes>
-      <Proxy
-        Target="ServiceInterface:View_visitsItem" />
     </EntityType.Attributes>
   </EntityType>
   <EntityContainer>
@@ -172,4 +148,16 @@
         Target="ServiceInterface:FK_Price_View_visits" />
     </Association.Attributes>
   </Association>
+  <EntityType>
+    <EntityType.Attributes>
+      <Proxy
+        Target="ServiceInterface:Schedule_trainerItem" />
+    </EntityType.Attributes>
+  </EntityType>
+  <EntityType>
+    <EntityType.Attributes>
+      <Proxy
+        Target="ServiceInterface:LineItem" />
+    </EntityType.Attributes>
+  </EntityType>
 </Application>

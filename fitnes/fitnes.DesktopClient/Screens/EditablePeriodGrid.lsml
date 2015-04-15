@@ -5,8 +5,7 @@
     <Partial />
   </Application.Attributes>
   <Screen
-    Name="CreateNewClientItem"
-    LaunchMode="Multiple">
+    Name="EditablePeriodGrid">
     <Screen.Attributes>
       <SaveChangesTo
         EntityContainer="FitnesData" />
@@ -20,157 +19,109 @@
           Name="ScreenLayout"
           Kind="Group">
           <ContentItem
-            Name="Group"
-            Kind="Group"
-            View="Microsoft.LightSwitch.RichClient:RowsLayout">
-            <ContentItem
-              Name="Foto"
-              Kind="Value"
-              DataType="Microsoft.LightSwitch.Extensions:Image"
-              View="Microsoft.LightSwitch.Extensions:ImageEditorControl">
-              <ContentItem.DataSource>
-                <ScreenExpressionTree>
-                  <ChainExpression>
-                    <MemberExpression
-                      Member="CreateNewClientItem/Properties[ClientItemProperty]" />
-                    <MemberExpression
-                      Member="Foto" />
-                  </ChainExpression>
-                </ScreenExpressionTree>
-              </ContentItem.DataSource>
-              <ContentItem.CommandItems>
-                <ContentItem
-                  Name="Refresh2"
-                  Kind="Command">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <CallExpression
-                          Target="CreateNewClientItem/Methods[Refresh]" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                </ContentItem>
-                <ContentItem
-                  Name="Save2"
-                  Kind="Command">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <CallExpression
-                          Target="CreateNewClientItem/Methods[Save]" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                </ContentItem>
-              </ContentItem.CommandItems>
-            </ContentItem>
-            <ContentItem
-              Name="ClientItemProperty"
-              Kind="Details"
-              DataType="ClientItem"
-              View="Microsoft.LightSwitch.RichClient:RowsLayout">
-              <ContentItem.DataSource>
-                <ScreenExpressionTree>
-                  <ChainExpression>
-                    <MemberExpression
-                      Member="CreateNewClientItem/Properties[ClientItemProperty]" />
-                  </ChainExpression>
-                </ScreenExpressionTree>
-              </ContentItem.DataSource>
-              <ContentItem
-                Name="FName"
-                Kind="Value"
-                DataType=":String">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="ClientItem/Properties[FName]" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="LName"
-                Kind="Value"
-                DataType=":String">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="ClientItem/Properties[LName]" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="BirthDate"
-                Kind="Value"
-                DataType=":Date">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="ClientItem/Properties[BirthDate]" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="PasportNumber"
-                Kind="Value"
-                DataType=":String">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="ClientItem/Properties[PasportNumber]" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="city"
-                Kind="Value"
-                DataType=":String">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="ClientItem/Properties[city]" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-            </ContentItem>
-          </ContentItem>
-          <ContentItem.PropertySources>
-            <ControlPropertySource
-              Property="Microsoft.LightSwitch.RichClient:ScrollableControl/Properties[IsVerticalScrollBarEnabled]">
-              <ScreenExpressionTree>
-                <ChainExpression>
-                  <ConstantExpression
-                    Value="True"
-                    ResultType=":Boolean" />
-                </ChainExpression>
-              </ScreenExpressionTree>
-            </ControlPropertySource>
-          </ContentItem.PropertySources>
-        </ContentItem>
-        <ContentItem.CommandItems>
-          <ContentItem
-            Name="Save"
-            Kind="Command">
+            Name="grid"
+            Kind="Collection"
+            DataType="CollectionView$PeriodItem">
             <ContentItem.DataSource>
               <ScreenExpressionTree>
                 <ChainExpression>
-                  <CallExpression
-                    Target="CreateNewClientItem/Methods[Save]" />
+                  <MemberExpression
+                    Member="EditablePeriodGrid/Properties[Period]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
+            <ContentItem
+              Name="RowTemplate"
+              Kind="Details"
+              DataType="PeriodItem">
+              <ContentItem.DataSource>
+                <ScreenExpressionTree>
+                  <ChainExpression />
+                </ScreenExpressionTree>
+              </ContentItem.DataSource>
+              <ContentItem
+                Name="NamePeriod"
+                Kind="Value"
+                DataType=":String">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="PeriodItem/Properties[NamePeriod]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+            </ContentItem>
+            <ContentItem.CommandItems>
+              <ContentItem
+                Name="Period_AddAndEditNew"
+                Kind="Command">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="EditablePeriodGrid/Properties[Period]" />
+                      <CallExpression
+                        Target="AddAndEditNew" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem
+                Name="Period_EditSelected"
+                Kind="Command">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="EditablePeriodGrid/Properties[Period]" />
+                      <CallExpression
+                        Target="EditSelected" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem
+                Name="Period_DeleteSelected"
+                Kind="Command">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="EditablePeriodGrid/Properties[Period]" />
+                      <CallExpression
+                        Target="DeleteSelected" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+            </ContentItem.CommandItems>
+            <ContentItem.PropertySources>
+              <ControlPropertySource
+                Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[VerticalAlignment]">
+                <ScreenExpressionTree>
+                  <ChainExpression>
+                    <ConstantExpression
+                      Value="Stretch"
+                      ResultType=":String" />
+                  </ChainExpression>
+                </ScreenExpressionTree>
+              </ControlPropertySource>
+              <ControlPropertySource
+                Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[AttachedLabelPosition]">
+                <ScreenExpressionTree>
+                  <ChainExpression>
+                    <ConstantExpression
+                      Value="Collapsed"
+                      ResultType=":String" />
+                  </ChainExpression>
+                </ScreenExpressionTree>
+              </ControlPropertySource>
+            </ContentItem.PropertySources>
           </ContentItem>
+        </ContentItem>
+        <ContentItem.CommandItems>
           <ContentItem
             Name="Refresh"
             Kind="Command">
@@ -178,7 +129,38 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="CreateNewClientItem/Methods[Refresh]" />
+                    Target="EditablePeriodGrid/Methods[Refresh]" />
+                </ChainExpression>
+              </ScreenExpressionTree>
+            </ContentItem.DataSource>
+          </ContentItem>
+          <ContentItem
+            Name="Save1"
+            Kind="Command">
+            <ContentItem.DataSource>
+              <ScreenExpressionTree>
+                <ChainExpression>
+                  <CallExpression
+                    Target="EditablePeriodGrid/Methods[Save]" />
+                </ChainExpression>
+              </ScreenExpressionTree>
+            </ContentItem.DataSource>
+          </ContentItem>
+          <ContentItem
+            Name="EditPeriodItem"
+            Kind="Command">
+            <ContentItem.DataSource>
+              <ScreenExpressionTree>
+                <ChainExpression>
+                  <MemberExpression
+                    Member="EditablePeriodGrid/Properties[Period]" />
+                  <CallExpression
+                    Target="EditSelected">
+                    <CallExpression.Attributes>
+                      <AssociatedCollection
+                        Collection="EditablePeriodGrid/Properties[Period]" />
+                    </CallExpression.Attributes>
+                  </CallExpression>
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -217,24 +199,21 @@
       </ScreenMethod>
     </Screen.Methods>
     <Screen.Properties>
-      <ScreenProperty
-        Name="ClientItemProperty"
-        PropertyType="ClientItem" />
       <ScreenCollectionProperty
-        Name="Client"
+        Name="Period"
         PageSize="45"
-        PropertyType="CollectionView$ClientItem">
+        PropertyType="CollectionView$PeriodItem">
         <ScreenCollectionProperty.Query>
           <ScreenQueryDefinition
-            Name="ClientQuery"
-            ReturnType="ClientItem*">
+            Name="PeriodQuery"
+            ReturnType="PeriodItem*">
             <ScreenQueryDefinition.FilterExpression>
               <QueryFilterExpressionTree />
             </ScreenQueryDefinition.FilterExpression>
             <ScreenQueryDefinition.Source>
               <QuerySourceExpressionTree>
                 <MemberExpression
-                  Member="FitnesData/Members[Client]" />
+                  Member="FitnesData/Members[Period]" />
               </QuerySourceExpressionTree>
             </ScreenQueryDefinition.Source>
           </ScreenQueryDefinition>
@@ -242,7 +221,7 @@
         <ScreenExpressionTree>
           <ChainExpression>
             <CallExpression
-              Target="CreateNewClientItem/Properties[Client]/Query" />
+              Target="EditablePeriodGrid/Properties[Period]/Query" />
           </ChainExpression>
         </ScreenExpressionTree>
       </ScreenCollectionProperty>
@@ -250,10 +229,10 @@
   </Screen>
   <Application.Methods>
     <ApplicationMethod
-      Name="ShowCreateNewClientItem">
+      Name="ShowEditablePeriodGrid">
       <ApplicationMethod.Attributes>
         <ShowScreenMethod
-          TargetScreen="CreateNewClientItem" />
+          TargetScreen="EditablePeriodGrid" />
       </ApplicationMethod.Attributes>
     </ApplicationMethod>
   </Application.Methods>

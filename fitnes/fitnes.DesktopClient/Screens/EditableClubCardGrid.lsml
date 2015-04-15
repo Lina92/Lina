@@ -5,12 +5,10 @@
     <Partial />
   </Application.Attributes>
   <Screen
-    Name="SearchPrice">
+    Name="EditableClubCardGrid">
     <Screen.Attributes>
       <SaveChangesTo
         EntityContainer="FitnesData" />
-      <DisplayName
-        Value=" Price" />
     </Screen.Attributes>
     <Screen.RootContentItem>
       <ContentItem
@@ -19,29 +17,43 @@
         View="Microsoft.LightSwitch.RichClient:Screen">
         <ContentItem
           Name="ScreenLayout"
-          Kind="Group"
-          View="Microsoft.LightSwitch.RichClient:RowsLayout">
+          Kind="Group">
           <ContentItem
             Name="grid"
             Kind="Collection"
-            DataType="CollectionView$PriceItem">
+            DataType="CollectionView$ClubCardItem"
+            View="Microsoft.LightSwitch.RichClient:DataGrid">
             <ContentItem.DataSource>
               <ScreenExpressionTree>
                 <ChainExpression>
                   <MemberExpression
-                    Member="SearchPrice/Properties[Price]" />
+                    Member="EditableClubCardGrid/Properties[ClubCard]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
             <ContentItem
               Name="RowTemplate"
               Kind="Details"
-              DataType="PriceItem">
+              DataType="ClubCardItem"
+              View="Microsoft.LightSwitch.RichClient:RowsLayout">
               <ContentItem.DataSource>
                 <ScreenExpressionTree>
                   <ChainExpression />
                 </ScreenExpressionTree>
               </ContentItem.DataSource>
+              <ContentItem
+                Name="numberCard"
+                Kind="Value"
+                DataType=":Int32">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="ClubCardItem/Properties[numberCard]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
               <ContentItem
                 Name="Data"
                 Kind="Value"
@@ -50,35 +62,59 @@
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="PriceItem/Properties[Data]" />
+                        Member="ClubCardItem/Properties[Data]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
-                <ContentItem.PropertySources>
-                  <ControlPropertySource
-                    Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[ShowAsLink]">
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <ConstantExpression
-                          Value="True"
-                          ResultType=":Boolean" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ControlPropertySource>
-                </ContentItem.PropertySources>
               </ContentItem>
               <ContentItem
-                Name="Value"
+                Name="CData_End"
+                Kind="Value"
+                DataType=":Date">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="ClubCardItem/Properties[CData_End]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem
+                Name="Price"
                 Kind="Value"
                 DataType=":Decimal">
                 <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="PriceItem/Properties[Value]" />
+                        Member="ClubCardItem/Properties[Price]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem
+                Name="ClientItem"
+                Kind="Details"
+                DataType="ClientItem">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="ClubCardItem/Properties[ClientItem]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+                <ContentItem
+                  Name="RowTemplate1"
+                  Kind="Details"
+                  DataType="ClientItem">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression />
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
               </ContentItem>
               <ContentItem
                 Name="PeriodItem"
@@ -88,12 +124,12 @@
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="PriceItem/Properties[PeriodItem]" />
+                        Member="ClubCardItem/Properties[PeriodItem]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
                 <ContentItem
-                  Name="RowTemplate1"
+                  Name="RowTemplate2"
                   Kind="Details"
                   DataType="PeriodItem">
                   <ContentItem.DataSource>
@@ -111,12 +147,12 @@
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="PriceItem/Properties[View_visitsItem]" />
+                        Member="ClubCardItem/Properties[View_visitsItem]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
                 <ContentItem
-                  Name="RowTemplate2"
+                  Name="RowTemplate3"
                   Kind="Details"
                   DataType="View_visitsItem">
                   <ContentItem.DataSource>
@@ -126,42 +162,30 @@
                   </ContentItem.DataSource>
                 </ContentItem>
               </ContentItem>
-              <ContentItem.PropertySources>
-                <ControlPropertySource
-                  Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[BrowseOnly]">
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <ConstantExpression
-                        Value="True"
-                        ResultType=":Boolean" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ControlPropertySource>
-              </ContentItem.PropertySources>
             </ContentItem>
             <ContentItem.CommandItems>
               <ContentItem
-                Name="Price_AddNew"
+                Name="ClubCard_AddAndEditNew"
                 Kind="Command">
                 <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="SearchPrice/Properties[Price]" />
+                        Member="EditableClubCardGrid/Properties[ClubCard]" />
                       <CallExpression
-                        Target="AddNew" />
+                        Target="AddAndEditNew" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
               </ContentItem>
               <ContentItem
-                Name="Price_EditSelected"
+                Name="ClubCard_EditSelected"
                 Kind="Command">
                 <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="SearchPrice/Properties[Price]" />
+                        Member="EditableClubCardGrid/Properties[ClubCard]" />
                       <CallExpression
                         Target="EditSelected" />
                     </ChainExpression>
@@ -169,29 +193,15 @@
                 </ContentItem.DataSource>
               </ContentItem>
               <ContentItem
-                Name="Price_Refresh"
+                Name="ClubCard_DeleteSelected"
                 Kind="Command">
                 <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="SearchPrice/Properties[Price]" />
+                        Member="EditableClubCardGrid/Properties[ClubCard]" />
                       <CallExpression
-                        Target="Refresh" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="Price_EditSelected1"
-                Kind="Command">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="SearchPrice/Properties[Price]" />
-                      <CallExpression
-                        Target="EditSelected" />
+                        Target="DeleteSelected" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
@@ -203,7 +213,7 @@
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <CallExpression
-                        Target="SearchPrice/Methods[Save]" />
+                        Target="EditableClubCardGrid/Methods[Save]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
@@ -211,12 +221,12 @@
             </ContentItem.CommandItems>
             <ContentItem.PropertySources>
               <ControlPropertySource
-                Property="Microsoft.LightSwitch.RichClient:DataGrid/Properties[ShowVirtualRow]">
+                Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[VerticalAlignment]">
                 <ScreenExpressionTree>
                   <ChainExpression>
                     <ConstantExpression
-                      Value="False"
-                      ResultType=":Boolean" />
+                      Value="Stretch"
+                      ResultType=":String" />
                   </ChainExpression>
                 </ScreenExpressionTree>
               </ControlPropertySource>
@@ -226,16 +236,6 @@
                   <ChainExpression>
                     <ConstantExpression
                       Value="Collapsed"
-                      ResultType=":String" />
-                  </ChainExpression>
-                </ScreenExpressionTree>
-              </ControlPropertySource>
-              <ControlPropertySource
-                Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[VerticalAlignment]">
-                <ScreenExpressionTree>
-                  <ChainExpression>
-                    <ConstantExpression
-                      Value="Stretch"
                       ResultType=":String" />
                   </ChainExpression>
                 </ScreenExpressionTree>
@@ -251,7 +251,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="SearchPrice/Methods[Save]" />
+                    Target="EditableClubCardGrid/Methods[Save]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -263,7 +263,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="SearchPrice/Methods[Refresh]" />
+                    Target="EditableClubCardGrid/Methods[Refresh]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -303,20 +303,20 @@
     </Screen.Methods>
     <Screen.Properties>
       <ScreenCollectionProperty
-        Name="Price"
+        Name="ClubCard"
         PageSize="45"
-        PropertyType="CollectionView$PriceItem">
+        PropertyType="CollectionView$ClubCardItem">
         <ScreenCollectionProperty.Query>
           <ScreenQueryDefinition
-            Name="PriceQuery"
-            ReturnType="PriceItem*">
+            Name="ClubCardQuery"
+            ReturnType="ClubCardItem*">
             <ScreenQueryDefinition.FilterExpression>
               <QueryFilterExpressionTree />
             </ScreenQueryDefinition.FilterExpression>
             <ScreenQueryDefinition.Source>
               <QuerySourceExpressionTree>
                 <MemberExpression
-                  Member="FitnesData/Members[Price]" />
+                  Member="FitnesData/Members[ClubCard]" />
               </QuerySourceExpressionTree>
             </ScreenQueryDefinition.Source>
           </ScreenQueryDefinition>
@@ -324,33 +324,7 @@
         <ScreenExpressionTree>
           <ChainExpression>
             <CallExpression
-              Target="SearchPrice/Properties[Price]/Query" />
-          </ChainExpression>
-        </ScreenExpressionTree>
-      </ScreenCollectionProperty>
-      <ScreenCollectionProperty
-        Name="Client"
-        PageSize="45"
-        PropertyType="CollectionView$ClientItem">
-        <ScreenCollectionProperty.Query>
-          <ScreenQueryDefinition
-            Name="ClientQuery"
-            ReturnType="ClientItem*">
-            <ScreenQueryDefinition.FilterExpression>
-              <QueryFilterExpressionTree />
-            </ScreenQueryDefinition.FilterExpression>
-            <ScreenQueryDefinition.Source>
-              <QuerySourceExpressionTree>
-                <MemberExpression
-                  Member="FitnesData/Members[Client]" />
-              </QuerySourceExpressionTree>
-            </ScreenQueryDefinition.Source>
-          </ScreenQueryDefinition>
-        </ScreenCollectionProperty.Query>
-        <ScreenExpressionTree>
-          <ChainExpression>
-            <CallExpression
-              Target="SearchPrice/Properties[Client]/Query" />
+              Target="EditableClubCardGrid/Properties[ClubCard]/Query" />
           </ChainExpression>
         </ScreenExpressionTree>
       </ScreenCollectionProperty>
@@ -358,10 +332,10 @@
   </Screen>
   <Application.Methods>
     <ApplicationMethod
-      Name="ShowSearchPrice">
+      Name="ShowEditableClubCardGrid">
       <ApplicationMethod.Attributes>
         <ShowScreenMethod
-          TargetScreen="SearchPrice" />
+          TargetScreen="EditableClubCardGrid" />
       </ApplicationMethod.Attributes>
     </ApplicationMethod>
   </Application.Methods>

@@ -230,12 +230,16 @@
     <Compile Include="Screens\CreateNewClientItem.lsml.cs">
       <DependentUpon>CreateNewClientItem.lsml</DependentUpon>
     </Compile>
-    <Compile Include="Screens\CreateNewLineItem.lsml.cs">
-      <DependentUpon>CreateNewLineItem.lsml</DependentUpon>
+    <Compile Include="Screens\CreateNewClubCardItem.lsml.cs">
+      <DependentUpon>CreateNewClubCardItem.lsml</DependentUpon>
     </Compile>
-    <Compile Include="Screens\GymItemDetail.lsml.cs">
-      <DependentUpon>GymItemDetail.lsml</DependentUpon>
+    <Compile Include="Screens\CreateNewPeriodItem.lsml.cs">
+      <DependentUpon>CreateNewPeriodItem.lsml</DependentUpon>
     </Compile>
+    <Compile Include="Screens\EditablePeriodGrid.lsml.cs">
+      <DependentUpon>EditablePeriodGrid.lsml</DependentUpon>
+    </Compile>
+    <Compile Include="UserCode\Application.cs" />
   </ItemGroup>
   <ItemGroup>
     <LightSwitchModel Include="Properties\Client.lsml">
@@ -243,18 +247,22 @@
     </LightSwitchModel>
     <None Include="Properties\AppManifest.xml" />
     <LightSwitchModel Include="Properties\FitnesData\Client.lsml" />
-    <LightSwitchModel Include="Properties\FitnesData\Gym.lsml" />
     <None Include="Properties\OutOfBrowserSettings.xml" />
     <ClientResource Include="Properties\Config.xml" />
     <LightSwitchModel Include="Properties\Proxies.lsml" />
-    <LightSwitchModel Include="Screens\CreateNewClientItem.lsml" />
     <LightSwitchModel Include="Screens\SearchPrice.lsml" />
-    <LightSwitchModel Include="Screens\EditableTrainerGrid.lsml" />
-    <LightSwitchModel Include="Screens\GymItemDetail.lsml" />
     <LightSwitchModel Include="Screens\EditableView_visitsGrid.lsml" />
-    <LightSwitchModel Include="Screens\CreateNewLineItem.lsml" />
+    <LightSwitchModel Include="Screens\SearchTrainer.lsml" />
+    <LightSwitchModel Include="Screens\SearchClient.lsml" />
+    <LightSwitchModel Include="Screens\CreateNewClientItem.lsml" />
+    <LightSwitchModel Include="Screens\EditableClubCardGrid.lsml" />
+    <LightSwitchModel Include="Screens\CreateNewClubCardItem.lsml" />
+    <LightSwitchModel Include="Screens\EditablePeriodGrid.lsml" />
+    <LightSwitchModel Include="Screens\CreateNewPeriodItem.lsml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\gc.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <_ClientBuildFile Include="default.htm">
       <SubFolder>
@@ -264,6 +272,9 @@
       <SubFolder>
       </SubFolder>
     </_ClientBuildFile>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Hydrangeas.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\LightSwitch\$(LightSwitchVersion)\Microsoft.LightSwitch.Build.Tasks.targets" />

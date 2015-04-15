@@ -5,12 +5,10 @@
     <Partial />
   </Application.Attributes>
   <Screen
-    Name="SearchPrice">
+    Name="SearchClient">
     <Screen.Attributes>
       <SaveChangesTo
         EntityContainer="FitnesData" />
-      <DisplayName
-        Value=" Price" />
     </Screen.Attributes>
     <Screen.RootContentItem>
       <ContentItem
@@ -20,37 +18,69 @@
         <ContentItem
           Name="ScreenLayout"
           Kind="Group"
-          View="Microsoft.LightSwitch.RichClient:RowsLayout">
+          View="Microsoft.LightSwitch.RichClient:ColumnsLayout">
           <ContentItem
             Name="grid"
             Kind="Collection"
-            DataType="CollectionView$PriceItem">
+            DataType="CollectionView$ClientItem">
             <ContentItem.DataSource>
               <ScreenExpressionTree>
                 <ChainExpression>
                   <MemberExpression
-                    Member="SearchPrice/Properties[Price]" />
+                    Member="SearchClient/Properties[Client]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
             <ContentItem
               Name="RowTemplate"
               Kind="Details"
-              DataType="PriceItem">
+              DataType="ClientItem">
               <ContentItem.DataSource>
                 <ScreenExpressionTree>
                   <ChainExpression />
                 </ScreenExpressionTree>
               </ContentItem.DataSource>
               <ContentItem
-                Name="Data"
+                Name="Foto"
                 Kind="Value"
-                DataType=":Date">
+                DataType="Microsoft.LightSwitch.Extensions:Image"
+                View="Microsoft.LightSwitch.Extensions:ImageEditorControl">
                 <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="PriceItem/Properties[Data]" />
+                        Member="ClientItem/Properties[Foto]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+                <ContentItem.PropertySources>
+                  <ControlPropertySource
+                    Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[Height]">
+                    <ScreenExpressionTree>
+                      <ConstantExpression
+                        Value="45"
+                        ResultType=":Double" />
+                    </ScreenExpressionTree>
+                  </ControlPropertySource>
+                  <ControlPropertySource
+                    Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[Width]">
+                    <ScreenExpressionTree>
+                      <ConstantExpression
+                        Value="45"
+                        ResultType=":Double" />
+                    </ScreenExpressionTree>
+                  </ControlPropertySource>
+                </ContentItem.PropertySources>
+              </ContentItem>
+              <ContentItem
+                Name="FName"
+                Kind="Value"
+                DataType=":String">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="ClientItem/Properties[FName]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
@@ -68,63 +98,56 @@
                 </ContentItem.PropertySources>
               </ContentItem>
               <ContentItem
-                Name="Value"
+                Name="LName"
                 Kind="Value"
-                DataType=":Decimal">
+                DataType=":String">
                 <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="PriceItem/Properties[Value]" />
+                        Member="ClientItem/Properties[LName]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
               </ContentItem>
               <ContentItem
-                Name="PeriodItem"
-                Kind="Details"
-                DataType="PeriodItem">
+                Name="BirthDate"
+                Kind="Value"
+                DataType=":Date">
                 <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="PriceItem/Properties[PeriodItem]" />
+                        Member="ClientItem/Properties[BirthDate]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
-                <ContentItem
-                  Name="RowTemplate1"
-                  Kind="Details"
-                  DataType="PeriodItem">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression />
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                </ContentItem>
               </ContentItem>
               <ContentItem
-                Name="View_visitsItem"
-                Kind="Details"
-                DataType="View_visitsItem">
+                Name="PasportNumber"
+                Kind="Value"
+                DataType=":String">
                 <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="PriceItem/Properties[View_visitsItem]" />
+                        Member="ClientItem/Properties[PasportNumber]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
-                <ContentItem
-                  Name="RowTemplate2"
-                  Kind="Details"
-                  DataType="View_visitsItem">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression />
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                </ContentItem>
+              </ContentItem>
+              <ContentItem
+                Name="city"
+                Kind="Value"
+                DataType=":String">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="ClientItem/Properties[city]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
               </ContentItem>
               <ContentItem.PropertySources>
                 <ControlPropertySource
@@ -141,57 +164,29 @@
             </ContentItem>
             <ContentItem.CommandItems>
               <ContentItem
-                Name="Price_AddNew"
+                Name="Client_EditSelected"
                 Kind="Command">
                 <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="SearchPrice/Properties[Price]" />
+                        Member="SearchClient/Properties[Client]" />
+                      <CallExpression
+                        Target="EditSelected" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem
+                Name="Client_AddNew"
+                Kind="Command">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="SearchClient/Properties[Client]" />
                       <CallExpression
                         Target="AddNew" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="Price_EditSelected"
-                Kind="Command">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="SearchPrice/Properties[Price]" />
-                      <CallExpression
-                        Target="EditSelected" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="Price_Refresh"
-                Kind="Command">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="SearchPrice/Properties[Price]" />
-                      <CallExpression
-                        Target="Refresh" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="Price_EditSelected1"
-                Kind="Command">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="SearchPrice/Properties[Price]" />
-                      <CallExpression
-                        Target="EditSelected" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
@@ -203,7 +198,26 @@
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <CallExpression
-                        Target="SearchPrice/Methods[Save]" />
+                        Target="SearchClient/Methods[Save]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem
+                Name="EditClient_LineItem"
+                Kind="Command">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="SearchClient/Properties[Client_Line]" />
+                      <CallExpression
+                        Target="EditSelected">
+                        <CallExpression.Attributes>
+                          <AssociatedCollection
+                            Collection="SearchClient/Properties[Client_Line]" />
+                        </CallExpression.Attributes>
+                      </CallExpression>
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
@@ -242,6 +256,24 @@
               </ControlPropertySource>
             </ContentItem.PropertySources>
           </ContentItem>
+          <ContentItem.PropertySources>
+            <ControlPropertySource
+              Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[HorizontalAlignment]">
+              <ScreenExpressionTree>
+                <ConstantExpression
+                  Value="Left"
+                  ResultType=":String" />
+              </ScreenExpressionTree>
+            </ControlPropertySource>
+            <ControlPropertySource
+              Property="Microsoft.LightSwitch.RichClient:LabeledGroup/Properties[MaxLabelWidth]">
+              <ScreenExpressionTree>
+                <ConstantExpression
+                  Value="250"
+                  ResultType=":Double" />
+              </ScreenExpressionTree>
+            </ControlPropertySource>
+          </ContentItem.PropertySources>
         </ContentItem>
         <ContentItem.CommandItems>
           <ContentItem
@@ -251,7 +283,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="SearchPrice/Methods[Save]" />
+                    Target="SearchClient/Methods[Save]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -263,7 +295,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="SearchPrice/Methods[Refresh]" />
+                    Target="SearchClient/Methods[Refresh]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -303,32 +335,6 @@
     </Screen.Methods>
     <Screen.Properties>
       <ScreenCollectionProperty
-        Name="Price"
-        PageSize="45"
-        PropertyType="CollectionView$PriceItem">
-        <ScreenCollectionProperty.Query>
-          <ScreenQueryDefinition
-            Name="PriceQuery"
-            ReturnType="PriceItem*">
-            <ScreenQueryDefinition.FilterExpression>
-              <QueryFilterExpressionTree />
-            </ScreenQueryDefinition.FilterExpression>
-            <ScreenQueryDefinition.Source>
-              <QuerySourceExpressionTree>
-                <MemberExpression
-                  Member="FitnesData/Members[Price]" />
-              </QuerySourceExpressionTree>
-            </ScreenQueryDefinition.Source>
-          </ScreenQueryDefinition>
-        </ScreenCollectionProperty.Query>
-        <ScreenExpressionTree>
-          <ChainExpression>
-            <CallExpression
-              Target="SearchPrice/Properties[Price]/Query" />
-          </ChainExpression>
-        </ScreenExpressionTree>
-      </ScreenCollectionProperty>
-      <ScreenCollectionProperty
         Name="Client"
         PageSize="45"
         PropertyType="CollectionView$ClientItem">
@@ -350,7 +356,103 @@
         <ScreenExpressionTree>
           <ChainExpression>
             <CallExpression
-              Target="SearchPrice/Properties[Client]/Query" />
+              Target="SearchClient/Properties[Client]/Query" />
+          </ChainExpression>
+        </ScreenExpressionTree>
+      </ScreenCollectionProperty>
+      <ScreenCollectionProperty
+        Name="ClubCard"
+        PageSize="45"
+        PropertyType="CollectionView$ClubCardItem">
+        <ScreenCollectionProperty.Query>
+          <ScreenQueryDefinition
+            Name="ClubCardQuery"
+            ReturnType="ClubCardItem*">
+            <ScreenQueryDefinition.FilterExpression>
+              <QueryFilterExpressionTree />
+            </ScreenQueryDefinition.FilterExpression>
+            <ScreenQueryDefinition.Source>
+              <QuerySourceExpressionTree>
+                <ChainExpression>
+                  <MemberExpression
+                    Member="SearchClient/Properties[Client]" />
+                  <MemberExpression
+                    Member="SelectedItem" />
+                  <MemberExpression
+                    Member="ClubCard" />
+                </ChainExpression>
+              </QuerySourceExpressionTree>
+            </ScreenQueryDefinition.Source>
+          </ScreenQueryDefinition>
+        </ScreenCollectionProperty.Query>
+        <ScreenExpressionTree>
+          <ChainExpression>
+            <CallExpression
+              Target="SearchClient/Properties[ClubCard]/Query" />
+          </ChainExpression>
+        </ScreenExpressionTree>
+      </ScreenCollectionProperty>
+      <ScreenCollectionProperty
+        Name="Client__Schedule_trainer"
+        PageSize="45"
+        PropertyType="CollectionView$Client__Schedule_trainerItem">
+        <ScreenCollectionProperty.Query>
+          <ScreenQueryDefinition
+            Name="Client__Schedule_trainerQuery"
+            ReturnType="Client__Schedule_trainerItem*">
+            <ScreenQueryDefinition.FilterExpression>
+              <QueryFilterExpressionTree />
+            </ScreenQueryDefinition.FilterExpression>
+            <ScreenQueryDefinition.Source>
+              <QuerySourceExpressionTree>
+                <ChainExpression>
+                  <MemberExpression
+                    Member="SearchClient/Properties[Client]" />
+                  <MemberExpression
+                    Member="SelectedItem" />
+                  <MemberExpression
+                    Member="Client__Schedule_trainer" />
+                </ChainExpression>
+              </QuerySourceExpressionTree>
+            </ScreenQueryDefinition.Source>
+          </ScreenQueryDefinition>
+        </ScreenCollectionProperty.Query>
+        <ScreenExpressionTree>
+          <ChainExpression>
+            <CallExpression
+              Target="SearchClient/Properties[Client__Schedule_trainer]/Query" />
+          </ChainExpression>
+        </ScreenExpressionTree>
+      </ScreenCollectionProperty>
+      <ScreenCollectionProperty
+        Name="Client_Line"
+        PageSize="45"
+        PropertyType="CollectionView$Client_LineItem">
+        <ScreenCollectionProperty.Query>
+          <ScreenQueryDefinition
+            Name="Client_LineQuery"
+            ReturnType="Client_LineItem*">
+            <ScreenQueryDefinition.FilterExpression>
+              <QueryFilterExpressionTree />
+            </ScreenQueryDefinition.FilterExpression>
+            <ScreenQueryDefinition.Source>
+              <QuerySourceExpressionTree>
+                <ChainExpression>
+                  <MemberExpression
+                    Member="SearchClient/Properties[Client]" />
+                  <MemberExpression
+                    Member="SelectedItem" />
+                  <MemberExpression
+                    Member="Client_Line" />
+                </ChainExpression>
+              </QuerySourceExpressionTree>
+            </ScreenQueryDefinition.Source>
+          </ScreenQueryDefinition>
+        </ScreenCollectionProperty.Query>
+        <ScreenExpressionTree>
+          <ChainExpression>
+            <CallExpression
+              Target="SearchClient/Properties[Client_Line]/Query" />
           </ChainExpression>
         </ScreenExpressionTree>
       </ScreenCollectionProperty>
@@ -358,10 +460,10 @@
   </Screen>
   <Application.Methods>
     <ApplicationMethod
-      Name="ShowSearchPrice">
+      Name="ShowSearchClient">
       <ApplicationMethod.Attributes>
         <ShowScreenMethod
-          TargetScreen="SearchPrice" />
+          TargetScreen="SearchClient" />
       </ApplicationMethod.Attributes>
     </ApplicationMethod>
   </Application.Methods>

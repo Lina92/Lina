@@ -1,19 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application
-  Name="LightSwitchApplication.fitnes.DesktopClient" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  Name="LightSwitchApplication.fitnes.HTMLClient1" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
   <Application.Attributes>
     <Partial />
   </Application.Attributes>
   <EntityType>
     <EntityType.Attributes>
       <Proxy
-        Target="ServiceInterface:GymItem" />
+        Target="ServiceInterface:PeriodItem" />
       <DefaultScreen
-        Value="GymItemDetail">
+        Value="ViewPeriodItem">
         <DefaultScreen.Attributes>
           <ScreenParameterMapping
-            KeyProperty="GymItem/Properties[IDGym]"
-            ScreenParameter="GymItemDetail/Properties[GymItemIDGym]" />
+            ScreenParameter="ViewPeriodItem/Properties[PeriodItem]" />
         </DefaultScreen.Attributes>
       </DefaultScreen>
     </EntityType.Attributes>

@@ -5,10 +5,12 @@
     <Partial />
   </Application.Attributes>
   <Screen
-    Name="BrowseSchedule_trainer">
+    Name="BrowseClient1">
     <Screen.Attributes>
       <SaveChangesTo
         EntityContainer="FitnesData" />
+      <DisplayName
+        Value="Client" />
     </Screen.Attributes>
     <Screen.RootContentItem>
       <ContentItem
@@ -20,29 +22,29 @@
           Kind="Group"
           View="Microsoft.LightSwitch.MobileWeb:TabPages">
           <ContentItem
-            Name="Schedule_trainerItemList"
+            Name="ClientItemList"
             Kind="Group">
             <ContentItem
-              Name="Schedule_trainer"
+              Name="Client"
               Kind="Collection"
-              DataType="CollectionView$Schedule_trainerItem"
-              View="Microsoft.LightSwitch.MobileWeb:TileList">
+              DataType="CollectionView$ClientItem"
+              View="Microsoft.LightSwitch.MobileWeb:List">
               <ContentItem.Attributes>
                 <DisplayName
-                  Value="Schedule_trainer" />
+                  Value="Client" />
               </ContentItem.Attributes>
               <ContentItem.DataSource>
                 <ScreenExpressionTree>
                   <ChainExpression>
                     <MemberExpression
-                      Member="BrowseSchedule_trainer/Properties[Schedule_trainer]" />
+                      Member="BrowseClient1/Properties[Client]" />
                   </ChainExpression>
                 </ScreenExpressionTree>
               </ContentItem.DataSource>
               <ContentItem
                 Name="rows"
                 Kind="Details"
-                DataType="Schedule_trainerItem"
+                DataType="ClientItem"
                 View="Microsoft.LightSwitch.MobileWeb:RowsLayout">
                 <ContentItem.Attributes>
                   <DisplayName
@@ -54,14 +56,14 @@
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
                 <ContentItem
-                  Name="IDSched"
+                  Name="FName"
                   Kind="Value"
-                  DataType=":Int32">
+                  DataType=":String">
                   <ContentItem.DataSource>
                     <ScreenExpressionTree>
                       <ChainExpression>
                         <MemberExpression
-                          Member="Schedule_trainerItem/Properties[IDSched]" />
+                          Member="ClientItem/Properties[FName]" />
                       </ChainExpression>
                     </ScreenExpressionTree>
                   </ContentItem.DataSource>
@@ -79,14 +81,14 @@
                   </ContentItem.PropertySources>
                 </ContentItem>
                 <ContentItem
-                  Name="numberSession"
+                  Name="LName"
                   Kind="Value"
-                  DataType=":Int32">
+                  DataType=":String">
                   <ContentItem.DataSource>
                     <ScreenExpressionTree>
                       <ChainExpression>
                         <MemberExpression
-                          Member="Schedule_trainerItem/Properties[numberSession]" />
+                          Member="ClientItem/Properties[LName]" />
                       </ChainExpression>
                     </ScreenExpressionTree>
                   </ContentItem.DataSource>
@@ -104,14 +106,14 @@
                   </ContentItem.PropertySources>
                 </ContentItem>
                 <ContentItem
-                  Name="Data_Time"
+                  Name="BirthDate"
                   Kind="Value"
-                  DataType=":DateTime">
+                  DataType=":Date">
                   <ContentItem.DataSource>
                     <ScreenExpressionTree>
                       <ChainExpression>
                         <MemberExpression
-                          Member="Schedule_trainerItem/Properties[Data_Time]" />
+                          Member="ClientItem/Properties[BirthDate]" />
                       </ChainExpression>
                     </ScreenExpressionTree>
                   </ContentItem.DataSource>
@@ -146,10 +148,22 @@
                   Property="Microsoft.LightSwitch.MobileWeb:RootCollectionControl/Properties[ItemTap]">
                   <ScreenExpressionTree>
                     <ChainExpression>
-                      <MemberExpression
-                        Member="BrowseSchedule_trainer/Properties[Schedule_trainer]" />
                       <CallExpression
-                        Target="viewSelected" />
+                        Target="!module/Methods[showViewClientItem1]">
+                        <CallExpression.Attributes>
+                          <AssociatedCollection
+                            Collection="BrowseClient1/Properties[Client]" />
+                        </CallExpression.Attributes>
+                        <ArgumentExpression
+                          Parameter="ClientItem">
+                          <ChainExpression>
+                            <MemberExpression
+                              Member="BrowseClient1/Properties[Client]" />
+                            <MemberExpression
+                              Member="selectedItem" />
+                          </ChainExpression>
+                        </ArgumentExpression>
+                      </CallExpression>
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ControlPropertySource>
@@ -157,7 +171,43 @@
             </ContentItem>
             <ContentItem.CommandItems>
               <ContentItem
-                Name="SearchSchedule_trainer"
+                Name="AddClientItem"
+                Kind="Command">
+                <ContentItem.Attributes>
+                  <DisplayName
+                    Value="Add" />
+                </ContentItem.Attributes>
+                <ContentItem.PropertySources>
+                  <ControlPropertySource
+                    Property="Microsoft.LightSwitch.MobileWeb:RootControl/Properties[Tap]">
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <CallExpression
+                          Target="!module/Methods[showAddEditClientItem1]">
+                          <CallExpression.Attributes>
+                            <AssociatedCollection
+                              Collection="BrowseClient1/Properties[Client]" />
+                            <CreateNewEntity
+                              TargetParameter="!module/Methods[showAddEditClientItem1]/Parameters[ClientItem]" />
+                          </CallExpression.Attributes>
+                        </CallExpression>
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ControlPropertySource>
+                  <ControlPropertySource
+                    Property="Microsoft.LightSwitch.MobileWeb:RootCommand/Properties[Icon]">
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <ConstantExpression
+                          Value="msls-add"
+                          ResultType="Microsoft.LightSwitch:String" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ControlPropertySource>
+                </ContentItem.PropertySources>
+              </ContentItem>
+              <ContentItem
+                Name="SearchClient"
                 Kind="Command">
                 <ContentItem.Attributes>
                   <DisplayName
@@ -169,7 +219,7 @@
                     <ScreenExpressionTree>
                       <ChainExpression>
                         <MemberExpression
-                          Member="BrowseSchedule_trainer/Properties[Schedule_trainer]" />
+                          Member="BrowseClient1/Properties[Client]" />
                         <CallExpression
                           Target="showSearch" />
                       </ChainExpression>
@@ -234,20 +284,20 @@
     </Screen.Methods>
     <Screen.Properties>
       <ScreenCollectionProperty
-        Name="Schedule_trainer"
+        Name="Client"
         PageSize="45"
-        PropertyType="CollectionView$Schedule_trainerItem">
+        PropertyType="CollectionView$ClientItem">
         <ScreenCollectionProperty.Query>
           <ScreenQueryDefinition
-            Name="Schedule_trainerQuery"
-            ReturnType="Schedule_trainerItem*">
+            Name="ClientQuery"
+            ReturnType="ClientItem*">
             <ScreenQueryDefinition.FilterExpression>
               <QueryFilterExpressionTree />
             </ScreenQueryDefinition.FilterExpression>
             <ScreenQueryDefinition.Source>
               <QuerySourceExpressionTree>
                 <MemberExpression
-                  Member="FitnesData/Members[Schedule_trainer]" />
+                  Member="FitnesData/Members[Client]" />
               </QuerySourceExpressionTree>
             </ScreenQueryDefinition.Source>
           </ScreenQueryDefinition>
@@ -255,7 +305,103 @@
         <ScreenExpressionTree>
           <ChainExpression>
             <CallExpression
-              Target="BrowseSchedule_trainer/Properties[Schedule_trainer]/Query" />
+              Target="BrowseClient1/Properties[Client]/Query" />
+          </ChainExpression>
+        </ScreenExpressionTree>
+      </ScreenCollectionProperty>
+      <ScreenCollectionProperty
+        Name="Client__Schedule_trainer"
+        PageSize="45"
+        PropertyType="CollectionView$Client__Schedule_trainerItem">
+        <ScreenCollectionProperty.Query>
+          <ScreenQueryDefinition
+            Name="Client__Schedule_trainerQuery"
+            ReturnType="Client__Schedule_trainerItem*">
+            <ScreenQueryDefinition.FilterExpression>
+              <QueryFilterExpressionTree />
+            </ScreenQueryDefinition.FilterExpression>
+            <ScreenQueryDefinition.Source>
+              <QuerySourceExpressionTree>
+                <ChainExpression>
+                  <MemberExpression
+                    Member="BrowseClient1/Properties[Client]" />
+                  <MemberExpression
+                    Member="selectedItem" />
+                  <MemberExpression
+                    Member="Client__Schedule_trainer" />
+                </ChainExpression>
+              </QuerySourceExpressionTree>
+            </ScreenQueryDefinition.Source>
+          </ScreenQueryDefinition>
+        </ScreenCollectionProperty.Query>
+        <ScreenExpressionTree>
+          <ChainExpression>
+            <CallExpression
+              Target="BrowseClient1/Properties[Client__Schedule_trainer]/Query" />
+          </ChainExpression>
+        </ScreenExpressionTree>
+      </ScreenCollectionProperty>
+      <ScreenCollectionProperty
+        Name="ClubCard"
+        PageSize="45"
+        PropertyType="CollectionView$ClubCardItem">
+        <ScreenCollectionProperty.Query>
+          <ScreenQueryDefinition
+            Name="ClubCardQuery"
+            ReturnType="ClubCardItem*">
+            <ScreenQueryDefinition.FilterExpression>
+              <QueryFilterExpressionTree />
+            </ScreenQueryDefinition.FilterExpression>
+            <ScreenQueryDefinition.Source>
+              <QuerySourceExpressionTree>
+                <ChainExpression>
+                  <MemberExpression
+                    Member="BrowseClient1/Properties[Client]" />
+                  <MemberExpression
+                    Member="selectedItem" />
+                  <MemberExpression
+                    Member="ClubCard" />
+                </ChainExpression>
+              </QuerySourceExpressionTree>
+            </ScreenQueryDefinition.Source>
+          </ScreenQueryDefinition>
+        </ScreenCollectionProperty.Query>
+        <ScreenExpressionTree>
+          <ChainExpression>
+            <CallExpression
+              Target="BrowseClient1/Properties[ClubCard]/Query" />
+          </ChainExpression>
+        </ScreenExpressionTree>
+      </ScreenCollectionProperty>
+      <ScreenCollectionProperty
+        Name="Client_Line"
+        PageSize="45"
+        PropertyType="CollectionView$Client_LineItem">
+        <ScreenCollectionProperty.Query>
+          <ScreenQueryDefinition
+            Name="Client_LineQuery"
+            ReturnType="Client_LineItem*">
+            <ScreenQueryDefinition.FilterExpression>
+              <QueryFilterExpressionTree />
+            </ScreenQueryDefinition.FilterExpression>
+            <ScreenQueryDefinition.Source>
+              <QuerySourceExpressionTree>
+                <ChainExpression>
+                  <MemberExpression
+                    Member="BrowseClient1/Properties[Client]" />
+                  <MemberExpression
+                    Member="selectedItem" />
+                  <MemberExpression
+                    Member="Client_Line" />
+                </ChainExpression>
+              </QuerySourceExpressionTree>
+            </ScreenQueryDefinition.Source>
+          </ScreenQueryDefinition>
+        </ScreenCollectionProperty.Query>
+        <ScreenExpressionTree>
+          <ChainExpression>
+            <CallExpression
+              Target="BrowseClient1/Properties[Client_Line]/Query" />
           </ChainExpression>
         </ScreenExpressionTree>
       </ScreenCollectionProperty>
@@ -263,10 +409,10 @@
   </Screen>
   <Application.Methods>
     <ApplicationMethod
-      Name="showBrowseSchedule_trainer">
+      Name="showBrowseClient1">
       <ApplicationMethod.Attributes>
         <ShowScreenMethod
-          TargetScreen="BrowseSchedule_trainer" />
+          TargetScreen="BrowseClient1" />
       </ApplicationMethod.Attributes>
     </ApplicationMethod>
   </Application.Methods>

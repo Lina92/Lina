@@ -7,12 +7,12 @@
   <EntityType>
     <EntityType.Attributes>
       <Proxy
-        Target="ServiceInterface:LineItem" />
+        Target="ServiceInterface:ClientItem" />
       <DefaultScreen
-        Value="ViewLineItem">
+        Value="ViewClientItem1">
         <DefaultScreen.Attributes>
           <ScreenParameterMapping
-            ScreenParameter="ViewLineItem/Properties[LineItem]" />
+            ScreenParameter="ViewClientItem1/Properties[ClientItem]" />
         </DefaultScreen.Attributes>
       </DefaultScreen>
     </EntityType.Attributes>

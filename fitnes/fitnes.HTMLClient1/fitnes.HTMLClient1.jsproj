@@ -66,6 +66,15 @@
     <Content Include="Content\Images\user-splash-screen.png" />
     <Content Include="Content\Web.config" />
     <Content Include="packages.config" />
+    <Content Include="Screens\Client\ViewClientItem1.lsml.js">
+      <DependentUpon>ViewClientItem1.lsml</DependentUpon>
+    </Content>
+    <Content Include="Screens\Client\ViewPeriodItem.lsml.js">
+      <DependentUpon>ViewPeriodItem.lsml</DependentUpon>
+    </Content>
+    <Content Include="Screens\Client\ViewView_visitsItem1.lsml.js">
+      <DependentUpon>ViewView_visitsItem1.lsml</DependentUpon>
+    </Content>
     <Content Include="Scripts\datajs-1.1.1.js" />
     <Content Include="Scripts\datajs-1.1.1.min.js" />
     <Content Include="Scripts\jquery-1.9.1.intellisense.js" />
@@ -90,15 +99,24 @@
     <LightSwitchModel Include="Properties\Client.lsml">
       <ProjectCritical>true</ProjectCritical>
     </LightSwitchModel>
-    <LightSwitchModel Include="Properties\FitnesData\Line.lsml" />
+    <LightSwitchModel Include="Properties\FitnesData\Client.lsml" />
+    <LightSwitchModel Include="Properties\FitnesData\Period.lsml" />
     <LightSwitchModel Include="Properties\FitnesData\Price.lsml" />
+    <LightSwitchModel Include="Properties\FitnesData\View_visits.lsml" />
     <LightSwitchModel Include="Properties\Proxies.lsml" />
     <LightSwitchModel Include="Screens\AddEditClubCardItem.lsml" />
     <LightSwitchModel Include="Screens\BrowseClient.lsml" />
-    <LightSwitchModel Include="Screens\BrowseSchedule_trainer.lsml" />
     <LightSwitchModel Include="Screens\BrowseTrainer.lsml" />
     <LightSwitchModel Include="Screens\BrowseView_visits.lsml" />
-    <LightSwitchModel Include="Screens\ViewLineItem.lsml" />
+    <LightSwitchModel Include="Screens\Client\AddEditClientItem1.lsml" />
+    <LightSwitchModel Include="Screens\Client\AddEditPeriodItem.lsml" />
+    <LightSwitchModel Include="Screens\Client\AddEditView_visitsItem1.lsml" />
+    <LightSwitchModel Include="Screens\Client\BrowseClient1.lsml" />
+    <LightSwitchModel Include="Screens\Client\BrowsePeriod.lsml" />
+    <LightSwitchModel Include="Screens\Client\BrowseView_visits1.lsml" />
+    <LightSwitchModel Include="Screens\Client\ViewClientItem1.lsml" />
+    <LightSwitchModel Include="Screens\Client\ViewPeriodItem.lsml" />
+    <LightSwitchModel Include="Screens\Client\ViewView_visitsItem1.lsml" />
     <LightSwitchModel Include="Screens\ViewPriceItem.lsml" />
   </ItemGroup>
   <ItemGroup>

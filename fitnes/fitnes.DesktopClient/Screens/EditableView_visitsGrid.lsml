@@ -97,6 +97,18 @@
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
               </ContentItem>
+              <ContentItem
+                Name="Save1"
+                Kind="Command">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <CallExpression
+                        Target="EditableView_visitsGrid/Methods[Save]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
             </ContentItem.CommandItems>
             <ContentItem.PropertySources>
               <ControlPropertySource
@@ -121,6 +133,16 @@
               </ControlPropertySource>
             </ContentItem.PropertySources>
           </ContentItem>
+          <ContentItem.PropertySources>
+            <ControlPropertySource
+              Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[HorizontalAlignment]">
+              <ScreenExpressionTree>
+                <ConstantExpression
+                  Value="Left"
+                  ResultType=":String" />
+              </ScreenExpressionTree>
+            </ControlPropertySource>
+          </ContentItem.PropertySources>
         </ContentItem>
         <ContentItem.CommandItems>
           <ContentItem

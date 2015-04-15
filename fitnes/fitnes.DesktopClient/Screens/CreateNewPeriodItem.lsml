@@ -5,7 +5,8 @@
     <Partial />
   </Application.Attributes>
   <Screen
-    Name="EditableTrainerGrid">
+    Name="CreateNewPeriodItem"
+    LaunchMode="Multiple">
     <Screen.Attributes>
       <SaveChangesTo
         EntityContainer="FitnesData" />
@@ -17,96 +18,54 @@
         View="Microsoft.LightSwitch.RichClient:Screen">
         <ContentItem
           Name="ScreenLayout"
-          Kind="Group"
-          View="Microsoft.LightSwitch.RichClient:RowsLayout">
+          Kind="Group">
           <ContentItem
-            Name="grid"
-            Kind="Collection"
-            DataType="CollectionView$TrainerItem"
-            View="Microsoft.LightSwitch.RichClient:DataGrid">
+            Name="details"
+            Kind="Details"
+            DataType="PeriodItem"
+            View="Microsoft.LightSwitch.RichClient:RowsLayout">
             <ContentItem.DataSource>
               <ScreenExpressionTree>
                 <ChainExpression>
                   <MemberExpression
-                    Member="EditableTrainerGrid/Properties[Trainer]" />
+                    Member="CreateNewPeriodItem/Properties[PeriodItemProperty]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
             <ContentItem
-              Name="RowTemplate"
-              Kind="Details"
-              DataType="TrainerItem">
+              Name="NamePeriod"
+              Kind="Value"
+              DataType=":String">
               <ContentItem.DataSource>
                 <ScreenExpressionTree>
-                  <ChainExpression />
+                  <ChainExpression>
+                    <MemberExpression
+                      Member="PeriodItem/Properties[NamePeriod]" />
+                  </ChainExpression>
                 </ScreenExpressionTree>
               </ContentItem.DataSource>
-              <ContentItem
-                Name="LName"
-                Kind="Value"
-                DataType=":String">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="TrainerItem/Properties[LName]" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="FName"
-                Kind="Value"
-                DataType=":String">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="TrainerItem/Properties[FName]" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
             </ContentItem>
             <ContentItem.CommandItems>
               <ContentItem
-                Name="Trainer_AddAndEditNew"
+                Name="Save1"
                 Kind="Command">
                 <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
-                      <MemberExpression
-                        Member="EditableTrainerGrid/Properties[Trainer]" />
                       <CallExpression
-                        Target="AddAndEditNew" />
+                        Target="CreateNewPeriodItem/Methods[Save]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
               </ContentItem>
               <ContentItem
-                Name="Trainer_EditSelected"
+                Name="Refresh1"
                 Kind="Command">
                 <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
-                      <MemberExpression
-                        Member="EditableTrainerGrid/Properties[Trainer]" />
                       <CallExpression
-                        Target="EditSelected" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="Trainer_DeleteSelected"
-                Kind="Command">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="EditableTrainerGrid/Properties[Trainer]" />
-                      <CallExpression
-                        Target="DeleteSelected" />
+                        Target="CreateNewPeriodItem/Methods[Refresh]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
@@ -118,23 +77,25 @@
                 <ScreenExpressionTree>
                   <ChainExpression>
                     <ConstantExpression
-                      Value="Stretch"
-                      ResultType=":String" />
-                  </ChainExpression>
-                </ScreenExpressionTree>
-              </ControlPropertySource>
-              <ControlPropertySource
-                Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[AttachedLabelPosition]">
-                <ScreenExpressionTree>
-                  <ChainExpression>
-                    <ConstantExpression
-                      Value="Collapsed"
+                      Value="Top"
                       ResultType=":String" />
                   </ChainExpression>
                 </ScreenExpressionTree>
               </ControlPropertySource>
             </ContentItem.PropertySources>
           </ContentItem>
+          <ContentItem.PropertySources>
+            <ControlPropertySource
+              Property="Microsoft.LightSwitch.RichClient:ScrollableControl/Properties[IsVerticalScrollBarEnabled]">
+              <ScreenExpressionTree>
+                <ChainExpression>
+                  <ConstantExpression
+                    Value="True"
+                    ResultType=":Boolean" />
+                </ChainExpression>
+              </ScreenExpressionTree>
+            </ControlPropertySource>
+          </ContentItem.PropertySources>
         </ContentItem>
         <ContentItem.CommandItems>
           <ContentItem
@@ -144,7 +105,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="EditableTrainerGrid/Methods[Save]" />
+                    Target="CreateNewPeriodItem/Methods[Save]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -156,7 +117,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="EditableTrainerGrid/Methods[Refresh]" />
+                    Target="CreateNewPeriodItem/Methods[Refresh]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -195,40 +156,17 @@
       </ScreenMethod>
     </Screen.Methods>
     <Screen.Properties>
-      <ScreenCollectionProperty
-        Name="Trainer"
-        PageSize="45"
-        PropertyType="CollectionView$TrainerItem">
-        <ScreenCollectionProperty.Query>
-          <ScreenQueryDefinition
-            Name="TrainerQuery"
-            ReturnType="TrainerItem*">
-            <ScreenQueryDefinition.FilterExpression>
-              <QueryFilterExpressionTree />
-            </ScreenQueryDefinition.FilterExpression>
-            <ScreenQueryDefinition.Source>
-              <QuerySourceExpressionTree>
-                <MemberExpression
-                  Member="FitnesData/Members[Trainer]" />
-              </QuerySourceExpressionTree>
-            </ScreenQueryDefinition.Source>
-          </ScreenQueryDefinition>
-        </ScreenCollectionProperty.Query>
-        <ScreenExpressionTree>
-          <ChainExpression>
-            <CallExpression
-              Target="EditableTrainerGrid/Properties[Trainer]/Query" />
-          </ChainExpression>
-        </ScreenExpressionTree>
-      </ScreenCollectionProperty>
+      <ScreenProperty
+        Name="PeriodItemProperty"
+        PropertyType="PeriodItem" />
     </Screen.Properties>
   </Screen>
   <Application.Methods>
     <ApplicationMethod
-      Name="ShowEditableTrainerGrid">
+      Name="ShowCreateNewPeriodItem">
       <ApplicationMethod.Attributes>
         <ShowScreenMethod
-          TargetScreen="EditableTrainerGrid" />
+          TargetScreen="CreateNewPeriodItem" />
       </ApplicationMethod.Attributes>
     </ApplicationMethod>
   </Application.Methods>

@@ -5,7 +5,8 @@
     <Partial />
   </Application.Attributes>
   <Screen
-    Name="GymItemDetail">
+    Name="CreateNewClubCardItem"
+    LaunchMode="Multiple">
     <Screen.Attributes>
       <SaveChangesTo
         EntityContainer="FitnesData" />
@@ -17,45 +18,140 @@
         View="Microsoft.LightSwitch.RichClient:Screen">
         <ContentItem
           Name="ScreenLayout"
-          Kind="Group"
-          View="Microsoft.LightSwitch.RichClient:RowsLayout">
+          Kind="Group">
           <ContentItem
             Name="details"
             Kind="Details"
-            DataType="GymItem">
+            DataType="ClubCardItem"
+            View="Microsoft.LightSwitch.RichClient:RowsLayout">
             <ContentItem.DataSource>
               <ScreenExpressionTree>
                 <ChainExpression>
                   <MemberExpression
-                    Member="GymItemDetail/Properties[GymItem]" />
+                    Member="CreateNewClubCardItem/Properties[ClubCardItemProperty]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
             <ContentItem
-              Name="NamberGym"
+              Name="numberCard"
               Kind="Value"
               DataType=":Int32">
               <ContentItem.DataSource>
                 <ScreenExpressionTree>
                   <ChainExpression>
                     <MemberExpression
-                      Member="GymItem/Properties[NamberGym]" />
+                      Member="ClubCardItem/Properties[numberCard]" />
                   </ChainExpression>
                 </ScreenExpressionTree>
               </ContentItem.DataSource>
             </ContentItem>
             <ContentItem
-              Name="NameGym"
+              Name="Data"
               Kind="Value"
-              DataType=":String">
+              DataType=":Date">
               <ContentItem.DataSource>
                 <ScreenExpressionTree>
                   <ChainExpression>
                     <MemberExpression
-                      Member="GymItem/Properties[NameGym]" />
+                      Member="ClubCardItem/Properties[Data]" />
                   </ChainExpression>
                 </ScreenExpressionTree>
               </ContentItem.DataSource>
+            </ContentItem>
+            <ContentItem
+              Name="CData_End"
+              Kind="Value"
+              DataType=":Date">
+              <ContentItem.DataSource>
+                <ScreenExpressionTree>
+                  <ChainExpression>
+                    <MemberExpression
+                      Member="ClubCardItem/Properties[CData_End]" />
+                  </ChainExpression>
+                </ScreenExpressionTree>
+              </ContentItem.DataSource>
+            </ContentItem>
+            <ContentItem
+              Name="Price"
+              Kind="Value"
+              DataType=":Decimal">
+              <ContentItem.DataSource>
+                <ScreenExpressionTree>
+                  <ChainExpression>
+                    <MemberExpression
+                      Member="ClubCardItem/Properties[Price]" />
+                  </ChainExpression>
+                </ScreenExpressionTree>
+              </ContentItem.DataSource>
+            </ContentItem>
+            <ContentItem
+              Name="ClientItem"
+              Kind="Details"
+              DataType="ClientItem">
+              <ContentItem.DataSource>
+                <ScreenExpressionTree>
+                  <ChainExpression>
+                    <MemberExpression
+                      Member="ClubCardItem/Properties[ClientItem]" />
+                  </ChainExpression>
+                </ScreenExpressionTree>
+              </ContentItem.DataSource>
+              <ContentItem
+                Name="RowTemplate"
+                Kind="Details"
+                DataType="ClientItem">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression />
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+            </ContentItem>
+            <ContentItem
+              Name="PeriodItem"
+              Kind="Details"
+              DataType="PeriodItem">
+              <ContentItem.DataSource>
+                <ScreenExpressionTree>
+                  <ChainExpression>
+                    <MemberExpression
+                      Member="ClubCardItem/Properties[PeriodItem]" />
+                  </ChainExpression>
+                </ScreenExpressionTree>
+              </ContentItem.DataSource>
+              <ContentItem
+                Name="RowTemplate1"
+                Kind="Details"
+                DataType="PeriodItem">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression />
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+            </ContentItem>
+            <ContentItem
+              Name="View_visitsItem"
+              Kind="Details"
+              DataType="View_visitsItem">
+              <ContentItem.DataSource>
+                <ScreenExpressionTree>
+                  <ChainExpression>
+                    <MemberExpression
+                      Member="ClubCardItem/Properties[View_visitsItem]" />
+                  </ChainExpression>
+                </ScreenExpressionTree>
+              </ContentItem.DataSource>
+              <ContentItem
+                Name="RowTemplate2"
+                Kind="Details"
+                DataType="View_visitsItem">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression />
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
             </ContentItem>
             <ContentItem.PropertySources>
               <ControlPropertySource
@@ -91,7 +187,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="GymItemDetail/Methods[Save]" />
+                    Target="CreateNewClubCardItem/Methods[Save]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -103,7 +199,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="GymItemDetail/Methods[Refresh]" />
+                    Target="CreateNewClubCardItem/Methods[Refresh]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -143,68 +239,17 @@
     </Screen.Methods>
     <Screen.Properties>
       <ScreenProperty
-        Name="GymItem"
-        PropertyType="GymItem">
-        <ScreenExpressionTree>
-          <ChainExpression>
-            <CallExpression
-              Target="LightSwitchApplication.fitnes.DesktopClient:FitnesData/Members[Gym_SingleOrDefault]">
-              <ArgumentExpression
-                Parameter="IDGym">
-                <ChainExpression>
-                  <MemberExpression
-                    Member="GymItemDetail/Properties[GymItemIDGym]" />
-                </ChainExpression>
-              </ArgumentExpression>
-            </CallExpression>
-          </ChainExpression>
-        </ScreenExpressionTree>
-      </ScreenProperty>
-      <ScreenProperty
-        Name="GymItemIDGym"
-        PropertyType=":Int32">
-        <ScreenProperty.Attributes>
-          <IsParameter />
-        </ScreenProperty.Attributes>
-      </ScreenProperty>
-      <ScreenCollectionProperty
-        Name="Line"
-        PageSize="45"
-        PropertyType="CollectionView$LineItem">
-        <ScreenCollectionProperty.Query>
-          <ScreenQueryDefinition
-            Name="LineQuery"
-            ReturnType="LineItem*">
-            <ScreenQueryDefinition.FilterExpression>
-              <QueryFilterExpressionTree />
-            </ScreenQueryDefinition.FilterExpression>
-            <ScreenQueryDefinition.Source>
-              <QuerySourceExpressionTree>
-                <MemberExpression
-                  Member="FitnesData/Members[Line]" />
-              </QuerySourceExpressionTree>
-            </ScreenQueryDefinition.Source>
-          </ScreenQueryDefinition>
-        </ScreenCollectionProperty.Query>
-        <ScreenExpressionTree>
-          <ChainExpression>
-            <CallExpression
-              Target="GymItemDetail/Properties[Line]/Query" />
-          </ChainExpression>
-        </ScreenExpressionTree>
-      </ScreenCollectionProperty>
+        Name="ClubCardItemProperty"
+        PropertyType="ClubCardItem" />
     </Screen.Properties>
   </Screen>
   <Application.Methods>
     <ApplicationMethod
-      Name="ShowGymItemDetail">
+      Name="ShowCreateNewClubCardItem">
       <ApplicationMethod.Attributes>
         <ShowScreenMethod
-          TargetScreen="GymItemDetail" />
+          TargetScreen="CreateNewClubCardItem" />
       </ApplicationMethod.Attributes>
-      <ApplicationMethodParameter
-        Name="GymItemIDGym"
-        ParameterType=":Int32" />
     </ApplicationMethod>
   </Application.Methods>
 </Application>

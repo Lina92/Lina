@@ -5,10 +5,12 @@
     <Partial />
   </Application.Attributes>
   <Screen
-    Name="AddEditClubCardItem">
+    Name="AddEditView_visitsItem1">
     <Screen.Attributes>
       <SaveChangesTo
         EntityContainer="FitnesData" />
+      <DisplayName
+        Value="View_visitsItem" />
     </Screen.Attributes>
     <Screen.RootContentItem>
       <ContentItem
@@ -30,7 +32,7 @@
             <ContentItem
               Name="columns"
               Kind="Details"
-              DataType="ClubCardItem"
+              DataType="View_visitsItem"
               View="Microsoft.LightSwitch.MobileWeb:ColumnsLayout">
               <ContentItem.Attributes>
                 <DisplayName
@@ -40,7 +42,7 @@
                 <ScreenExpressionTree>
                   <ChainExpression>
                     <MemberExpression
-                      Member="AddEditClubCardItem/Properties[ClubCardItem]" />
+                      Member="AddEditView_visitsItem1/Properties[View_visitsItem]" />
                   </ChainExpression>
                 </ScreenExpressionTree>
               </ContentItem.DataSource>
@@ -48,53 +50,14 @@
                 Name="left"
                 Kind="Group">
                 <ContentItem
-                  Name="numberCard"
+                  Name="Name"
                   Kind="Value"
-                  DataType=":Int32">
+                  DataType=":String">
                   <ContentItem.DataSource>
                     <ScreenExpressionTree>
                       <ChainExpression>
                         <MemberExpression
-                          Member="ClubCardItem/Properties[numberCard]" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                </ContentItem>
-                <ContentItem
-                  Name="Data"
-                  Kind="Value"
-                  DataType=":Date">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <MemberExpression
-                          Member="ClubCardItem/Properties[Data]" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                </ContentItem>
-                <ContentItem
-                  Name="CData_End"
-                  Kind="Value"
-                  DataType=":Date">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <MemberExpression
-                          Member="ClubCardItem/Properties[CData_End]" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                </ContentItem>
-                <ContentItem
-                  Name="Price"
-                  Kind="Value"
-                  DataType=":Decimal">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <MemberExpression
-                          Member="ClubCardItem/Properties[Price]" />
+                          Member="View_visitsItem/Properties[Name]" />
                       </ChainExpression>
                     </ScreenExpressionTree>
                   </ContentItem.DataSource>
@@ -125,75 +88,6 @@
               <ContentItem
                 Name="right"
                 Kind="Group">
-                <ContentItem
-                  Name="ClientItem"
-                  Kind="Details"
-                  DataType="ClientItem">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <MemberExpression
-                          Member="ClubCardItem/Properties[ClientItem]" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                  <ContentItem
-                    Name="RowTemplate"
-                    Kind="Details"
-                    DataType="ClientItem">
-                    <ContentItem.DataSource>
-                      <ScreenExpressionTree>
-                        <ChainExpression />
-                      </ScreenExpressionTree>
-                    </ContentItem.DataSource>
-                  </ContentItem>
-                </ContentItem>
-                <ContentItem
-                  Name="PeriodItem"
-                  Kind="Details"
-                  DataType="PeriodItem">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <MemberExpression
-                          Member="ClubCardItem/Properties[PeriodItem]" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                  <ContentItem
-                    Name="RowTemplate1"
-                    Kind="Details"
-                    DataType="PeriodItem">
-                    <ContentItem.DataSource>
-                      <ScreenExpressionTree>
-                        <ChainExpression />
-                      </ScreenExpressionTree>
-                    </ContentItem.DataSource>
-                  </ContentItem>
-                </ContentItem>
-                <ContentItem
-                  Name="View_visitsItem"
-                  Kind="Details"
-                  DataType="View_visitsItem">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <MemberExpression
-                          Member="ClubCardItem/Properties[View_visitsItem]" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                  <ContentItem
-                    Name="RowTemplate2"
-                    Kind="Details"
-                    DataType="View_visitsItem">
-                    <ContentItem.DataSource>
-                      <ScreenExpressionTree>
-                        <ChainExpression />
-                      </ScreenExpressionTree>
-                    </ContentItem.DataSource>
-                  </ContentItem>
-                </ContentItem>
                 <ContentItem.PropertySources>
                   <ControlPropertySource
                     Property="Microsoft.LightSwitch.MobileWeb:RootControl/Properties[MinWidth]">
@@ -218,31 +112,6 @@
                 </ContentItem.PropertySources>
               </ContentItem>
             </ContentItem>
-            <ContentItem.CommandItems>
-              <ContentItem
-                Name="ShowAddEditClubCardItem"
-                Kind="Command">
-                <ContentItem.PropertySources>
-                  <ControlPropertySource
-                    Property="Microsoft.LightSwitch.MobileWeb:RootControl/Properties[Tap]">
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <CallExpression
-                          Target="!module/Methods[showAddEditClubCardItem]">
-                          <ArgumentExpression
-                            Parameter="ClubCardItem">
-                            <ChainExpression>
-                              <MemberExpression
-                                Member="AddEditClubCardItem/Properties[ClubCardItem]" />
-                            </ChainExpression>
-                          </ArgumentExpression>
-                        </CallExpression>
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ControlPropertySource>
-                </ContentItem.PropertySources>
-              </ContentItem>
-            </ContentItem.CommandItems>
           </ContentItem>
         </ContentItem>
         <ContentItem
@@ -299,8 +168,8 @@
     </Screen.Methods>
     <Screen.Properties>
       <ScreenProperty
-        Name="ClubCardItem"
-        PropertyType="ClubCardItem">
+        Name="View_visitsItem"
+        PropertyType="View_visitsItem">
         <ScreenProperty.Attributes>
           <IsParameter />
         </ScreenProperty.Attributes>
@@ -309,14 +178,14 @@
   </Screen>
   <Application.Methods>
     <ApplicationMethod
-      Name="showAddEditClubCardItem">
+      Name="showAddEditView_visitsItem1">
       <ApplicationMethod.Attributes>
         <ShowScreenMethod
-          TargetScreen="AddEditClubCardItem" />
+          TargetScreen="AddEditView_visitsItem1" />
       </ApplicationMethod.Attributes>
       <ApplicationMethodParameter
-        Name="ClubCardItem"
-        ParameterType="ClubCardItem" />
+        Name="View_visitsItem"
+        ParameterType="View_visitsItem" />
     </ApplicationMethod>
   </Application.Methods>
 </Application>
